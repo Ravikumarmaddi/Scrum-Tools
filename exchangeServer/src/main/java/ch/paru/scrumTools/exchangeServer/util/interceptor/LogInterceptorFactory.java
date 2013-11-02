@@ -6,12 +6,12 @@ import java.lang.reflect.Proxy;
 
 import org.slf4j.Logger;
 
-import ch.paru.scrumTools.exchangeServer.util.logging.EwsLogger;
+import ch.paru.scrumTools.common.logging.ToolLogger;
 
 public class LogInterceptorFactory {
 
-	private static final Logger TIMER = EwsLogger.getTimeLogger();
-	private static final Logger LOGGER = EwsLogger.getLogger(LogInterceptorFactory.class);
+	private static final Logger TIMER = ToolLogger.getTimeLogger();
+	private static final Logger LOGGER = ToolLogger.getLogger(LogInterceptorFactory.class);
 
 	@SuppressWarnings("unchecked")
 	public <T, U extends T> T getInterceptor(Class<T> clazz, U impl) {

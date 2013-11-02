@@ -1,9 +1,9 @@
-package ch.paru.scrumTools.exchangeServer.util.logging;
+package ch.paru.scrumTools.common.logging;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EwsLogger {
+public class ToolLogger {
 
 	static {
 		System.setProperty("org.slf4j.simpleLogger.showDateTime", "true");

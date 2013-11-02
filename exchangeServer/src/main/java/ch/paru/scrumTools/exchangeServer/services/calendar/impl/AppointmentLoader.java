@@ -17,13 +17,14 @@ import org.slf4j.Logger;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+
+import ch.paru.scrumTools.common.logging.ToolLogger;
 import ch.paru.scrumTools.exchangeServer.services.calendar.EwsDay;
 import ch.paru.scrumTools.exchangeServer.util.EwsDayUtil;
-import ch.paru.scrumTools.exchangeServer.util.logging.EwsLogger;
 
 public class AppointmentLoader {
 
-	private static final Logger LOGGER = EwsLogger.getLogger(AppointmentLoader.class);
+	private static final Logger LOGGER = ToolLogger.getLogger(AppointmentLoader.class);
 
 	private ExchangeService server;
 	private Map<String, List<Appointment>> appointmentCache;
