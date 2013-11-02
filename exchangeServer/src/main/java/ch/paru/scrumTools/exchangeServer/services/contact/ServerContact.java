@@ -2,10 +2,10 @@ package ch.paru.scrumTools.exchangeServer.services.contact;
 
 import com.google.common.base.Objects;
 
-public class EwsContact {
+public class ServerContact {
 	private String mailAddress;
 
-	public EwsContact(String mailAddress) {
+	public ServerContact(String mailAddress) {
 		this.mailAddress = mailAddress.toLowerCase();
 	}
 
@@ -24,7 +24,7 @@ public class EwsContact {
 			return false;
 		}
 
-		EwsContact other = (EwsContact) obj;
+		ServerContact other = (ServerContact) obj;
 		return getMailAddress().equals(other.getMailAddress());
 	}
 

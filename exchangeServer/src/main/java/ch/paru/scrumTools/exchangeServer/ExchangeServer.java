@@ -79,10 +79,10 @@ public class ExchangeServer {
 				ExchangeServerConfiguration configuration = ExchangeServerConfiguration.getInstance();
 
 				final ExchangeService service = new ExchangeService();
-				final ExchangeCredentials credentials = new WebCredentials(configuration.getEwsUsername(),
-						configuration.getEwsPassword());
+				final ExchangeCredentials credentials = new WebCredentials(configuration.getUsername(),
+						configuration.getPassword());
 				service.setCredentials(credentials);
-				service.setUrl(new java.net.URI(configuration.getEwsUrl()));
+				service.setUrl(new java.net.URI(configuration.getUrl()));
 				service.setTraceEnabled(false);
 				remote = service;
 			}

@@ -4,19 +4,19 @@ import java.util.List;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
-import ch.paru.scrumTools.exchangeServer.services.contact.EwsContact;
+import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 
-public class EwsAppointment {
+public class ServerAppointment {
 	public static final int ALL_DAY_EVENT = -1;
 
-	private EwsContact creator;
+	private ServerContact creator;
 	private String subject;
-	private final EwsDay day;
+	private final ServerDay day;
 	private int durationInMin;
-	private EwsTime startTime;
+	private ServerTime startTime;
 	private List<CalendarCategories> categories;
 
-	public EwsAppointment(String subject, EwsContact creator, EwsDay day, int durationInMin, EwsTime startTime,
+	public ServerAppointment(String subject, ServerContact creator, ServerDay day, int durationInMin, ServerTime startTime,
 			CalendarCategories... categories) {
 		this.creator = creator;
 		this.subject = subject;
@@ -26,7 +26,7 @@ public class EwsAppointment {
 		this.categories = Lists.newArrayList(categories);
 	}
 
-	public EwsContact getCreator() {
+	public ServerContact getCreator() {
 		return creator;
 	}
 
@@ -34,7 +34,7 @@ public class EwsAppointment {
 		return subject;
 	}
 
-	public EwsDay getDay() {
+	public ServerDay getDay() {
 		return day;
 	}
 
@@ -46,7 +46,7 @@ public class EwsAppointment {
 		this.durationInMin = durationInMin;
 	}
 
-	public EwsTime getStartTime() {
+	public ServerTime getStartTime() {
 		return startTime;
 	}
 
@@ -64,7 +64,7 @@ public class EwsAppointment {
 			return false;
 		}
 
-		EwsAppointment other = (EwsAppointment) obj;
+		ServerAppointment other = (ServerAppointment) obj;
 		if (!day.equals(other.day)) {
 			return false;
 		}

@@ -19,8 +19,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import ch.paru.scrumTools.common.logging.ToolLogger;
-import ch.paru.scrumTools.exchangeServer.services.calendar.EwsDay;
-import ch.paru.scrumTools.exchangeServer.util.EwsDayUtil;
+import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.exchangeServer.util.ServerDayUtil;
 
 public class AppointmentLoader {
 
@@ -34,7 +34,7 @@ public class AppointmentLoader {
 		appointmentCache = Maps.newHashMap();
 	}
 
-	public List<Appointment> loadAppointments(EwsDay startDay, EwsDay endDay) throws Exception {
+	public List<Appointment> loadAppointments(ServerDay startDay, ServerDay endDay) throws Exception {
 		String cacheKey = getCacheKey(startDay, endDay);
 		LOGGER.debug("AppointmentLoader: Key: " + cacheKey);
 		if (!appointmentCache.containsKey(cacheKey)) {
@@ -62,23 +62,23 @@ public class AppointmentLoader {
 		return list;
 	}
 
-	private String getCacheKey(EwsDay startDay, EwsDay endDay) {
+	private String getCacheKey(ServerDay startDay, ServerDay endDay) {
 		StringBuffer sb = new StringBuffer();
-		sb.append(EwsDayUtil.getDisplayText(startDay));
+		sb.append(ServerDayUtil.getDisplayText(startDay));
 		sb.append("_");
-		sb.append(EwsDayUtil.getDisplayText(endDay));
+		sb.append(ServerDayUtil.getDisplayText(endDay));
 		return sb.toString();
 	}
 
 	/* Needed because the timezone handling is not working properly. AllDay appointments are starts always @ 10pm */
-	private Date setMorningTime(EwsDay day) {
+	private Date setMorningTime(ServerDay day) {
 		Calendar cal = new GregorianCalendar();
 		cal.setTime(day.getDate());
 		cal.add(Calendar.HOUR_OF_DAY, +3);
 		return cal.getTime();
 	}
 
-	private Date setEveningTime(EwsDay day) {
+	private Date setEveningTime(ServerDay day) {
 		Calendar cal = new GregorianCalendar();
 		cal.setTime(day.getDate());
 		cal.add(Calendar.HOUR_OF_DAY, -3);

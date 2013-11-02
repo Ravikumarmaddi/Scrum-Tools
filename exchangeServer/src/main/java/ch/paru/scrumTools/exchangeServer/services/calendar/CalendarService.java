@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface CalendarService {
 
-	List<EwsAppointment> getAllAppointmentsOfCategory(EwsDay day, CalendarCategories category);
+	List<ServerAppointment> getAllAppointmentsOfCategory(ServerDay day, CalendarCategories category);
 
-	EwsAppointment getSingleAppointmentOfCategory(EwsDay day, CalendarCategories category);
+	ServerAppointment getSingleAppointmentOfCategory(ServerDay day, CalendarCategories category);
 
-	boolean isWorkingDay(EwsDay day);
+	boolean isWorkingDay(ServerDay day);
 }

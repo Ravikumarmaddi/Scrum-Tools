@@ -5,10 +5,10 @@ import org.apache.commons.configuration.HierarchicalINIConfiguration;
 import ch.paru.scrumTools.exchangeServer.EchangeServerException;
 
 public class ExchangeServerConfiguration {
-	private static final String EWS_USE_REAL_SERVICE = "ews_useRealService";
-	private static final String EWS_URL = "ews_url";
-	private static final String EWS_USERNAME = "ews_username";
-	private static final String EWS_PASSWORD = "ews_password";
+	private static final String USE_REAL_SERVICE = "useRealService";
+	private static final String URL = "url";
+	private static final String USERNAME = "username";
+	private static final String PASSWORD = "password";
 	private static final String CALENDAR_CATEGORY_PREFIX = "calendar_category_";
 
 	private static ExchangeServerConfiguration instance;
@@ -37,19 +37,19 @@ public class ExchangeServerConfiguration {
 	}
 
 	public boolean getIsRealServiceUsed() {
-		return getConfig().getBoolean(EWS_USE_REAL_SERVICE);
+		return getConfig().getBoolean(USE_REAL_SERVICE);
 	}
 
-	public String getEwsUrl() {
-		return getConfig().getString(EWS_URL);
+	public String getUrl() {
+		return getConfig().getString(URL);
 	}
 
-	public String getEwsUsername() {
-		return getConfig().getString(EWS_USERNAME);
+	public String getUsername() {
+		return getConfig().getString(USERNAME);
 	}
 
-	public String getEwsPassword() {
-		return getConfig().getString(EWS_PASSWORD);
+	public String getPassword() {
+		return getConfig().getString(PASSWORD);
 	}
 
 	public String getCalendarCategory(String key) {

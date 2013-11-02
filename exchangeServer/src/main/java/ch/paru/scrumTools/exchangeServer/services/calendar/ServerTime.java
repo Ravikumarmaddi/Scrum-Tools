@@ -2,11 +2,11 @@ package ch.paru.scrumTools.exchangeServer.services.calendar;
 
 import com.google.common.base.Objects;
 
-public class EwsTime {
+public class ServerTime {
 	private int hour;
 	private int min;
 
-	public EwsTime(int hour, int min) {
+	public ServerTime(int hour, int min) {
 		this.hour = hour;
 		this.min = min;
 	}
@@ -30,7 +30,7 @@ public class EwsTime {
 			return false;
 		}
 
-		EwsTime other = (EwsTime) obj;
+		ServerTime other = (ServerTime) obj;
 		return toString().equals(other.toString());
 	}
 

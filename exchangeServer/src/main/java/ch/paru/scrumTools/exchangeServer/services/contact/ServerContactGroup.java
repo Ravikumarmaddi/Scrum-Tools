@@ -6,12 +6,12 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
-public class EwsContactGroup {
+public class ServerContactGroup {
 
 	private String name;
-	private List<EwsContact> members;
+	private List<ServerContact> members;
 
-	public EwsContactGroup(String name) {
+	public ServerContactGroup(String name) {
 		this.name = name;
 		members = Lists.newArrayList();
 	}
@@ -20,11 +20,11 @@ public class EwsContactGroup {
 		return name;
 	}
 
-	public void addMember(EwsContact contact) {
+	public void addMember(ServerContact contact) {
 		members.add(contact);
 	}
 
-	public List<EwsContact> getMembers() {
+	public List<ServerContact> getMembers() {
 		return ImmutableList.copyOf(members);
 	}
 
@@ -39,7 +39,7 @@ public class EwsContactGroup {
 			return false;
 		}
 
-		EwsContactGroup other = (EwsContactGroup) obj;
+		ServerContactGroup other = (ServerContactGroup) obj;
 		if (!getName().equals(other.getName())) {
 			return false;
 		}

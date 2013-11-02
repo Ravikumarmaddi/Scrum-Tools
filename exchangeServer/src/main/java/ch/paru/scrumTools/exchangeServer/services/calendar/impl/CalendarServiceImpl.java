@@ -6,17 +6,17 @@ import java.util.List;
 import microsoft.exchange.webservices.data.Appointment;
 import microsoft.exchange.webservices.data.ExchangeService;
 import microsoft.exchange.webservices.data.StringList;
-
-import com.google.common.collect.Lists;
 import ch.paru.scrumTools.exchangeServer.EchangeServerException;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
-import ch.paru.scrumTools.exchangeServer.services.calendar.EwsAppointment;
-import ch.paru.scrumTools.exchangeServer.services.calendar.EwsDay;
-import ch.paru.scrumTools.exchangeServer.services.calendar.EwsTime;
-import ch.paru.scrumTools.exchangeServer.services.contact.EwsContact;
-import ch.paru.scrumTools.exchangeServer.util.EwsDayUtil;
-import ch.paru.scrumTools.exchangeServer.util.EwsTimeUtil;
+import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;
+import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.exchangeServer.services.calendar.ServerTime;
+import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
+import ch.paru.scrumTools.exchangeServer.util.ServerDayUtil;
+import ch.paru.scrumTools.exchangeServer.util.ServerTimeUtil;
+
+import com.google.common.collect.Lists;
 
 public class CalendarServiceImpl implements CalendarService {
 
@@ -27,7 +27,7 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 
 	@Override
-	public boolean isWorkingDay(EwsDay day) {
+	public boolean isWorkingDay(ServerDay day) {
 		try {
 			Calendar cal = day.getCalendar();
 			int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
@@ -35,7 +35,7 @@ public class CalendarServiceImpl implements CalendarService {
 				return false;
 			}
 
-			List<EwsAppointment> appointments = getAppointmentsOfCategory(day, CalendarCategories.PUBLIC_HOLIDAY);
+			List<ServerAppointment> appointments = getAppointmentsOfCategory(day, CalendarCategories.PUBLIC_HOLIDAY);
 			return appointments.size() == 0;
 		}
 		catch (final Exception e) {
@@ -44,7 +44,7 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 
 	@Override
-	public List<EwsAppointment> getAllAppointmentsOfCategory(EwsDay day, CalendarCategories category) {
+	public List<ServerAppointment> getAllAppointmentsOfCategory(ServerDay day, CalendarCategories category) {
 		try {
 			return getAppointmentsOfCategory(day, category);
 		}
@@ -54,8 +54,8 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 
 	@Override
-	public EwsAppointment getSingleAppointmentOfCategory(EwsDay day, CalendarCategories category) {
-		List<EwsAppointment> appointments = getAllAppointmentsOfCategory(day, category);
+	public ServerAppointment getSingleAppointmentOfCategory(ServerDay day, CalendarCategories category) {
+		List<ServerAppointment> appointments = getAllAppointmentsOfCategory(day, category);
 
 		if (appointments.size() != 1) {
 			throw new EchangeServerException("not exactly one appointment: " + day + " - " + category, null);
@@ -64,21 +64,21 @@ public class CalendarServiceImpl implements CalendarService {
 		return appointments.get(0);
 	}
 
-	private List<EwsAppointment> getAppointmentsOfCategory(EwsDay day, CalendarCategories cat) throws Exception {
-		EwsDay startDay = EwsDayUtil.addDays(day, 0);
-		EwsDay endDay = EwsDayUtil.addDays(day, 1);
+	private List<ServerAppointment> getAppointmentsOfCategory(ServerDay day, CalendarCategories cat) throws Exception {
+		ServerDay startDay = ServerDayUtil.addDays(day, 0);
+		ServerDay endDay = ServerDayUtil.addDays(day, 1);
 
 		final List<Appointment> findResults = appointLoader.loadAppointments(startDay, endDay);
 
-		List<EwsAppointment> appointments = Lists.newArrayList();
+		List<ServerAppointment> appointments = Lists.newArrayList();
 
 		for (final Appointment appt : findResults) {
 			if (appt.getCategories().contains(cat.getCategoryName())) {
 				String subject = appt.getSubject();
-				EwsContact creator = new EwsContact(appt.getOrganizer().getAddress());
+				ServerContact creator = new ServerContact(appt.getOrganizer().getAddress());
 				int duration = (int) appt.getDuration().getTotalMinutes();
-				EwsTime startTime = EwsTimeUtil.createTimeFromDate(appt.getStart());
-				EwsAppointment appointment = new EwsAppointment(subject, creator, day, duration, startTime);
+				ServerTime startTime = ServerTimeUtil.createTimeFromDate(appt.getStart());
+				ServerAppointment appointment = new ServerAppointment(subject, creator, day, duration, startTime);
 				readCategories(appt, appointment);
 				appointments.add(appointment);
 			}
@@ -87,13 +87,13 @@ public class CalendarServiceImpl implements CalendarService {
 		return appointments;
 	}
 
-	private void readCategories(Appointment remoteAppointment, EwsAppointment ewsAppointment) throws Exception {
+	private void readCategories(Appointment remoteAppointment, ServerAppointment appointment) throws Exception {
 		StringList assignedCategories = remoteAppointment.getCategories();
 		CalendarCategories[] categories = CalendarCategories.values();
 		for (int i = 0; i < categories.length; i++) {
 			CalendarCategories cat = categories[i];
 			if (assignedCategories.contains(cat.getCategoryName())) {
-				ewsAppointment.addCategory(cat);
+				appointment.addCategory(cat);
 			}
 		}
 	}

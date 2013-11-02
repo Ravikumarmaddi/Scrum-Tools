@@ -6,11 +6,11 @@ import java.util.GregorianCalendar;
 
 import com.google.common.base.Objects;
 
-public class EwsDay {
+public class ServerDay {
 
 	private Calendar calendar;
 
-	public EwsDay(int day, int month, int year) {
+	public ServerDay(int day, int month, int year) {
 		calendar = new GregorianCalendar(year, month - 1, day);
 	}
 
@@ -37,7 +37,7 @@ public class EwsDay {
 			return false;
 		}
 
-		EwsDay other = (EwsDay) obj;
+		ServerDay other = (ServerDay) obj;
 		return toString().equals(other.toString());
 	}
 

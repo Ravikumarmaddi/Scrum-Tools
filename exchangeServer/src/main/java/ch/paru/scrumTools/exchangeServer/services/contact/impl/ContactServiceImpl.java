@@ -14,8 +14,8 @@ import microsoft.exchange.webservices.data.WellKnownFolderName;
 import com.google.common.collect.Lists;
 import ch.paru.scrumTools.exchangeServer.EchangeServerException;
 import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
-import ch.paru.scrumTools.exchangeServer.services.contact.EwsContact;
-import ch.paru.scrumTools.exchangeServer.services.contact.EwsContactGroup;
+import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
+import ch.paru.scrumTools.exchangeServer.services.contact.ServerContactGroup;
 
 public class ContactServiceImpl implements ContactService {
 
@@ -26,9 +26,9 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	@Override
-	public List<EwsContactGroup> getAllContactGroups() {
+	public List<ServerContactGroup> getAllContactGroups() {
 		try {
-			List<EwsContactGroup> groups = Lists.newArrayList();
+			List<ServerContactGroup> groups = Lists.newArrayList();
 
 			FindItemsResults<Item> items = server.findItems(WellKnownFolderName.Contacts, new ItemView(100));
 			for (Item item : items) {
@@ -44,12 +44,12 @@ public class ContactServiceImpl implements ContactService {
 		}
 	}
 
-	private EwsContactGroup createGroup(ContactGroup group) throws Exception {
-		EwsContactGroup contactGroup = new EwsContactGroup(group.getDisplayName());
+	private ServerContactGroup createGroup(ContactGroup group) throws Exception {
+		ServerContactGroup contactGroup = new ServerContactGroup(group.getDisplayName());
 
 		ExpandGroupResults expandGroup = server.expandGroup(group.getId());
 		for (EmailAddress emailAddress : expandGroup) {
-			contactGroup.addMember(new EwsContact(emailAddress.getAddress()));
+			contactGroup.addMember(new ServerContact(emailAddress.getAddress()));
 		}
 
 		return contactGroup;
