@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>ch.paru.scrumTools</groupId>
-	<artifactId>tools-utility</artifactId>
+	<artifactId>tools-common</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -14,12 +14,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
-			<version>1.6</version>
-			<type>jar</type>
-		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
