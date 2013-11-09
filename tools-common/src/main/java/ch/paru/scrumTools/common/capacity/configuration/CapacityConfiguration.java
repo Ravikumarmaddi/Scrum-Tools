@@ -20,7 +20,7 @@ public class CapacityConfiguration {
 		instance = new CapacityConfiguration(fileName);
 	}
 
-	private CapacityConfiguration(String fileName) {
+	protected CapacityConfiguration(String fileName) {
 		try {
 			config = new HierarchicalINIConfiguration();
 			config.load(fileName);
@@ -64,11 +64,9 @@ public class CapacityConfiguration {
 			throw new ToolException("for '" + mailAddress + "' is no config user available", null);
 		}
 
-		ConfigUser user = new ConfigUser(mailAddress);
-		user.setName(section.getString(ConfigUser.NAME));
-		user.setRole(getRole(section.getString(ConfigUser.ROLE)));
-		user.setCapacity(section.getDouble(ConfigUser.CAPACITY, 1.0));
-		user.setComment(section.getString(ConfigUser.COMMENT));
+		ConfigUserFactory userFactory = getUserFactory();
+		ConfigUser user = userFactory.getNewInstance(mailAddress);
+		userFactory.setValues(user, section);
 		return user;
 	}
 
@@ -87,5 +85,9 @@ public class CapacityConfiguration {
 		CapacityType type = CapacityType.valueOf(CapacityTypeName);
 		role.setCapacityType(type);
 		return role;
+	}
+
+	protected ConfigUserFactory getUserFactory() {
+		return new ConfigUserFactory();
 	}
 }
