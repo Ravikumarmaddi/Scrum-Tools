@@ -1,0 +1,8 @@
+companyDomain=@domain.com
+
+[USER-test]
+name=Hans
+role=DEV
+
+[ROLE-DEV]
+name=Developer

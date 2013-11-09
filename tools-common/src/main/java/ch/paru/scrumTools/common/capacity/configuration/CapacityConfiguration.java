@@ -37,8 +37,12 @@ public class CapacityConfiguration {
 		return instance;
 	}
 
-	public String getRootString(String key) {
-		return config.getString(key);
+	private String getRootString(String key) {
+		String value = config.getString(key);
+		if (value == null) {
+			throw new ToolException("'" + key + "' not found in the configuration", null);
+		}
+		return value;
 	}
 
 	private String getConfigUserSectionName(String mailAddress, String domain) {
@@ -71,6 +75,10 @@ public class CapacityConfiguration {
 	public ConfigRole getRole(String roleName) {
 		String sectionName = getConfigRoleSectionName(roleName);
 		SubnodeConfiguration section = config.getSection(sectionName);
+
+		if (section.isEmpty()) {
+			throw new ToolException("for '" + roleName + "' is no config role available", null);
+		}
 
 		ConfigRole role = new ConfigRole();
 		role.setName(section.getString(ConfigRole.NAME));
