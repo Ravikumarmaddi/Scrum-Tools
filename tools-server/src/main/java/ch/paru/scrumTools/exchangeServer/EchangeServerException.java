@@ -1,6 +1,8 @@
 package ch.paru.scrumTools.exchangeServer;
 
-public class EchangeServerException extends RuntimeException {
+import ch.paru.scrumTools.common.capacity.ToolException;
+
+public class EchangeServerException extends ToolException {
 
 	public EchangeServerException(final String message, final Throwable cause) {
 		super(message, cause);
