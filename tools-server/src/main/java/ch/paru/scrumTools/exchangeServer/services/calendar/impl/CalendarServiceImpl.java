@@ -6,15 +6,15 @@ import java.util.List;
 import microsoft.exchange.webservices.data.Appointment;
 import microsoft.exchange.webservices.data.ExchangeService;
 import microsoft.exchange.webservices.data.StringList;
-import ch.paru.scrumTools.exchangeServer.EchangeServerException;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerTime;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
-import ch.paru.scrumTools.exchangeServer.util.ServerDayUtil;
-import ch.paru.scrumTools.exchangeServer.util.ServerTimeUtil;
+import ch.paru.scrumTools.server.api.calendar.CalendarCategories;
+import ch.paru.scrumTools.server.api.calendar.CalendarService;
+import ch.paru.scrumTools.server.api.calendar.ServerAppointment;
+import ch.paru.scrumTools.server.api.calendar.ServerDay;
+import ch.paru.scrumTools.server.api.calendar.ServerTime;
+import ch.paru.scrumTools.server.api.contact.ServerContact;
+import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
+import ch.paru.scrumTools.server.api.utils.ServerDayUtil;
+import ch.paru.scrumTools.server.api.utils.ServerTimeUtil;
 
 import com.google.common.collect.Lists;
 

@@ -1,7 +1,6 @@
-package ch.paru.scrumTools.exchangeServer.services.calendar;
+package ch.paru.scrumTools.server.api.calendar;
 
-import ch.paru.scrumTools.exchangeServer.EchangeServerException;
-import ch.paru.scrumTools.exchangeServer.util.configuration.ExchangeServerConfiguration;
+import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
 
 import com.google.common.base.Strings;
 
@@ -19,8 +18,9 @@ public enum CalendarCategories {
 	}
 
 	public String getCategoryName() {
-		ExchangeServerConfiguration config = ExchangeServerConfiguration.getInstance();
-		String categoryName = config.getCalendarCategory(categoryKey);
+		//FIXME configurationService
+		//ExchangeServerConfiguration config = ExchangeServerConfiguration.getInstance();
+		String categoryName = null; //config.getCalendarCategory(categoryKey);
 
 		if (Strings.isNullOrEmpty(categoryName)) {
 			throw new EchangeServerException("no category name defined for '" + categoryKey + "'", null);

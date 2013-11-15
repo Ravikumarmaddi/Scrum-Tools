@@ -3,13 +3,13 @@ package ch.paru.scrumTools.exchangeServer.services.mock;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import ch.paru.scrumTools.exchangeServer.EchangeServerException;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerTime;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContactGroup;
+import ch.paru.scrumTools.server.api.calendar.CalendarCategories;
+import ch.paru.scrumTools.server.api.calendar.ServerAppointment;
+import ch.paru.scrumTools.server.api.calendar.ServerDay;
+import ch.paru.scrumTools.server.api.calendar.ServerTime;
+import ch.paru.scrumTools.server.api.contact.ServerContact;
+import ch.paru.scrumTools.server.api.contact.ServerContactGroup;
+import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
 
 public class MockData {
 

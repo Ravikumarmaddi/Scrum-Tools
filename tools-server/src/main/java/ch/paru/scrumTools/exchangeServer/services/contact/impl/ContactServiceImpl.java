@@ -12,10 +12,10 @@ import microsoft.exchange.webservices.data.ItemView;
 import microsoft.exchange.webservices.data.WellKnownFolderName;
 
 import com.google.common.collect.Lists;
-import ch.paru.scrumTools.exchangeServer.EchangeServerException;
-import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContactGroup;
+import ch.paru.scrumTools.server.api.contact.ContactService;
+import ch.paru.scrumTools.server.api.contact.ServerContact;
+import ch.paru.scrumTools.server.api.contact.ServerContactGroup;
+import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
 
 public class ContactServiceImpl implements ContactService {
 

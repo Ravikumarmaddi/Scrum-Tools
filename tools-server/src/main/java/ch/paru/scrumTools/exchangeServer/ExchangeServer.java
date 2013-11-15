@@ -5,19 +5,22 @@ import java.lang.reflect.Constructor;
 import microsoft.exchange.webservices.data.ExchangeCredentials;
 import microsoft.exchange.webservices.data.ExchangeService;
 import microsoft.exchange.webservices.data.WebCredentials;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
 import ch.paru.scrumTools.exchangeServer.services.calendar.impl.CalendarServiceImpl;
 import ch.paru.scrumTools.exchangeServer.services.calendar.mock.CalendarServiceMock;
-import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
 import ch.paru.scrumTools.exchangeServer.services.contact.impl.ContactServiceImpl;
 import ch.paru.scrumTools.exchangeServer.services.contact.mock.ContactServiceMock;
 import ch.paru.scrumTools.exchangeServer.util.configuration.ExchangeServerConfiguration;
 import ch.paru.scrumTools.exchangeServer.util.interceptor.CacheInterceptorFactory;
 import ch.paru.scrumTools.exchangeServer.util.interceptor.LogInterceptorFactory;
+import ch.paru.scrumTools.server.api.calendar.CalendarService;
+import ch.paru.scrumTools.server.api.contact.ContactService;
+import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
+import ch.paru.scrumTools.server.api.manager.ServerManager;
 
-public class ExchangeServer {
+@ServerManager
+public class ExchangeServer implements ch.paru.scrumTools.server.api.manager.ExchangeServer {
 
-	private static ExchangeServer bm;
+	//	private static ExchangeServer bm;
 
 	private ExchangeService remote;
 
@@ -27,22 +30,23 @@ public class ExchangeServer {
 	private ContactService contactService;
 	private CalendarService calendarService;
 
-	public static final ExchangeServer getInstance() {
-		if (bm == null) {
-			bm = new ExchangeServer();
-		}
-		return bm;
-	}
+	//	public static final ExchangeServer getInstance() {
+	//		if (bm == null) {
+	//			bm = new ExchangeServer();
+	//		}
+	//		return bm;
+	//	}
+	//
+	//	public static final void initServer(String configFile) {
+	//		ExchangeServerConfiguration.init(configFile);
+	//	}
 
-	public static final void initServer(String configFile) {
-		ExchangeServerConfiguration.init(configFile);
-	}
-
-	private ExchangeServer() {
+	public ExchangeServer() {
 		logInterceptorFactory = new LogInterceptorFactory();
 		cacheInterceptorFactory = new CacheInterceptorFactory();
 	}
 
+	@Override
 	public CalendarService getCalendarService() {
 		if (calendarService == null) {
 			calendarService = getService(CalendarService.class, CalendarServiceImpl.class, CalendarServiceMock.class);
@@ -50,6 +54,7 @@ public class ExchangeServer {
 		return calendarService;
 	}
 
+	@Override
 	public ContactService getContactService() {
 		if (contactService == null) {
 			contactService = getService(ContactService.class, ContactServiceImpl.class, ContactServiceMock.class);

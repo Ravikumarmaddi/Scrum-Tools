@@ -1,11 +1,11 @@
-package ch.paru.scrumTools.exchangeServer.util;
+package ch.paru.scrumTools.server.api.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.server.api.calendar.ServerDay;
 
 public class ServerDayUtil {
 

@@ -1,10 +1,11 @@
-package ch.paru.scrumTools.exchangeServer.services.calendar;
+package ch.paru.scrumTools.server.api.calendar;
 
 import java.util.List;
 
+import ch.paru.scrumTools.server.api.contact.ServerContact;
+
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 
 public class ServerAppointment {
 	public static final int ALL_DAY_EVENT = -1;
@@ -16,8 +17,8 @@ public class ServerAppointment {
 	private ServerTime startTime;
 	private List<CalendarCategories> categories;
 
-	public ServerAppointment(String subject, ServerContact creator, ServerDay day, int durationInMin, ServerTime startTime,
-			CalendarCategories... categories) {
+	public ServerAppointment(String subject, ServerContact creator, ServerDay day, int durationInMin,
+			ServerTime startTime, CalendarCategories... categories) {
 		this.creator = creator;
 		this.subject = subject;
 		this.day = day;

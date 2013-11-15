@@ -2,7 +2,7 @@ package ch.paru.scrumTools.exchangeServer.util.configuration;
 
 import org.apache.commons.configuration.HierarchicalINIConfiguration;
 
-import ch.paru.scrumTools.exchangeServer.EchangeServerException;
+import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
 
 public class ExchangeServerConfiguration {
 	private static final String USE_REAL_SERVICE = "useRealService";

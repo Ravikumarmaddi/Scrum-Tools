@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.exchangeServer.services.contact;
+package ch.paru.scrumTools.server.api.contact;
 
 import java.util.List;
 

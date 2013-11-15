@@ -6,13 +6,13 @@ import java.util.List;
 import microsoft.exchange.webservices.data.ExchangeService;
 
 import com.google.common.collect.Lists;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerTime;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
+import ch.paru.scrumTools.server.api.calendar.CalendarCategories;
+import ch.paru.scrumTools.server.api.calendar.CalendarService;
+import ch.paru.scrumTools.server.api.calendar.ServerAppointment;
+import ch.paru.scrumTools.server.api.calendar.ServerDay;
+import ch.paru.scrumTools.server.api.calendar.ServerTime;
+import ch.paru.scrumTools.server.api.contact.ServerContact;
 
 public class CalendarServiceMock implements CalendarService {
 

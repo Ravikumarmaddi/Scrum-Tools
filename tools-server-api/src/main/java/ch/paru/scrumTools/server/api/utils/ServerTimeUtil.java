@@ -1,10 +1,10 @@
-package ch.paru.scrumTools.exchangeServer.util;
+package ch.paru.scrumTools.server.api.utils;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerTime;
+import ch.paru.scrumTools.server.api.calendar.ServerTime;
 
 public class ServerTimeUtil {
 	private static int HOUR_OFFSET = 2;

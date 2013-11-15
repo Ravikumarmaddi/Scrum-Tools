@@ -5,9 +5,9 @@ import java.util.List;
 import microsoft.exchange.webservices.data.ExchangeService;
 
 import com.google.common.collect.Lists;
-import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContactGroup;
 import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
+import ch.paru.scrumTools.server.api.contact.ContactService;
+import ch.paru.scrumTools.server.api.contact.ServerContactGroup;
 
 public class ContactServiceMock implements ContactService {
 
