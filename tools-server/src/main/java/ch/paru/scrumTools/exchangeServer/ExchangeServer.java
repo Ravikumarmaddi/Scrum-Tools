@@ -13,12 +13,13 @@ import ch.paru.scrumTools.exchangeServer.util.configuration.ExchangeServerConfig
 import ch.paru.scrumTools.exchangeServer.util.interceptor.CacheInterceptorFactory;
 import ch.paru.scrumTools.exchangeServer.util.interceptor.LogInterceptorFactory;
 import ch.paru.scrumTools.server.api.calendar.CalendarService;
+import ch.paru.scrumTools.server.api.configuration.ConfigurationService;
 import ch.paru.scrumTools.server.api.contact.ContactService;
 import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
 import ch.paru.scrumTools.server.api.manager.ServerManager;
 
 @ServerManager
-public class ExchangeServer implements ch.paru.scrumTools.server.api.manager.ExchangeServer {
+public class ExchangeServer implements ch.paru.scrumTools.server.api.manager.ServerFacade {
 
 	//	private static ExchangeServer bm;
 
@@ -60,6 +61,12 @@ public class ExchangeServer implements ch.paru.scrumTools.server.api.manager.Exc
 			contactService = getService(ContactService.class, ContactServiceImpl.class, ContactServiceMock.class);
 		}
 		return contactService;
+	}
+
+	@Override
+	public ConfigurationService getConfigurationService() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private <E> E getService(Class<E> clazz, Class<? extends E> impl, Class<? extends E> mock) {

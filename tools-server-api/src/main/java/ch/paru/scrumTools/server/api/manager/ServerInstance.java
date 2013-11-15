@@ -5,14 +5,15 @@ import java.util.Set;
 import org.reflections.Reflections;
 
 import ch.paru.scrumTools.server.api.calendar.CalendarService;
+import ch.paru.scrumTools.server.api.configuration.ConfigurationService;
 import ch.paru.scrumTools.server.api.contact.ContactService;
 import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
 
-public class ServerInstance implements ExchangeServer {
+public class ServerInstance implements ServerFacade {
 
 	private static ServerInstance instance;
 
-	private ExchangeServer server;
+	private ServerFacade server;
 
 	public static final ServerInstance getInstance() {
 		if (instance == null) {
@@ -31,7 +32,7 @@ public class ServerInstance implements ExchangeServer {
 
 		try {
 			Class<?> managerClass = annotated.iterator().next();
-			ExchangeServer managerInstance = (ExchangeServer) managerClass.newInstance();
+			ServerFacade managerInstance = (ServerFacade) managerClass.newInstance();
 			server = managerInstance;
 		}
 		catch (Exception e) {
@@ -47,5 +48,10 @@ public class ServerInstance implements ExchangeServer {
 	@Override
 	public ContactService getContactService() {
 		return server.getContactService();
+	}
+
+	@Override
+	public ConfigurationService getConfigurationService() {
+		return server.getConfigurationService();
 	}
 }
