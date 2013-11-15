@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.common.capacity;
+package ch.paru.scrumTools.common.exception;
 
 public class ToolException extends RuntimeException {
 

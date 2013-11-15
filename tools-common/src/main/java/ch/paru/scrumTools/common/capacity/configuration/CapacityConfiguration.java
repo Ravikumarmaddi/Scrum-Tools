@@ -3,7 +3,7 @@ package ch.paru.scrumTools.common.capacity.configuration;
 import org.apache.commons.configuration.HierarchicalINIConfiguration;
 import org.apache.commons.configuration.SubnodeConfiguration;
 
-import ch.paru.scrumTools.common.capacity.ToolException;
+import ch.paru.scrumTools.common.exception.ToolException;
 
 public class CapacityConfiguration {
 

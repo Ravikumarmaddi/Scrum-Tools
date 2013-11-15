@@ -1,6 +1,6 @@
 package ch.paru.scrumTools.exchangeServer;
 
-import ch.paru.scrumTools.common.capacity.ToolException;
+import ch.paru.scrumTools.common.exception.ToolException;
 
 public class EchangeServerException extends ToolException {
 

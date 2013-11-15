@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 
-import ch.paru.scrumTools.common.capacity.ToolException;
+import ch.paru.scrumTools.common.exception.ToolException;
 import ch.paru.scrumTools.common.logging.ToolLogger;
 
 import com.google.common.collect.Maps;
