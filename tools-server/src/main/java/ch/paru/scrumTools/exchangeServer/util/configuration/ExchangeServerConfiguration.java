@@ -2,14 +2,10 @@ package ch.paru.scrumTools.exchangeServer.util.configuration;
 
 import org.apache.commons.configuration.HierarchicalINIConfiguration;
 
+import ch.paru.scrumTools.server.api.configuration.ConfigurationKeys;
 import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
 
 public class ExchangeServerConfiguration {
-	private static final String USE_REAL_SERVICE = "useRealService";
-	private static final String URL = "url";
-	private static final String USERNAME = "username";
-	private static final String PASSWORD = "password";
-	private static final String CALENDAR_CATEGORY_PREFIX = "calendar_category_";
 
 	private static ExchangeServerConfiguration instance;
 
@@ -36,27 +32,19 @@ public class ExchangeServerConfiguration {
 		return instance;
 	}
 
-	public boolean getIsRealServiceUsed() {
-		return getConfig().getBoolean(USE_REAL_SERVICE);
+	public String getStringValue(ConfigurationKeys key) {
+		return getConfig().getString(key.getKey());
 	}
 
-	public String getUrl() {
-		return getConfig().getString(URL);
+	public String getStringValue(ConfigurationKeys prefix, String key) {
+		return getConfig().getString(prefix.getKey() + key);
 	}
 
-	public String getUsername() {
-		return getConfig().getString(USERNAME);
+	public Boolean getBooleanValue(ConfigurationKeys key) {
+		return getConfig().getBoolean(key.getKey());
 	}
 
-	public String getPassword() {
-		return getConfig().getString(PASSWORD);
-	}
-
-	public String getCalendarCategory(String key) {
-		return getConfig().getString(CALENDAR_CATEGORY_PREFIX + key);
-	}
-
-	protected HierarchicalINIConfiguration getConfig() {
+	private HierarchicalINIConfiguration getConfig() {
 		return config;
 	}
 

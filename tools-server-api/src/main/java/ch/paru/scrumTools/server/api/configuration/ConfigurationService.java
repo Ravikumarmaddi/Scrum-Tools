@@ -8,4 +8,6 @@ public interface ConfigurationService {
 
 	Boolean getBooleanValue(ConfigurationKeys key);
 
+	void init(String configFileName);
+
 }

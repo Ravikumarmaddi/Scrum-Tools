@@ -7,12 +7,14 @@ import microsoft.exchange.webservices.data.ExchangeService;
 import microsoft.exchange.webservices.data.WebCredentials;
 import ch.paru.scrumTools.exchangeServer.services.calendar.impl.CalendarServiceImpl;
 import ch.paru.scrumTools.exchangeServer.services.calendar.mock.CalendarServiceMock;
+import ch.paru.scrumTools.exchangeServer.services.configuration.ConfigurationServiceImpl;
 import ch.paru.scrumTools.exchangeServer.services.contact.impl.ContactServiceImpl;
 import ch.paru.scrumTools.exchangeServer.services.contact.mock.ContactServiceMock;
 import ch.paru.scrumTools.exchangeServer.util.configuration.ExchangeServerConfiguration;
 import ch.paru.scrumTools.exchangeServer.util.interceptor.CacheInterceptorFactory;
 import ch.paru.scrumTools.exchangeServer.util.interceptor.LogInterceptorFactory;
 import ch.paru.scrumTools.server.api.calendar.CalendarService;
+import ch.paru.scrumTools.server.api.configuration.ConfigurationKeys;
 import ch.paru.scrumTools.server.api.configuration.ConfigurationService;
 import ch.paru.scrumTools.server.api.contact.ContactService;
 import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
@@ -21,8 +23,6 @@ import ch.paru.scrumTools.server.api.manager.ServerManager;
 @ServerManager
 public class ExchangeServer implements ch.paru.scrumTools.server.api.manager.ServerFacade {
 
-	//	private static ExchangeServer bm;
-
 	private ExchangeService remote;
 
 	private LogInterceptorFactory logInterceptorFactory;
@@ -30,17 +30,7 @@ public class ExchangeServer implements ch.paru.scrumTools.server.api.manager.Ser
 
 	private ContactService contactService;
 	private CalendarService calendarService;
-
-	//	public static final ExchangeServer getInstance() {
-	//		if (bm == null) {
-	//			bm = new ExchangeServer();
-	//		}
-	//		return bm;
-	//	}
-	//
-	//	public static final void initServer(String configFile) {
-	//		ExchangeServerConfiguration.init(configFile);
-	//	}
+	private ConfigurationService configurationService;
 
 	public ExchangeServer() {
 		logInterceptorFactory = new LogInterceptorFactory();
@@ -65,13 +55,16 @@ public class ExchangeServer implements ch.paru.scrumTools.server.api.manager.Ser
 
 	@Override
 	public ConfigurationService getConfigurationService() {
-		// TODO Auto-generated method stub
-		return null;
+		if (configurationService == null) {
+			configurationService = getService(ConfigurationService.class, ConfigurationServiceImpl.class,
+					ConfigurationServiceImpl.class);
+		}
+		return configurationService;
 	}
 
 	private <E> E getService(Class<E> clazz, Class<? extends E> impl, Class<? extends E> mock) {
 		ExchangeServerConfiguration configuration = ExchangeServerConfiguration.getInstance();
-		Class<? extends E> classToUse = configuration.getIsRealServiceUsed() ? impl : mock;
+		Class<? extends E> classToUse = configuration.getBooleanValue(ConfigurationKeys.USE_REAL_SERVICE) ? impl : mock;
 
 		try {
 			Constructor<? extends E> constructor = classToUse.getConstructor(ExchangeService.class);
@@ -91,10 +84,11 @@ public class ExchangeServer implements ch.paru.scrumTools.server.api.manager.Ser
 				ExchangeServerConfiguration configuration = ExchangeServerConfiguration.getInstance();
 
 				final ExchangeService service = new ExchangeService();
-				final ExchangeCredentials credentials = new WebCredentials(configuration.getUsername(),
-						configuration.getPassword());
+				final ExchangeCredentials credentials = new WebCredentials(
+						configuration.getStringValue(ConfigurationKeys.USERNAME),
+						configuration.getStringValue(ConfigurationKeys.PASSWORD));
 				service.setCredentials(credentials);
-				service.setUrl(new java.net.URI(configuration.getUrl()));
+				service.setUrl(new java.net.URI(configuration.getStringValue(ConfigurationKeys.URL)));
 				service.setTraceEnabled(false);
 				remote = service;
 			}
@@ -104,5 +98,4 @@ public class ExchangeServer implements ch.paru.scrumTools.server.api.manager.Ser
 			throw new EchangeServerException("connection to server falied", e);
 		}
 	}
-
 }
