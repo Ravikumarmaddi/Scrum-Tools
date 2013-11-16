@@ -1,9 +1,6 @@
 package ch.paru.scrumTools.server.api.manager;
 
-import java.util.Set;
-
-import org.reflections.Reflections;
-
+import ch.paru.scrumTools.common.reflection.ReflectionUtil;
 import ch.paru.scrumTools.server.api.services.calendar.CalendarService;
 import ch.paru.scrumTools.server.api.services.configuration.ConfigurationService;
 import ch.paru.scrumTools.server.api.services.contact.ContactService;
@@ -23,15 +20,8 @@ public class ServerInstance implements ServerFacade {
 	}
 
 	ServerInstance() {
-		Reflections reflections = new Reflections("ch.paru.scrumTools");
-
-		Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(ServerManager.class);
-		if (annotated == null || annotated.size() != 1) {
-			throw new ServerException("no servermanager found", null);
-		}
-
 		try {
-			Class<?> managerClass = annotated.iterator().next();
+			Class<?> managerClass = ReflectionUtil.getSingleClass(ServerFacade.class, ServerManager.class);
 			ServerFacade managerInstance = (ServerFacade) managerClass.newInstance();
 			server = managerInstance;
 		}
