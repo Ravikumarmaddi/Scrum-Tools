@@ -21,7 +21,7 @@
 		</dependency>
 		<dependency>
 			<groupId>ch.paru.scrumTools</groupId>
-			<artifactId>tools-server</artifactId>
+			<artifactId>tools-server-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
