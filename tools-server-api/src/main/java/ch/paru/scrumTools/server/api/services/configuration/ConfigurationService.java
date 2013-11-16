@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.server.api.configuration;
+package ch.paru.scrumTools.server.api.services.configuration;
 
 public interface ConfigurationService {
 

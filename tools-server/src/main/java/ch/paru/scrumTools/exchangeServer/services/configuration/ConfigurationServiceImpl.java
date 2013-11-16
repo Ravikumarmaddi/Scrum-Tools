@@ -1,8 +1,8 @@
 package ch.paru.scrumTools.exchangeServer.services.configuration;
 
 import ch.paru.scrumTools.exchangeServer.util.configuration.ExchangeServerConfiguration;
-import ch.paru.scrumTools.server.api.configuration.ConfigurationKeys;
-import ch.paru.scrumTools.server.api.configuration.ConfigurationService;
+import ch.paru.scrumTools.server.api.services.configuration.ConfigurationKeys;
+import ch.paru.scrumTools.server.api.services.configuration.ConfigurationService;
 
 public class ConfigurationServiceImpl implements ConfigurationService {
 

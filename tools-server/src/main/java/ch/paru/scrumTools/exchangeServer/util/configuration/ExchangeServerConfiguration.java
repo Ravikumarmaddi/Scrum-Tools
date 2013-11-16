@@ -2,8 +2,8 @@ package ch.paru.scrumTools.exchangeServer.util.configuration;
 
 import org.apache.commons.configuration.HierarchicalINIConfiguration;
 
-import ch.paru.scrumTools.server.api.configuration.ConfigurationKeys;
-import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
+import ch.paru.scrumTools.server.api.services.configuration.ConfigurationKeys;
+import ch.paru.scrumTools.server.api.utils.exceptions.ServerException;
 
 public class ExchangeServerConfiguration {
 
@@ -21,13 +21,13 @@ public class ExchangeServerConfiguration {
 			config.load(fileName);
 		}
 		catch (Exception e) {
-			throw new EchangeServerException("config init failed", e);
+			throw new ServerException("config init failed", e);
 		}
 	}
 
 	public static ExchangeServerConfiguration getInstance() {
 		if (instance == null) {
-			throw new EchangeServerException("config instance has not been intialized", null);
+			throw new ServerException("config instance has not been intialized", null);
 		}
 		return instance;
 	}

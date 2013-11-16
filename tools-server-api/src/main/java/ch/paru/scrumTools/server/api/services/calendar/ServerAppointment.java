@@ -1,8 +1,8 @@
-package ch.paru.scrumTools.server.api.calendar;
+package ch.paru.scrumTools.server.api.services.calendar;
 
 import java.util.List;
 
-import ch.paru.scrumTools.server.api.contact.ServerContact;
+import ch.paru.scrumTools.server.api.services.contact.ServerContact;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;

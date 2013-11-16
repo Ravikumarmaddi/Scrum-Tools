@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.server.api.calendar;
+package ch.paru.scrumTools.server.api.services.calendar;
 
 import com.google.common.base.Objects;
 

@@ -7,12 +7,12 @@ import microsoft.exchange.webservices.data.ExchangeService;
 
 import com.google.common.collect.Lists;
 import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
-import ch.paru.scrumTools.server.api.calendar.CalendarCategories;
-import ch.paru.scrumTools.server.api.calendar.CalendarService;
-import ch.paru.scrumTools.server.api.calendar.ServerAppointment;
-import ch.paru.scrumTools.server.api.calendar.ServerDay;
-import ch.paru.scrumTools.server.api.calendar.ServerTime;
-import ch.paru.scrumTools.server.api.contact.ServerContact;
+import ch.paru.scrumTools.server.api.services.calendar.CalendarCategories;
+import ch.paru.scrumTools.server.api.services.calendar.CalendarService;
+import ch.paru.scrumTools.server.api.services.calendar.ServerAppointment;
+import ch.paru.scrumTools.server.api.services.calendar.ServerDay;
+import ch.paru.scrumTools.server.api.services.calendar.ServerTime;
+import ch.paru.scrumTools.server.api.services.contact.ServerContact;
 
 public class CalendarServiceMock implements CalendarService {
 

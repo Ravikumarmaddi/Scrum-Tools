@@ -6,15 +6,15 @@ import java.util.List;
 import microsoft.exchange.webservices.data.Appointment;
 import microsoft.exchange.webservices.data.ExchangeService;
 import microsoft.exchange.webservices.data.StringList;
-import ch.paru.scrumTools.server.api.calendar.CalendarCategories;
-import ch.paru.scrumTools.server.api.calendar.CalendarService;
-import ch.paru.scrumTools.server.api.calendar.ServerAppointment;
-import ch.paru.scrumTools.server.api.calendar.ServerDay;
-import ch.paru.scrumTools.server.api.calendar.ServerTime;
-import ch.paru.scrumTools.server.api.contact.ServerContact;
-import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
+import ch.paru.scrumTools.server.api.services.calendar.CalendarCategories;
+import ch.paru.scrumTools.server.api.services.calendar.CalendarService;
+import ch.paru.scrumTools.server.api.services.calendar.ServerAppointment;
+import ch.paru.scrumTools.server.api.services.calendar.ServerDay;
+import ch.paru.scrumTools.server.api.services.calendar.ServerTime;
+import ch.paru.scrumTools.server.api.services.contact.ServerContact;
 import ch.paru.scrumTools.server.api.utils.ServerDayUtil;
 import ch.paru.scrumTools.server.api.utils.ServerTimeUtil;
+import ch.paru.scrumTools.server.api.utils.exceptions.ServerException;
 
 import com.google.common.collect.Lists;
 
@@ -39,7 +39,7 @@ public class CalendarServiceImpl implements CalendarService {
 			return appointments.size() == 0;
 		}
 		catch (final Exception e) {
-			throw new EchangeServerException("Working day could not be calculated", e);
+			throw new ServerException("Working day could not be calculated", e);
 		}
 	}
 
@@ -49,7 +49,7 @@ public class CalendarServiceImpl implements CalendarService {
 			return getAppointmentsOfCategory(day, category);
 		}
 		catch (final Exception e) {
-			throw new EchangeServerException("appointments for category '" + category + "' could not be loaded", e);
+			throw new ServerException("appointments for category '" + category + "' could not be loaded", e);
 		}
 	}
 
@@ -58,7 +58,7 @@ public class CalendarServiceImpl implements CalendarService {
 		List<ServerAppointment> appointments = getAllAppointmentsOfCategory(day, category);
 
 		if (appointments.size() != 1) {
-			throw new EchangeServerException("not exactly one appointment: " + day + " - " + category, null);
+			throw new ServerException("not exactly one appointment: " + day + " - " + category, null);
 		}
 
 		return appointments.get(0);

@@ -3,13 +3,13 @@ package ch.paru.scrumTools.exchangeServer.services.mock;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import ch.paru.scrumTools.server.api.calendar.CalendarCategories;
-import ch.paru.scrumTools.server.api.calendar.ServerAppointment;
-import ch.paru.scrumTools.server.api.calendar.ServerDay;
-import ch.paru.scrumTools.server.api.calendar.ServerTime;
-import ch.paru.scrumTools.server.api.contact.ServerContact;
-import ch.paru.scrumTools.server.api.contact.ServerContactGroup;
-import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
+import ch.paru.scrumTools.server.api.services.calendar.CalendarCategories;
+import ch.paru.scrumTools.server.api.services.calendar.ServerAppointment;
+import ch.paru.scrumTools.server.api.services.calendar.ServerDay;
+import ch.paru.scrumTools.server.api.services.calendar.ServerTime;
+import ch.paru.scrumTools.server.api.services.contact.ServerContact;
+import ch.paru.scrumTools.server.api.services.contact.ServerContactGroup;
+import ch.paru.scrumTools.server.api.utils.exceptions.ServerException;
 
 public class MockData {
 
@@ -103,6 +103,6 @@ public class MockData {
 			return appointments;
 
 		}
-		throw new EchangeServerException("mock contains not all categories", null);
+		throw new ServerException("mock contains not all categories", null);
 	}
 }

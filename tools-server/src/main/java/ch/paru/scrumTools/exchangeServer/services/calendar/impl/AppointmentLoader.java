@@ -19,7 +19,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import ch.paru.scrumTools.common.logging.ToolLogger;
-import ch.paru.scrumTools.server.api.calendar.ServerDay;
+import ch.paru.scrumTools.server.api.services.calendar.ServerDay;
 import ch.paru.scrumTools.server.api.utils.ServerDayUtil;
 
 public class AppointmentLoader {

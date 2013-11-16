@@ -4,10 +4,10 @@ import java.util.Set;
 
 import org.reflections.Reflections;
 
-import ch.paru.scrumTools.server.api.calendar.CalendarService;
-import ch.paru.scrumTools.server.api.configuration.ConfigurationService;
-import ch.paru.scrumTools.server.api.contact.ContactService;
-import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
+import ch.paru.scrumTools.server.api.services.calendar.CalendarService;
+import ch.paru.scrumTools.server.api.services.configuration.ConfigurationService;
+import ch.paru.scrumTools.server.api.services.contact.ContactService;
+import ch.paru.scrumTools.server.api.utils.exceptions.ServerException;
 
 public class ServerInstance implements ServerFacade {
 
@@ -27,7 +27,7 @@ public class ServerInstance implements ServerFacade {
 
 		Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(ServerManager.class);
 		if (annotated == null || annotated.size() != 1) {
-			throw new EchangeServerException("no servermanager found", null);
+			throw new ServerException("no servermanager found", null);
 		}
 
 		try {
@@ -36,7 +36,7 @@ public class ServerInstance implements ServerFacade {
 			server = managerInstance;
 		}
 		catch (Exception e) {
-			throw new EchangeServerException("instanciate of servermanager failed", e);
+			throw new ServerException("instanciate of servermanager failed", e);
 		}
 	}
 

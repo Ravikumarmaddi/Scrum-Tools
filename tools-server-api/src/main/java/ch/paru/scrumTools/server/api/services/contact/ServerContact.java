@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.server.api.contact;
+package ch.paru.scrumTools.server.api.services.contact;
 
 import com.google.common.base.Objects;
 

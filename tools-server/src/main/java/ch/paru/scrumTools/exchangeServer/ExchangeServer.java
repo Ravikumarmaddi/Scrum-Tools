@@ -13,12 +13,12 @@ import ch.paru.scrumTools.exchangeServer.services.contact.mock.ContactServiceMoc
 import ch.paru.scrumTools.exchangeServer.util.configuration.ExchangeServerConfiguration;
 import ch.paru.scrumTools.exchangeServer.util.interceptor.CacheInterceptorFactory;
 import ch.paru.scrumTools.exchangeServer.util.interceptor.LogInterceptorFactory;
-import ch.paru.scrumTools.server.api.calendar.CalendarService;
-import ch.paru.scrumTools.server.api.configuration.ConfigurationKeys;
-import ch.paru.scrumTools.server.api.configuration.ConfigurationService;
-import ch.paru.scrumTools.server.api.contact.ContactService;
-import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
 import ch.paru.scrumTools.server.api.manager.ServerManager;
+import ch.paru.scrumTools.server.api.services.calendar.CalendarService;
+import ch.paru.scrumTools.server.api.services.configuration.ConfigurationKeys;
+import ch.paru.scrumTools.server.api.services.configuration.ConfigurationService;
+import ch.paru.scrumTools.server.api.services.contact.ContactService;
+import ch.paru.scrumTools.server.api.utils.exceptions.ServerException;
 
 @ServerManager
 public class ExchangeServer implements ch.paru.scrumTools.server.api.manager.ServerFacade {
@@ -74,7 +74,7 @@ public class ExchangeServer implements ch.paru.scrumTools.server.api.manager.Ser
 			return obj;
 		}
 		catch (Exception e) {
-			throw new EchangeServerException("instantiation of service impl failed", e);
+			throw new ServerException("instantiation of service impl failed", e);
 		}
 	}
 
@@ -95,7 +95,7 @@ public class ExchangeServer implements ch.paru.scrumTools.server.api.manager.Ser
 			return remote;
 		}
 		catch (final Exception e) {
-			throw new EchangeServerException("connection to server falied", e);
+			throw new ServerException("connection to server falied", e);
 		}
 	}
 }

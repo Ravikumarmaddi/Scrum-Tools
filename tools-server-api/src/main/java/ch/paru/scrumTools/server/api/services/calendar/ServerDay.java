@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.server.api.calendar;
+package ch.paru.scrumTools.server.api.services.calendar;
 
 import java.util.Calendar;
 import java.util.Date;

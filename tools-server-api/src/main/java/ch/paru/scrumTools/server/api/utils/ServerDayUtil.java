@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import ch.paru.scrumTools.server.api.calendar.ServerDay;
+import ch.paru.scrumTools.server.api.services.calendar.ServerDay;
 
 public class ServerDayUtil {
 

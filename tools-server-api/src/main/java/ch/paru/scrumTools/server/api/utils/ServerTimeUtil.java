@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import ch.paru.scrumTools.server.api.calendar.ServerTime;
+import ch.paru.scrumTools.server.api.services.calendar.ServerTime;
 
 public class ServerTimeUtil {
 	private static int HOUR_OFFSET = 2;

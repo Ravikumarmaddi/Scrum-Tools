@@ -12,10 +12,10 @@ import microsoft.exchange.webservices.data.ItemView;
 import microsoft.exchange.webservices.data.WellKnownFolderName;
 
 import com.google.common.collect.Lists;
-import ch.paru.scrumTools.server.api.contact.ContactService;
-import ch.paru.scrumTools.server.api.contact.ServerContact;
-import ch.paru.scrumTools.server.api.contact.ServerContactGroup;
-import ch.paru.scrumTools.server.api.exceptions.EchangeServerException;
+import ch.paru.scrumTools.server.api.services.contact.ContactService;
+import ch.paru.scrumTools.server.api.services.contact.ServerContact;
+import ch.paru.scrumTools.server.api.services.contact.ServerContactGroup;
+import ch.paru.scrumTools.server.api.utils.exceptions.ServerException;
 
 public class ContactServiceImpl implements ContactService {
 
@@ -40,7 +40,7 @@ public class ContactServiceImpl implements ContactService {
 			return groups;
 		}
 		catch (final Exception e) {
-			throw new EchangeServerException("Contact Groups could not be loaded", e);
+			throw new ServerException("Contact Groups could not be loaded", e);
 		}
 	}
 
