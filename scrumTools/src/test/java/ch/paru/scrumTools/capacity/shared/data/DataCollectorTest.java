@@ -2,6 +2,8 @@ package ch.paru.scrumTools.capacity.shared.data;
 
 import static org.easymock.EasyMock.expect;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +12,15 @@ import org.easymock.EasyMockSupport;
 import org.junit.Test;
 
 import ch.paru.scrumTools.exchangeServer.manager.ServerFacade;
+import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
+import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
+import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;
+import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
+import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContactGroup;
 import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
+import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
 
 import com.google.common.collect.Lists;
 
@@ -22,6 +30,10 @@ public class DataCollectorTest {
 	private static final ServerFacade SERVER_FACADE_MOCK = MOCKS.createMock("SERVER_FACADE_MOCK", ServerFacade.class);
 	private static final ContactService CONTACT_SERVICE_MOCK = MOCKS.createMock("CONTACT_SERVICE_MOCK",
 			ContactService.class);
+	private static final CalendarService CALENDAR_SERVICE_MOCK = MOCKS.createMock("CALENDAR_SERVICE_MOCK",
+			CalendarService.class);
+	private static final ServerAppointment APPOINTMENT_MOCK = MOCKS.createMock("APPOINTMENT_MOCK",
+			ServerAppointment.class);
 
 	@Test
 	public void testLoadTeams() {
@@ -44,6 +56,40 @@ public class DataCollectorTest {
 		assertEquals(groupName, team.getName());
 		List<TeamMember> allTeamMembers = box.getAllTeamMembers();
 		assertEquals(2, allTeamMembers.size());
+	}
+
+	@Test
+	public void testLoadAbsences() {
+		DataBox box = new DataBox();
+		ServerDay startDay = ServerDayUtil.createDayFromNumbers(1, 1, 2013);
+		ServerDay endDay = ServerDayUtil.addDays(startDay, 1);
+		ServerContact contactFritz = MockData.CONTACT_FRITZ;
+		box.addTeamMember("team", contactFritz);
+		ArrayList<ServerAppointment> absencesStartDay = Lists.newArrayList(APPOINTMENT_MOCK);
+		ArrayList<ServerAppointment> absencesEndDay = new ArrayList<ServerAppointment>();
+		MOCKS.resetAll();
+		expect(SERVER_FACADE_MOCK.getCalendarService()).andReturn(CALENDAR_SERVICE_MOCK);
+		expect(CALENDAR_SERVICE_MOCK.getAllAppointmentsOfCategory(startDay, CalendarCategories.ABSENCES)).andReturn(
+				absencesStartDay);
+		expect(CALENDAR_SERVICE_MOCK.getAllAppointmentsOfCategory(endDay, CalendarCategories.ABSENCES)).andReturn(
+				absencesEndDay);
+		expect(APPOINTMENT_MOCK.getCreator()).andReturn(contactFritz);
+		MOCKS.replayAll();
+		DataCollectorInstance instance = new DataCollectorInstance(SERVER_FACADE_MOCK);
+		instance.loadAbsences(box, startDay, endDay);
+		MOCKS.verifyAll();
+		List<TeamMember> allTeamMembers = box.getAllTeamMembers();
+		assertEquals(1, allTeamMembers.size());
+		TeamMember member = allTeamMembers.get(0);
+		assertFalse(member.isAvailable(startDay));
+		assertTrue(member.isAvailable(endDay));
+	}
+
+	@Test
+	public void testLoadConfiguration() {
+		MOCKS.resetAll();
+		MOCKS.replayAll();
+		MOCKS.verifyAll();
 	}
 
 }
