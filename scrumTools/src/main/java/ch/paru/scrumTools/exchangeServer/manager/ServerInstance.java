@@ -44,4 +44,8 @@ public class ServerInstance implements ServerFacade {
 	public ConfigurationService getConfigurationService() {
 		return server.getConfigurationService();
 	}
+
+	public static void init(String configFileName) {
+		getInstance().getConfigurationService().init(configFileName);
+	}
 }
