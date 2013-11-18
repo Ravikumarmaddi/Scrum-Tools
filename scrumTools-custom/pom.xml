@@ -15,5 +15,10 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>ch.paru</groupId>
+			<artifactId>scrumTools</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>
