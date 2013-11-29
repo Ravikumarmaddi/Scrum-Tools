@@ -11,6 +11,8 @@ import java.util.List;
 import org.easymock.EasyMockSupport;
 import org.junit.Test;
 
+import ch.paru.scrumTools.capacity.shared.configuration.CapacityConfiguration;
+import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
 import ch.paru.scrumTools.exchangeServer.manager.ServerFacade;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
@@ -34,6 +36,8 @@ public class DataCollectorTest {
 			CalendarService.class);
 	private static final ServerAppointment APPOINTMENT_MOCK = MOCKS.createMock("APPOINTMENT_MOCK",
 			ServerAppointment.class);
+	private static final CapacityConfiguration CONFIG_MOCK = MOCKS.createMock("CONFIG_MOCK",
+			CapacityConfiguration.class);
 
 	@Test
 	public void testLoadTeams() {
@@ -87,9 +91,20 @@ public class DataCollectorTest {
 
 	@Test
 	public void testLoadConfiguration() {
+		ServerContact contactFritz = MockData.CONTACT_FRITZ;
+		ConfigUser user = new ConfigUser(contactFritz.getMailAddress());
+		DataBox box = new DataBox();
+		box.addTeamMember("TEAMNAME", contactFritz);
 		MOCKS.resetAll();
+		expect(CONFIG_MOCK.getUser(contactFritz.getMailAddress())).andReturn(user);
 		MOCKS.replayAll();
+		DataCollectorInstance instance = new DataCollectorInstance(SERVER_FACADE_MOCK);
+		instance.loadConfiguration(box, CONFIG_MOCK);
 		MOCKS.verifyAll();
+		List<TeamMember> allTeamMembers = box.getAllTeamMembers();
+		assertEquals(1, allTeamMembers.size());
+		TeamMember member = allTeamMembers.get(0);
+		assertEquals(user, member.getConfiguration());
 	}
 
 }
