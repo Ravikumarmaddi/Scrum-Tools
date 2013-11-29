@@ -17,7 +17,7 @@ public class CapacityConfiguration {
 	private HierarchicalINIConfiguration config;
 
 	public static void init(String fileName) {
-		instance = new CapacityConfiguration(fileName);
+		new CapacityConfiguration(fileName);
 	}
 
 	protected CapacityConfiguration(String fileName) {
@@ -28,6 +28,8 @@ public class CapacityConfiguration {
 		catch (Exception e) {
 			throw new ToolException("config init failed", e);
 		}
+
+		instance = this;
 	}
 
 	public static CapacityConfiguration getInstance() {

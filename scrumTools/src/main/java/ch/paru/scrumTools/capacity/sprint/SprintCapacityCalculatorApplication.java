@@ -1,7 +1,8 @@
 package ch.paru.scrumTools.capacity.sprint;
 
 import ch.paru.scrumTools.capacity.shared.commandLine.CommandLineParser;
-import ch.paru.scrumTools.capacity.shared.configuration.CapacityConfiguration;
+import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
+import ch.paru.scrumTools.capacity.sprint.data.SprintDataCollector;
 import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
@@ -19,6 +20,10 @@ public class SprintCapacityCalculatorApplication {
 		init(configFileName);
 
 		// Collect Data
+		SprintCapacityConfiguration configuration = SprintCapacityConfiguration.getInstance();
+		ServerInstance serverFacade = ServerInstance.getInstance();
+		SprintDataCollector collector = new SprintDataCollector(serverFacade, configuration);
+		collector.collectData(startDay, endDay);
 
 		// Calculate Capacity
 
@@ -27,7 +32,7 @@ public class SprintCapacityCalculatorApplication {
 
 	private void init(String configFileName) {
 		ServerInstance.init(configFileName);
-		CapacityConfiguration.init(configFileName);
+		SprintCapacityConfiguration.init(configFileName);
 	}
 
 	public static void main(String[] args) {
