@@ -20,7 +20,7 @@ public class CommandLineParser {
 	public void parse(String[] args) {
 		if (args == null || args.length != CommandLineArguments.values().length) {
 			printHelp();
-			System.exit(0);
+			throw new ToolException("not enough parameter", null);
 		}
 
 		CommandLineArguments[] commandLineArgs = CommandLineArguments.getAllArguments();
