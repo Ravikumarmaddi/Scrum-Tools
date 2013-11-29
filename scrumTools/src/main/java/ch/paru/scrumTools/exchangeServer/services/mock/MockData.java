@@ -2,15 +2,16 @@ package ch.paru.scrumTools.exchangeServer.services.mock;
 
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerTime;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContactGroup;
+import ch.paru.scrumTools.exchangeServer.utils.ServerAppointmentUtil;
 import ch.paru.scrumTools.exchangeServer.utils.exceptions.ServerException;
+
+import com.google.common.collect.Lists;
 
 public class MockData {
 
@@ -52,30 +53,20 @@ public class MockData {
 	public static List<ServerAppointment> getTeamAbsences(ServerDay day) {
 		List<ServerAppointment> appointments = Lists.newArrayList();
 
-		int fullDayDuration = ServerAppointment.ALL_DAY_EVENT;
-		ServerTime midnight = new ServerTime(0, 0);
 		switch (appointmentChooser) {
 		case 0:
-			appointments.add(new ServerAppointment("Typ 0A", CONTACT_FRITZ, day, fullDayDuration, midnight,
-					CalendarCategories.ABSENCES));
-			appointments.add(new ServerAppointment("Typ 0B", CONTACT_PAUL, day, fullDayDuration, midnight,
-					CalendarCategories.ABSENCES));
+			appointments.add(ServerAppointmentUtil.createAllDayAbsenceAppointment("Typ 0A", CONTACT_FRITZ, day));
+			appointments.add(ServerAppointmentUtil.createAllDayAbsenceAppointment("Typ 0B", CONTACT_PAUL, day));
 			break;
 		case 1:
-			appointments.add(new ServerAppointment("Typ 1A", CONTACT_FRITZ, day, fullDayDuration, midnight,
-					CalendarCategories.ABSENCES));
-			appointments.add(new ServerAppointment("Typ 1B", CONTACT_HANS, day, fullDayDuration, midnight,
-					CalendarCategories.ABSENCES));
-			appointments.add(new ServerAppointment("Typ 1C", CONTACT_PAUL, day, fullDayDuration, midnight,
-					CalendarCategories.ABSENCES));
-			appointments.add(new ServerAppointment("Typ 1D", CONTACT_PETER, day, fullDayDuration, midnight,
-					CalendarCategories.ABSENCES));
+			appointments.add(ServerAppointmentUtil.createAllDayAbsenceAppointment("Typ 1A", CONTACT_FRITZ, day));
+			appointments.add(ServerAppointmentUtil.createAllDayAbsenceAppointment("Typ 1B", CONTACT_HANS, day));
+			appointments.add(ServerAppointmentUtil.createAllDayAbsenceAppointment("Typ 1C", CONTACT_PAUL, day));
+			appointments.add(ServerAppointmentUtil.createAllDayAbsenceAppointment("Typ 1D", CONTACT_PETER, day));
 			break;
 		case 2:
-			appointments.add(new ServerAppointment("Typ 2A", CONTACT_FRITZ, day, fullDayDuration, midnight,
-					CalendarCategories.ABSENCES));
-			appointments.add(new ServerAppointment("Typ 2B", CONTACT_PETER, day, fullDayDuration, midnight,
-					CalendarCategories.ABSENCES));
+			appointments.add(ServerAppointmentUtil.createAllDayAbsenceAppointment("Typ 2A", CONTACT_FRITZ, day));
+			appointments.add(ServerAppointmentUtil.createAllDayAbsenceAppointment("Typ 2B", CONTACT_PETER, day));
 			break;
 
 		}
