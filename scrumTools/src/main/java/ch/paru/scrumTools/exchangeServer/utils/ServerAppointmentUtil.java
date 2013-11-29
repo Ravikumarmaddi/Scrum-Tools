@@ -12,7 +12,12 @@ public class ServerAppointmentUtil {
 	}
 
 	public static ServerAppointment createAllDayAbsenceAppointment(String title, ServerContact creator, ServerDay day) {
+		return createAllDayAppointment(title, creator, day, CalendarCategories.ABSENCES);
+	}
+
+	public static ServerAppointment createAllDayAppointment(String title, ServerContact creator, ServerDay day,
+			CalendarCategories category) {
 		return new ServerAppointment(title, creator, day, ServerAppointment.ALL_DAY_EVENT, new ServerTime(0, 0),
-				CalendarCategories.ABSENCES);
+				category);
 	}
 }

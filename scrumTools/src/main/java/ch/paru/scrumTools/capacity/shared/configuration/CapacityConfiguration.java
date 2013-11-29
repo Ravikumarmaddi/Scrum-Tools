@@ -90,4 +90,8 @@ public class CapacityConfiguration {
 	protected ConfigUserFactory getUserFactory() {
 		return new ConfigUserFactory();
 	}
+
+	protected HierarchicalINIConfiguration getConfig() {
+		return config;
+	}
 }
