@@ -3,6 +3,8 @@ package ch.paru.scrumTools.capacity.shared.configuration;
 import org.apache.commons.configuration.HierarchicalINIConfiguration;
 import org.apache.commons.configuration.SubnodeConfiguration;
 
+import ch.paru.scrumTools.capacity.shared.factories.ConfigRoleFactory;
+import ch.paru.scrumTools.capacity.shared.factories.ConfigUserFactory;
 import ch.paru.scrumTools.common.exception.ToolException;
 
 public class CapacityConfiguration {
@@ -67,7 +69,7 @@ public class CapacityConfiguration {
 		}
 
 		ConfigUserFactory userFactory = getUserFactory();
-		ConfigUser user = userFactory.getNewInstance(mailAddress);
+		ConfigUser user = userFactory.createConfigUser(mailAddress);
 		userFactory.setValues(user, section);
 		return user;
 	}
@@ -80,17 +82,18 @@ public class CapacityConfiguration {
 			throw new ToolException("for '" + roleName + "' is no config role available", null);
 		}
 
-		ConfigRole role = new ConfigRole();
-		role.setName(section.getString(ConfigRole.NAME));
-		role.setCapacity(section.getDouble(ConfigRole.CAPACITY, 1.0));
-		String CapacityTypeName = section.getString(ConfigRole.CAPACITY_TYPE, CapacityType.FACTOR.name());
-		CapacityType type = CapacityType.valueOf(CapacityTypeName);
-		role.setCapacityType(type);
+		ConfigRoleFactory roleFactory = getRoleFactory();
+		ConfigRole role = roleFactory.createConfigRole(section.getString(ConfigRole.NAME));
+		roleFactory.setValues(role, section);
 		return role;
 	}
 
 	protected ConfigUserFactory getUserFactory() {
 		return new ConfigUserFactory();
+	}
+
+	protected ConfigRoleFactory getRoleFactory() {
+		return new ConfigRoleFactory();
 	}
 
 	protected HierarchicalINIConfiguration getConfig() {

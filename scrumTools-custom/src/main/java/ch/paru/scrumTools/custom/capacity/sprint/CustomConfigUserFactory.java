@@ -3,14 +3,9 @@ package ch.paru.scrumTools.custom.capacity.sprint;
 import org.apache.commons.configuration.SubnodeConfiguration;
 
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
-import ch.paru.scrumTools.capacity.shared.configuration.ConfigUserFactory;
+import ch.paru.scrumTools.capacity.shared.factories.ConfigUserFactory;
 
 public class CustomConfigUserFactory extends ConfigUserFactory {
-
-	@Override
-	public ConfigUser getNewInstance(String mailAddress) {
-		return new CustomConfigUser(mailAddress);
-	}
 
 	@Override
 	public void setValues(ConfigUser user, SubnodeConfiguration section) {

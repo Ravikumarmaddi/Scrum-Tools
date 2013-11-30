@@ -1,8 +1,10 @@
 package ch.paru.scrumTools.capacity.shared.configuration;
 
+import ch.paru.scrumTools.common.reflection.Customizable;
+
 import com.google.common.base.Objects;
 
-public class ConfigUser {
+public class ConfigUser implements Customizable {
 	public static final String NAME = "name";
 	public static final String ROLE = "role";
 	public static final String CAPACITY = "capacity";
