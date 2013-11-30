@@ -16,7 +16,7 @@ public class SprintDataTest {
 		SprintDayType dailyBusiness = SprintDayType.DAILY_BUSINESS;
 
 		//run
-		SprintData data = new SprintData(null);
+		SprintData data = new SprintData(null, null);
 		data.setDayCategory(day, dailyBusiness);
 
 		//validate
@@ -31,7 +31,7 @@ public class SprintDataTest {
 		SprintDayType sprintStart = SprintDayType.SPRINT_START;
 
 		//run
-		SprintData data = new SprintData(null);
+		SprintData data = new SprintData(null, null);
 		data.setDayCategory(day, dailyBusiness);
 		data.setDayCategory(day, sprintStart);
 

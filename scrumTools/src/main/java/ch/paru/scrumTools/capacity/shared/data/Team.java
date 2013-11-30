@@ -9,26 +9,24 @@ public class Team {
 	private String name;
 	private List<TeamMember> members;
 
-	private double rawSprintCapacity; // very raw
-	private double rawSprintCapacityWithHourFactor; // raw reduced by working hours
-	private double reducedSprintCapacity; // working hours reduced by overall reduction
+	private double capacity;
 
-	Team(String name) {
+	public Team(String name) {
 		this.name = name;
 		this.members = Lists.newArrayList();
-		this.rawSprintCapacity = 0;
+		this.capacity = 0;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void addRawSprintCapacity(double hours) {
-		this.rawSprintCapacity += hours;
+	public void addCapacity(double amount) {
+		this.capacity += amount;
 	}
 
-	public double getRawSprintCapacity() {
-		return rawSprintCapacity;
+	public double getCapacity() {
+		return capacity;
 	}
 
 	public void addTeamMember(TeamMember teamMember) {
@@ -38,21 +36,4 @@ public class Team {
 	public List<TeamMember> getAllMembers() {
 		return members;
 	}
-
-	public double getReducedSprintCapacity() {
-		return reducedSprintCapacity;
-	}
-
-	public void setReducedSprintCapacity(double reducedSprintCapacity) {
-		this.reducedSprintCapacity = reducedSprintCapacity;
-	}
-
-	public double getRawSprintCapacityWithHourFactor() {
-		return rawSprintCapacityWithHourFactor;
-	}
-
-	public void setRawSprintCapacityWithHourFactor(double rawSprintCapacityWithHourFactor) {
-		this.rawSprintCapacityWithHourFactor = rawSprintCapacityWithHourFactor;
-	}
-
 }

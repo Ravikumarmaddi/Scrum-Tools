@@ -3,9 +3,11 @@ package ch.paru.scrumTools.capacity.shared.data;
 import java.lang.reflect.Constructor;
 
 import ch.paru.scrumTools.common.exception.ToolException;
+import ch.paru.scrumTools.common.reflection.CustomFactory;
 import ch.paru.scrumTools.common.reflection.ReflectionUtil;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 
+@CustomFactory
 public class TeamMemberFactory {
 
 	public TeamMember createTeamMember(ServerContact contact) {

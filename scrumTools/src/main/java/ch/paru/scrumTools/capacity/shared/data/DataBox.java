@@ -18,8 +18,10 @@ public class DataBox {
 	private Map<String, Team> teams;
 	private Map<ServerContact, TeamMember> members;
 	private TeamMemberFactory teamMemberFactory;
+	private TeamFactory teamFactory;
 
-	protected DataBox(TeamMemberFactory teamMemberFactory) {
+	protected DataBox(TeamFactory teamFactory, TeamMemberFactory teamMemberFactory) {
+		this.teamFactory = teamFactory;
 		this.teamMemberFactory = teamMemberFactory;
 		teams = Maps.newHashMap();
 		members = Maps.newHashMap();
@@ -43,7 +45,7 @@ public class DataBox {
 
 	public void addTeamMember(String teamName, ServerContact contact) {
 		if (!teams.containsKey(teamName)) {
-			Team newTeam = new Team(teamName);
+			Team newTeam = teamFactory.createTeam(teamName);
 			teams.put(teamName, newTeam);
 		}
 

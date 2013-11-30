@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import ch.paru.scrumTools.capacity.shared.data.DataBox;
+import ch.paru.scrumTools.capacity.shared.data.TeamFactory;
 import ch.paru.scrumTools.capacity.shared.data.TeamMemberFactory;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 
@@ -15,8 +16,8 @@ public class SprintData extends DataBox {
 	private Map<ServerDay, SprintDayType> dayCategories;
 	private List<ServerDay> workingDays;
 
-	public SprintData(TeamMemberFactory teamMemberFactory) {
-		super(teamMemberFactory);
+	public SprintData(TeamFactory teamFactory, TeamMemberFactory teamMemberFactory) {
+		super(teamFactory, teamMemberFactory);
 		dayCategories = Maps.newHashMap();
 		workingDays = Lists.newArrayList();
 	}

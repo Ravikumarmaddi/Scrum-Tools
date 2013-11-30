@@ -12,11 +12,11 @@ import com.google.common.collect.Lists;
 
 public class ReflectionUtil {
 
-	private static final String PACKAGENAME = "ch.paru.scrumTools";
+	private static final String PACKAGE = "ch.paru.scrumTools";
 
 	@SuppressWarnings("unchecked")
 	public static <T> Class<? extends T> getSingleClass(Class<T> superClass, Class<? extends Annotation> annotation) {
-		Reflections reflections = new Reflections(PACKAGENAME);
+		Reflections reflections = new Reflections(PACKAGE);
 
 		Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(annotation);
 		if (annotated == null || annotated.size() <= 0) {
@@ -40,7 +40,7 @@ public class ReflectionUtil {
 
 	@SuppressWarnings("unchecked")
 	public static <T> Class<? extends T> getCustomClass(Class<T> superClass) {
-		Reflections reflections = new Reflections(PACKAGENAME);
+		Reflections reflections = new Reflections(PACKAGE);
 
 		Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(Custom.class);
 		if (annotated == null || annotated.size() <= 0) {
@@ -64,4 +64,5 @@ public class ReflectionUtil {
 			throw new ToolException("too many custom implementation found: " + clazzes, null);
 		}
 	}
+
 }
