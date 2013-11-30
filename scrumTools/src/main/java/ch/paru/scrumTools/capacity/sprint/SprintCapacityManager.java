@@ -15,11 +15,11 @@ import ch.paru.scrumTools.capacity.sprint.factories.TeamCalculationFactory;
 import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 
-public class SprintCapacityApplicationCoordinator {
+public class SprintCapacityManager {
 
 	private ServerDay startDay, endDay;
 
-	public SprintCapacityApplicationCoordinator(ServerDay startDay, ServerDay endDay) {
+	public SprintCapacityManager(ServerDay startDay, ServerDay endDay) {
 		this.startDay = startDay;
 		this.endDay = endDay;
 	}
