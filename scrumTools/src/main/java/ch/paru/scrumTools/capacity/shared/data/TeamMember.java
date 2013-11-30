@@ -13,11 +13,9 @@ public class TeamMember {
 	private ServerContact contact;
 	private ConfigUser config;
 	private List<ServerDay> absences;
-	private double capacityInHours; //TODO remove hours
-	private double rawCapacityHours; //TODO remove hours
-	private double calculationFactor;
+	private double capacity;
 
-	TeamMember(ServerContact contact) {
+	public TeamMember(ServerContact contact) {
 		this.contact = contact;
 		absences = Lists.newArrayList();
 	}
@@ -44,32 +42,16 @@ public class TeamMember {
 	}
 
 	public void setCapacity(double capacity) {
-		this.capacityInHours = capacity;
+		this.capacity = capacity;
 	}
 
 	public double getCapacity() {
-		return capacityInHours;
+		return capacity;
 	}
 
 	@Override
 	public String toString() {
 		return config.getName();
-	}
-
-	public double getCalculationFactor() {
-		return calculationFactor;
-	}
-
-	public void setCalculationFactor(double calculationFactor) {
-		this.calculationFactor = calculationFactor;
-	}
-
-	public double getRawCapacityHours() {
-		return rawCapacityHours;
-	}
-
-	public void setRawCapacityHours(double rawCapacityHours) {
-		this.rawCapacityHours = rawCapacityHours;
 	}
 
 }

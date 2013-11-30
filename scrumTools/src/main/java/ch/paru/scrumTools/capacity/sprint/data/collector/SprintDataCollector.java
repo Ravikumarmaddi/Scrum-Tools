@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.capacity.sprint.data;
+package ch.paru.scrumTools.capacity.sprint.data.collector;
 
 import java.util.List;
 
@@ -6,6 +6,8 @@ import ch.paru.scrumTools.capacity.shared.data.collector.AbsenceDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
+import ch.paru.scrumTools.capacity.sprint.data.SprintData;
+import ch.paru.scrumTools.capacity.sprint.data.SprintDayType;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;

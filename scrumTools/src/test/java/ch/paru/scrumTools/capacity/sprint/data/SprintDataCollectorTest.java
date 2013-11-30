@@ -9,6 +9,7 @@ import ch.paru.scrumTools.capacity.shared.data.collector.AbsenceDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
+import ch.paru.scrumTools.capacity.sprint.data.collector.SprintDataCollector;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;

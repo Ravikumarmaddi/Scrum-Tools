@@ -17,8 +17,10 @@ public class DataBox {
 
 	private Map<String, Team> teams;
 	private Map<ServerContact, TeamMember> members;
+	private TeamMemberFactory teamMemberFactory;
 
-	protected DataBox() {
+	protected DataBox(TeamMemberFactory teamMemberFactory) {
+		this.teamMemberFactory = teamMemberFactory;
 		teams = Maps.newHashMap();
 		members = Maps.newHashMap();
 	}
@@ -39,16 +41,16 @@ public class DataBox {
 		return endDay;
 	}
 
-	public void addTeamMember(String teamName, ServerContact member) {
+	public void addTeamMember(String teamName, ServerContact contact) {
 		if (!teams.containsKey(teamName)) {
 			Team newTeam = new Team(teamName);
 			teams.put(teamName, newTeam);
 		}
 
 		Team team = teams.get(teamName);
-		TeamMember teamMember = new TeamMember(member);
+		TeamMember teamMember = teamMemberFactory.createTeamMember(contact);
 		team.addTeamMember(teamMember);
-		members.put(member, teamMember);
+		members.put(contact, teamMember);
 	}
 
 	public void addAbsenceForMember(ServerContact member, ServerDay day) {

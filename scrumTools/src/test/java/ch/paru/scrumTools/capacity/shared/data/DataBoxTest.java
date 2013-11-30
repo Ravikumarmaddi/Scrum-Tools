@@ -1,10 +1,12 @@
 package ch.paru.scrumTools.capacity.shared.data;
 
+import static org.easymock.EasyMock.expect;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.easymock.EasyMockSupport;
 import org.junit.Test;
 
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
@@ -14,18 +16,24 @@ import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
 import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
 
 public class DataBoxTest {
+	private static final EasyMockSupport MOCKS = new EasyMockSupport();
+	private static final TeamMemberFactory TEAM_MEMBER_FACTORY_MOCK = MOCKS.createMock("TEAM_MEMBER_FACTORY_MOCK",
+			TeamMemberFactory.class);
 
 	@Test
 	public void testAddTeamMember() {
-		//prepare
 		String teamName = "Team";
 		ServerContact contact = MockData.CONTACT_HANS;
+		TeamMember member = new TeamMember(contact);
 
-		//run
-		DataBox data = new DataBox();
+		MOCKS.resetAll();
+		expect(TEAM_MEMBER_FACTORY_MOCK.createTeamMember(contact)).andReturn(member);
+
+		MOCKS.replayAll();
+		DataBox data = new DataBox(TEAM_MEMBER_FACTORY_MOCK);
 		data.addTeamMember(teamName, contact);
 
-		//validate
+		MOCKS.verifyAll();
 		List<ServerContact> allContacts = data.getAllContacts();
 		assertEquals(1, allContacts.size());
 		assertTrue(allContacts.contains(contact));
@@ -43,32 +51,37 @@ public class DataBoxTest {
 
 	@Test
 	public void testSetConfigForMember() {
-		//prepare
 		ServerContact contact = MockData.CONTACT_HANS;
 		ConfigUser user = new ConfigUser(contact.getMailAddress());
+		TeamMember member = new TeamMember(contact);
 
-		//run
-		DataBox data = new DataBox();
+		MOCKS.resetAll();
+		expect(TEAM_MEMBER_FACTORY_MOCK.createTeamMember(contact)).andReturn(member);
+
+		MOCKS.replayAll();
+		DataBox data = new DataBox(TEAM_MEMBER_FACTORY_MOCK);
 		data.addTeamMember("TEAM", contact);
 		data.setConfigurationForMember(contact, user);
 
-		//validate
-		assertEquals(user, data.getAllTeamMembers().get(0).getConfiguration());
+		MOCKS.verifyAll();
+		assertEquals(user, member.getConfiguration());
 	}
 
 	@Test
 	public void testAddAbsenceForMember() {
-		//prepare
 		ServerContact contact = MockData.CONTACT_HANS;
 		ServerDay day = ServerDayUtil.createDayFromNumbers(1, 2, 2013);
+		TeamMember member = new TeamMember(contact);
 
-		//run
-		DataBox data = new DataBox();
+		MOCKS.resetAll();
+		expect(TEAM_MEMBER_FACTORY_MOCK.createTeamMember(contact)).andReturn(member);
+
+		MOCKS.replayAll();
+		DataBox data = new DataBox(TEAM_MEMBER_FACTORY_MOCK);
 		data.addTeamMember("TEAM", contact);
 		data.addAbsenceForMember(contact, day);
 
-		//validate
-		TeamMember member = data.getAllTeamMembers().get(0);
+		MOCKS.verifyAll();
 		assertTrue(!member.isAvailable(day));
 	}
 
