@@ -39,7 +39,7 @@ public class MemberCalculationTest {
 		MEMBER_MOCK.setCapacity(17.5);
 
 		MOCKS.replayAll();
-		MemberCalculation calculator = new MemberCalculation(DATA_MOCK);
+		MemberCalculation calculator = new MemberCalculation(DATA_MOCK, new ConstantHourManager());
 		calculator.calculateCapacityForMember(MEMBER_MOCK);
 
 		MOCKS.verifyAll();

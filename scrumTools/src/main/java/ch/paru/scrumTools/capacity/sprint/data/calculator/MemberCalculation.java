@@ -11,9 +11,11 @@ import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 public class MemberCalculation implements Customizable {
 
 	private SprintData data;
+	private ConstantHourManager hourManager;
 
-	public MemberCalculation(SprintData data) {
+	public MemberCalculation(SprintData data, ConstantHourManager hourManager) {
 		this.data = data;
+		this.hourManager = hourManager;
 	}
 
 	public void calculateAllCapacities() {
@@ -35,15 +37,15 @@ public class MemberCalculation implements Customizable {
 
 				switch (dayType) {
 				case DAILY_BUSINESS:
-					dayCapacity = getHoursPerDay();
+					dayCapacity = hourManager.getHoursPerDay();
 					break;
 
 				case SPRINT_START:
-					dayCapacity = getHoursPerDay() - getHoursForSprintStart();
+					dayCapacity = hourManager.getHoursPerDay() - hourManager.getHoursForSprintStart();
 					break;
 
 				case SPRINT_END:
-					dayCapacity = getHoursPerDay() - getHoursForSprintEnd();
+					dayCapacity = hourManager.getHoursPerDay() - hourManager.getHoursForSprintEnd();
 					break;
 				}
 
@@ -54,15 +56,4 @@ public class MemberCalculation implements Customizable {
 		teamMember.setCapacity(capacitySum);
 	}
 
-	protected double getHoursForSprintStart() {
-		return 3.5;
-	}
-
-	protected double getHoursForSprintEnd() {
-		return 3;
-	}
-
-	protected double getHoursPerDay() {
-		return 8;
-	}
 }
