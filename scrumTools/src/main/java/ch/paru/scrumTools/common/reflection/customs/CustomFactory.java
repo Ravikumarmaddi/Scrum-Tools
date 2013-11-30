@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.common.reflection;
+package ch.paru.scrumTools.common.reflection.customs;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

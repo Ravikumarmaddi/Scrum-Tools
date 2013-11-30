@@ -1,31 +1,18 @@
 package ch.paru.scrumTools.capacity.shared.factories;
 
-import java.lang.reflect.Constructor;
-
 import org.apache.commons.configuration.SubnodeConfiguration;
 
 import ch.paru.scrumTools.capacity.shared.configuration.CapacityConfiguration;
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
-import ch.paru.scrumTools.common.exception.ToolException;
-import ch.paru.scrumTools.common.reflection.CustomFactory;
-import ch.paru.scrumTools.common.reflection.ReflectionUtil;
+import ch.paru.scrumTools.common.reflection.customs.AbstractFactory;
+import ch.paru.scrumTools.common.reflection.customs.CustomFactory;
 
 @CustomFactory
-public class ConfigUserFactory {
+public class ConfigUserFactory extends AbstractFactory {
 
 	public final ConfigUser createConfigUser(String mailAddress) {
-		Class<? extends ConfigUser> clazz = ReflectionUtil.getCustomClass(ConfigUser.class);
-		if (clazz == null) {
-			clazz = ConfigUser.class;
-		}
-
-		try {
-			Constructor<? extends ConfigUser> constructor = clazz.getConstructor(String.class);
-			return constructor.newInstance(mailAddress);
-		}
-		catch (Exception e) {
-			throw new ToolException("instanciation of class failed", e);
-		}
+		Class<? extends ConfigUser> instanceClass = getClassToUse(ConfigUser.class);
+		return getInstance(instanceClass, mailAddress);
 	}
 
 	public void setValues(ConfigUser user, SubnodeConfiguration section) {

@@ -7,6 +7,7 @@ import java.util.Set;
 import org.reflections.Reflections;
 
 import ch.paru.scrumTools.common.exception.ToolException;
+import ch.paru.scrumTools.common.reflection.customs.Custom;
 
 import com.google.common.collect.Lists;
 

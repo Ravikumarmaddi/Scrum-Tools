@@ -3,7 +3,7 @@ package ch.paru.scrumTools.capacity.shared.data;
 import java.util.List;
 
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
-import ch.paru.scrumTools.common.reflection.Customizable;
+import ch.paru.scrumTools.common.reflection.customs.Customizable;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 

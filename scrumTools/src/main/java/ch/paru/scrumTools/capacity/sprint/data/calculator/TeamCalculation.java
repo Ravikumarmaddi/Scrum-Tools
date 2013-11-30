@@ -5,8 +5,9 @@ import java.util.List;
 import ch.paru.scrumTools.capacity.shared.data.Team;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
+import ch.paru.scrumTools.common.reflection.customs.Customizable;
 
-public class TeamCalculation {
+public class TeamCalculation implements Customizable {
 
 	private SprintData data;
 

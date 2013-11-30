@@ -1,7 +1,7 @@
 package ch.paru.scrumTools.custom.capacity.sprint;
 
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
-import ch.paru.scrumTools.common.reflection.Custom;
+import ch.paru.scrumTools.common.reflection.customs.Custom;
 
 @Custom(type = ConfigUser.class)
 public class CustomConfigUser extends ConfigUser {

@@ -1,27 +1,14 @@
 package ch.paru.scrumTools.capacity.shared.factories;
 
-import java.lang.reflect.Constructor;
-
 import ch.paru.scrumTools.capacity.shared.data.Team;
-import ch.paru.scrumTools.common.exception.ToolException;
-import ch.paru.scrumTools.common.reflection.CustomFactory;
-import ch.paru.scrumTools.common.reflection.ReflectionUtil;
+import ch.paru.scrumTools.common.reflection.customs.AbstractFactory;
+import ch.paru.scrumTools.common.reflection.customs.CustomFactory;
 
 @CustomFactory
-public class TeamFactory {
+public class TeamFactory extends AbstractFactory {
 
 	public Team createTeam(String teamName) {
-		Class<? extends Team> teamClass = ReflectionUtil.getCustomClass(Team.class);
-		if (teamClass == null) {
-			teamClass = Team.class;
-		}
-
-		try {
-			Constructor<? extends Team> constructor = teamClass.getConstructor(String.class);
-			return constructor.newInstance(teamName);
-		}
-		catch (Exception e) {
-			throw new ToolException("instanciation of class failed", e);
-		}
+		Class<? extends Team> instanceClass = getClassToUse(Team.class);
+		return getInstance(instanceClass, teamName);
 	}
 }

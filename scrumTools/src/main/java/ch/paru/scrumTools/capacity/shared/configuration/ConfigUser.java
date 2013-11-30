@@ -1,6 +1,6 @@
 package ch.paru.scrumTools.capacity.shared.configuration;
 
-import ch.paru.scrumTools.common.reflection.Customizable;
+import ch.paru.scrumTools.common.reflection.customs.Customizable;
 
 import com.google.common.base.Objects;
 

@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.common.reflection;
+package ch.paru.scrumTools.common.reflection.customs;
 
 
 public interface Customizable {
