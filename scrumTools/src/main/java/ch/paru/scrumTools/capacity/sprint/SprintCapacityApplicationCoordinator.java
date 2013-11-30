@@ -1,15 +1,17 @@
 package ch.paru.scrumTools.capacity.sprint;
 
-import ch.paru.scrumTools.capacity.shared.data.TeamFactory;
-import ch.paru.scrumTools.capacity.shared.data.TeamMemberFactory;
 import ch.paru.scrumTools.capacity.shared.data.collector.AbsenceDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
+import ch.paru.scrumTools.capacity.shared.factories.TeamFactory;
+import ch.paru.scrumTools.capacity.shared.factories.TeamMemberFactory;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.calculator.MemberCalculation;
 import ch.paru.scrumTools.capacity.sprint.data.calculator.TeamCalculation;
 import ch.paru.scrumTools.capacity.sprint.data.collector.SprintDataCollector;
+import ch.paru.scrumTools.capacity.sprint.factories.MemberCalculationFactory;
+import ch.paru.scrumTools.capacity.sprint.factories.TeamCalculationFactory;
 import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 
@@ -39,9 +41,9 @@ public class SprintCapacityApplicationCoordinator {
 		collector.collectData(data, startDay, endDay);
 
 		// Calculate Capacity
-		MemberCalculation memberCalculation = new MemberCalculation(data);
+		MemberCalculation memberCalculation = new MemberCalculationFactory().createCalculator(data);
 		memberCalculation.calculateAllCapacities();
-		TeamCalculation teamCalculation = new TeamCalculation(data);
+		TeamCalculation teamCalculation = new TeamCalculationFactory().createCalculator(data);
 		teamCalculation.calculateAllCapacities();
 
 		// Create Output

@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import ch.paru.scrumTools.capacity.shared.data.DataBox;
-import ch.paru.scrumTools.capacity.shared.data.TeamFactory;
-import ch.paru.scrumTools.capacity.shared.data.TeamMemberFactory;
+import ch.paru.scrumTools.capacity.shared.factories.TeamFactory;
+import ch.paru.scrumTools.capacity.shared.factories.TeamMemberFactory;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 
 import com.google.common.collect.Lists;

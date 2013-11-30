@@ -10,6 +10,8 @@ import org.easymock.EasyMockSupport;
 import org.junit.Test;
 
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
+import ch.paru.scrumTools.capacity.shared.factories.TeamFactory;
+import ch.paru.scrumTools.capacity.shared.factories.TeamMemberFactory;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 import ch.paru.scrumTools.exchangeServer.services.mock.MockData;

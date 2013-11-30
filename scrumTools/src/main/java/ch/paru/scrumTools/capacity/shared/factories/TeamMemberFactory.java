@@ -1,7 +1,8 @@
-package ch.paru.scrumTools.capacity.shared.data;
+package ch.paru.scrumTools.capacity.shared.factories;
 
 import java.lang.reflect.Constructor;
 
+import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.common.exception.ToolException;
 import ch.paru.scrumTools.common.reflection.CustomFactory;
 import ch.paru.scrumTools.common.reflection.ReflectionUtil;
