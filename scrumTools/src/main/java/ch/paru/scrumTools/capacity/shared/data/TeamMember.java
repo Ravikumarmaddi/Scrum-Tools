@@ -14,6 +14,7 @@ public class TeamMember implements Customizable {
 	private ServerContact contact;
 	private ConfigUser config;
 	private List<ServerDay> absences;
+	private double availability;
 	private double capacity;
 
 	public TeamMember(ServerContact contact) {
@@ -48,6 +49,14 @@ public class TeamMember implements Customizable {
 
 	public double getCapacity() {
 		return capacity;
+	}
+
+	public double getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(double availability) {
+		this.availability = availability;
 	}
 
 	@Override
