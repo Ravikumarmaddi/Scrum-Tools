@@ -28,7 +28,7 @@ public class SprintDataTest {
 		//prepare
 		ServerDay day = ServerDayUtil.createDayFromNumbers(1, 3, 2013);
 		SprintDayType dailyBusiness = SprintDayType.DAILY_BUSINESS;
-		SprintDayType sprintStart = SprintDayType.PLANNING_FULLDAY;
+		SprintDayType sprintStart = SprintDayType.SPRINT_START;
 
 		//run
 		SprintData data = new SprintData();

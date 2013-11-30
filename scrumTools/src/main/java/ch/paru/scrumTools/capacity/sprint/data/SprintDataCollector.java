@@ -59,9 +59,7 @@ public class SprintDataCollector {
 			return;
 		}
 
-		SprintDayType dayType = start.getCategories().contains(CalendarCategories.SPRINT_END) ? SprintDayType.PLANNING_HALFDAY
-				: SprintDayType.PLANNING_FULLDAY;
-		data.setDayCategory(startDay, dayType);
+		data.setDayCategory(startDay, SprintDayType.SPRINT_START);
 	}
 
 	private void validateReviewDay(SprintData data, ServerDay endDay) {
@@ -70,8 +68,6 @@ public class SprintDataCollector {
 			return;
 		}
 
-		SprintDayType dayType = end.getCategories().contains(CalendarCategories.SPRINT_START) ? SprintDayType.RETRO_REVIEW_HALFDAY
-				: SprintDayType.RETRO_REVIEW_FULLDAY;
-		data.setDayCategory(endDay, dayType);
+		data.setDayCategory(endDay, SprintDayType.SPRINT_END);
 	}
 }
