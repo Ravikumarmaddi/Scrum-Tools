@@ -49,7 +49,7 @@ public class ReflectionUtil {
 
 		List<Class<T>> clazzes = Lists.newArrayList();
 		for (Class<?> clazz : annotated) {
-			if (superClass.isAssignableFrom(clazz)) {
+			if (superClass.equals(clazz.getAnnotation(Custom.class).type())) {
 				clazzes.add((Class<T>) clazz);
 			}
 		}

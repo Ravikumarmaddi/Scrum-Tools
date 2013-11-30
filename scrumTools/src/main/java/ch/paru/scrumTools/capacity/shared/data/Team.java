@@ -2,9 +2,11 @@ package ch.paru.scrumTools.capacity.shared.data;
 
 import java.util.List;
 
+import ch.paru.scrumTools.common.reflection.Customizable;
+
 import com.google.common.collect.Lists;
 
-public class Team {
+public class Team implements Customizable {
 
 	private String name;
 	private List<TeamMember> members;

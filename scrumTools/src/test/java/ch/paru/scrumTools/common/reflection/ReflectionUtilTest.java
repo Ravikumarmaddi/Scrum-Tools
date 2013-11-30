@@ -6,16 +6,16 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
+import ch.paru.scrumTools.capacity.shared.data.Team;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 
 public class ReflectionUtilTest {
 
 	@Test
 	public void testCustomFound() {
-		Class<? extends ConfigUser> clazz = ReflectionUtil.getCustomClass(ConfigUser.class);
+		Class<? extends Team> clazz = ReflectionUtil.getCustomClass(Team.class);
 		assertNotNull(clazz);
-		assertEquals(CustomConfigUser.class, clazz);
+		assertEquals(CustomTeam.class, clazz);
 	}
 
 	@Test

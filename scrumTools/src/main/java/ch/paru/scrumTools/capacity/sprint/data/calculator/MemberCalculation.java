@@ -5,9 +5,10 @@ import java.util.List;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.SprintDayType;
+import ch.paru.scrumTools.common.reflection.Customizable;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 
-public class MemberCalculation {
+public class MemberCalculation implements Customizable {
 
 	private SprintData data;
 

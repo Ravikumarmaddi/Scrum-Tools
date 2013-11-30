@@ -5,9 +5,10 @@ import java.lang.reflect.Constructor;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.calculator.TeamCalculation;
 import ch.paru.scrumTools.common.exception.ToolException;
+import ch.paru.scrumTools.common.reflection.Customizable;
 import ch.paru.scrumTools.common.reflection.ReflectionUtil;
 
-public class TeamCalculationFactory {
+public class TeamCalculationFactory implements Customizable {
 
 	public TeamCalculation createCalculator(SprintData data) {
 		Class<? extends TeamCalculation> clazz = ReflectionUtil.getCustomClass(TeamCalculation.class);
