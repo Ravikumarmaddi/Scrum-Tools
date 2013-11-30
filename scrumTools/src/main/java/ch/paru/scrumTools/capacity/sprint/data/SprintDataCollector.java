@@ -2,44 +2,46 @@ package ch.paru.scrumTools.capacity.sprint.data;
 
 import java.util.List;
 
-import ch.paru.scrumTools.capacity.shared.data.DataCollector;
+import ch.paru.scrumTools.capacity.shared.data.collector.AbsenceDataCollector;
+import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollector;
+import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
-import ch.paru.scrumTools.exchangeServer.manager.ServerFacade;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
 
-public class SprintDataCollector extends DataCollector {
+public class SprintDataCollector {
 
-	private ServerFacade serverFacade;
 	private SprintCapacityConfiguration config;
+	private TeamDataCollector teamDataCollector;
+	private ConfigurationDataCollector configDataCollector;
+	private AbsenceDataCollector absenceDataCollector;
+	private CalendarService calendarService;
 
-	public SprintDataCollector(ServerFacade serverFacade, SprintCapacityConfiguration config) {
-		super(serverFacade);
-		this.serverFacade = serverFacade;
+	public SprintDataCollector(CalendarService calendarService, SprintCapacityConfiguration config,
+			TeamDataCollector teamDataCollector, ConfigurationDataCollector configDataCollector,
+			AbsenceDataCollector absenceDataCollector) {
+		this.calendarService = calendarService;
 		this.config = config;
+		this.teamDataCollector = teamDataCollector;
+		this.configDataCollector = configDataCollector;
+		this.absenceDataCollector = absenceDataCollector;
 	}
 
-	public SprintData collectData(ServerDay startDay, ServerDay endDay) {
-		SprintData data = new SprintData();
-
+	public void collectData(SprintData data, ServerDay startDay, ServerDay endDay) {
 		List<String> teams = config.getTeams();
-		loadTeams(data, teams);
-		loadConfiguration(data, config);
-		loadAbsences(data, startDay, endDay);
+		teamDataCollector.loadTeams(data, teams);
+		configDataCollector.loadConfiguration(data);
+		absenceDataCollector.loadAbsences(data, startDay, endDay);
 
 		loadDayCategories(data, startDay, endDay);
 		validatePlanningDay(data, startDay);
 		validateReviewDay(data, endDay);
-
-		return data;
 	}
 
 	private void loadDayCategories(SprintData data, ServerDay startDay, ServerDay endDay) {
-		CalendarService calendarService = serverFacade.getCalendarService();
-
 		ServerDay day = startDay;
 		while (ServerDayUtil.compare(day, endDay) <= 0) {
 			if (calendarService.isWorkingDay(day)) {
@@ -51,8 +53,6 @@ public class SprintDataCollector extends DataCollector {
 	}
 
 	private void validatePlanningDay(SprintData data, ServerDay startDay) {
-		CalendarService calendarService = serverFacade.getCalendarService();
-
 		ServerAppointment start = calendarService.getSingleAppointmentOfCategory(startDay,
 				CalendarCategories.SPRINT_START);
 		if (start == null) {
@@ -65,8 +65,6 @@ public class SprintDataCollector extends DataCollector {
 	}
 
 	private void validateReviewDay(SprintData data, ServerDay endDay) {
-		CalendarService calendarService = serverFacade.getCalendarService();
-
 		ServerAppointment end = calendarService.getSingleAppointmentOfCategory(endDay, CalendarCategories.SPRINT_END);
 		if (end == null) {
 			return;

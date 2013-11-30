@@ -1,7 +1,11 @@
 package ch.paru.scrumTools.capacity.sprint;
 
 import ch.paru.scrumTools.capacity.shared.commandLine.CommandLineParser;
+import ch.paru.scrumTools.capacity.shared.data.collector.AbsenceDataCollector;
+import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollector;
+import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
+import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.SprintDataCollector;
 import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
@@ -22,8 +26,13 @@ public class SprintCapacityCalculatorApplication {
 		// Collect Data
 		SprintCapacityConfiguration configuration = SprintCapacityConfiguration.getInstance();
 		ServerInstance serverFacade = ServerInstance.getInstance();
-		SprintDataCollector collector = new SprintDataCollector(serverFacade, configuration);
-		collector.collectData(startDay, endDay);
+		TeamDataCollector teamDataCollector = new TeamDataCollector(serverFacade.getContactService());
+		ConfigurationDataCollector configDataCollector = new ConfigurationDataCollector(configuration);
+		AbsenceDataCollector absenceDataCollector = new AbsenceDataCollector(serverFacade.getCalendarService());
+		SprintDataCollector collector = new SprintDataCollector(serverFacade.getCalendarService(), configuration,
+				teamDataCollector, configDataCollector, absenceDataCollector);
+		SprintData data = new SprintData();
+		collector.collectData(data, startDay, endDay);
 
 		// Calculate Capacity
 
