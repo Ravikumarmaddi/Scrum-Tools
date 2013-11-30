@@ -15,7 +15,14 @@ public class MemberCalculation {
 		this.data = data;
 	}
 
-	public void calculateCapacityForMember(TeamMember teamMember) {
+	public void calculateAllCapacities() {
+		List<TeamMember> allTeamMembers = data.getAllTeamMembers();
+		for (TeamMember teamMember : allTeamMembers) {
+			calculateCapacityForMember(teamMember);
+		}
+	}
+
+	void calculateCapacityForMember(TeamMember teamMember) {
 		List<ServerDay> workingDays = data.getAllWorkingDays();
 		double capacitySum = 0;
 

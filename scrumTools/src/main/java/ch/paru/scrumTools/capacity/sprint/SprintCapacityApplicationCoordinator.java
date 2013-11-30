@@ -6,6 +6,7 @@ import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollec
 import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
+import ch.paru.scrumTools.capacity.sprint.data.calculator.MemberCalculation;
 import ch.paru.scrumTools.capacity.sprint.data.collector.SprintDataCollector;
 import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
@@ -35,6 +36,8 @@ public class SprintCapacityApplicationCoordinator {
 		collector.collectData(data, startDay, endDay);
 
 		// Calculate Capacity
+		MemberCalculation memberCalculation = new MemberCalculation(data);
+		memberCalculation.calculateAllCapacities();
 
 		// Create Output
 	}
