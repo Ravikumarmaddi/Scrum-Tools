@@ -13,7 +13,6 @@ public class SprintCapacityApplication {
 		ServerDay startDay = ServerDayUtil.createDayFromDate(parser.getStartDate());
 		ServerDay endDay = ServerDayUtil.createDayFromDate(parser.getEndDate());
 
-		new SprintCapacityManager(startDay, endDay).start(parser.getConfigFile(),
-				new SprintCapacityApplicationInitializer());
+		new SprintCapacityManager(startDay, endDay).start(parser.getConfigFile());
 	}
 }

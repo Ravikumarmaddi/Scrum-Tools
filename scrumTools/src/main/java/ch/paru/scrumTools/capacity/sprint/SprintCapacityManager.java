@@ -13,7 +13,9 @@ import ch.paru.scrumTools.capacity.sprint.data.calculator.RoleDetailCapacityCalc
 import ch.paru.scrumTools.capacity.sprint.data.calculator.TeamCalculation;
 import ch.paru.scrumTools.capacity.sprint.data.collector.SprintDataCollector;
 import ch.paru.scrumTools.capacity.sprint.factories.MemberCalculationFactory;
+import ch.paru.scrumTools.capacity.sprint.factories.SprintCapacityApplicationInitializerFactory;
 import ch.paru.scrumTools.capacity.sprint.factories.TeamCalculationFactory;
+import ch.paru.scrumTools.capacity.sprint.init.SprintCapacityApplicationInitializer;
 import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 
@@ -26,7 +28,9 @@ public class SprintCapacityManager {
 		this.endDay = endDay;
 	}
 
-	public void start(String configFileName, SprintCapacityApplicationInitializer initializer) {
+	public void start(String configFileName) {
+		SprintCapacityApplicationInitializerFactory initFactory = new SprintCapacityApplicationInitializerFactory();
+		SprintCapacityApplicationInitializer initializer = initFactory.createInitializer();
 		initializer.init(configFileName);
 
 		// Collect Data

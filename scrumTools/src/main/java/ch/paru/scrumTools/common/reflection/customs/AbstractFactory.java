@@ -7,7 +7,7 @@ import ch.paru.scrumTools.common.reflection.ReflectionUtil;
 
 public abstract class AbstractFactory {
 
-	protected <T> Class<? extends T> getClassToUse(Class<T> customClass) {
+	protected <T extends Customizable> Class<? extends T> getClassToUse(Class<T> customClass) {
 		Class<? extends T> clazz = ReflectionUtil.getCustomClass(customClass);
 		if (clazz == null) {
 			clazz = customClass;
@@ -15,7 +15,8 @@ public abstract class AbstractFactory {
 		return clazz;
 	}
 
-	protected <T> T getInstance(Class<? extends T> instanceClass, Class<?>[] constructorTypes, Object[] params) {
+	protected <T extends Customizable> T getInstance(Class<? extends T> instanceClass, Class<?>[] constructorTypes,
+			Object[] params) {
 		try {
 			Constructor<? extends T> constructor = instanceClass.getConstructor(constructorTypes);
 			return constructor.newInstance(params);
@@ -25,7 +26,7 @@ public abstract class AbstractFactory {
 		}
 	}
 
-	protected <T, P> T getInstance(Class<? extends T> instanceClass, P param) {
+	protected <T extends Customizable, P> T getInstance(Class<? extends T> instanceClass, P param) {
 		try {
 			Constructor<? extends T> constructor = instanceClass.getConstructor(param.getClass());
 			return constructor.newInstance(param);
@@ -35,7 +36,7 @@ public abstract class AbstractFactory {
 		}
 	}
 
-	protected <T> T getInstance(Class<? extends T> instanceClass) {
+	protected <T extends Customizable> T getInstance(Class<? extends T> instanceClass) {
 		try {
 			return instanceClass.newInstance();
 		}
