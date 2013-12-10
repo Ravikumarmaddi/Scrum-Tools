@@ -12,10 +12,8 @@ import microsoft.exchange.webservices.data.CalendarView;
 import microsoft.exchange.webservices.data.ExchangeService;
 import microsoft.exchange.webservices.data.FindItemsResults;
 import microsoft.exchange.webservices.data.WellKnownFolderName;
-
-import org.slf4j.Logger;
-
 import ch.paru.scrumTools.common.logging.ToolLogger;
+import ch.paru.scrumTools.common.logging.ToolLoggerFactory;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
 
@@ -24,7 +22,7 @@ import com.google.common.collect.Maps;
 
 public class AppointmentLoader {
 
-	private static final Logger LOGGER = ToolLogger.getLogger(AppointmentLoader.class);
+	private static final ToolLogger LOGGER = ToolLoggerFactory.getLogger(AppointmentLoader.class);
 
 	private ExchangeService server;
 	private Map<String, List<Appointment>> appointmentCache;

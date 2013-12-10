@@ -4,14 +4,13 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import org.slf4j.Logger;
-
 import ch.paru.scrumTools.common.logging.ToolLogger;
+import ch.paru.scrumTools.common.logging.ToolLoggerFactory;
 
 public class LogInterceptorFactory {
 
-	private static final Logger TIMER = ToolLogger.getTimeLogger();
-	private static final Logger LOGGER = ToolLogger.getLogger(LogInterceptorFactory.class);
+	private static final ToolLogger TIMER = ToolLoggerFactory.getTimeLogger();
+	private static final ToolLogger LOGGER = ToolLoggerFactory.getLogger(LogInterceptorFactory.class);
 
 	@SuppressWarnings("unchecked")
 	public <T, U extends T> T getInterceptor(Class<T> clazz, U impl) {

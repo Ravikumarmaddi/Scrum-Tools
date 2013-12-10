@@ -4,16 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-import org.slf4j.Logger;
-
 import ch.paru.scrumTools.common.exception.ToolException;
 import ch.paru.scrumTools.common.logging.ToolLogger;
+import ch.paru.scrumTools.common.logging.ToolLoggerFactory;
 
 import com.google.common.collect.Maps;
 
 public class CommandLineParser {
 
-	private static final Logger LOGGER = ToolLogger.getLogger(CommandLineParser.class);
+	private static final ToolLogger LOGGER = ToolLoggerFactory.getLogger(CommandLineParser.class);
 
 	private Map<CommandLineArguments, String> values = Maps.newHashMap();
 
