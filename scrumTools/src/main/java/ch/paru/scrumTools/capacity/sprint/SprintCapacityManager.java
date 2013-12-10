@@ -26,8 +26,8 @@ public class SprintCapacityManager {
 		this.endDay = endDay;
 	}
 
-	public void start(String configFileName) {
-		init(configFileName);
+	public void start(String configFileName, SprintCapacityApplicationInitializer initializer) {
+		initializer.init(configFileName);
 
 		// Collect Data
 		SprintCapacityConfiguration configuration = SprintCapacityConfiguration.getInstance();
@@ -50,10 +50,6 @@ public class SprintCapacityManager {
 		teamCalculation.calculateAllCapacities();
 
 		// Create Output
-	}
-
-	private void init(String configFileName) {
-		ServerInstance.init(configFileName);
-		SprintCapacityConfiguration.init(configFileName);
+		System.out.println(data);
 	}
 }

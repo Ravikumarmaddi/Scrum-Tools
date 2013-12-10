@@ -1,10 +1,11 @@
-package ch.paru.scrumTools.capacity.sprint;
+package ch.paru.scrumTools.custom.capacity.sprint;
 
 import ch.paru.scrumTools.capacity.shared.commandLine.CommandLineParser;
+import ch.paru.scrumTools.capacity.sprint.SprintCapacityManager;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
 
-public class SprintCapacityApplication {
+public class CustomApplication {
 
 	public static void main(String[] args) {
 		CommandLineParser parser = new CommandLineParser();
@@ -13,7 +14,6 @@ public class SprintCapacityApplication {
 		ServerDay startDay = ServerDayUtil.createDayFromDate(parser.getStartDate());
 		ServerDay endDay = ServerDayUtil.createDayFromDate(parser.getEndDate());
 
-		new SprintCapacityManager(startDay, endDay).start(parser.getConfigFile(),
-				new SprintCapacityApplicationInitializer());
+		new SprintCapacityManager(startDay, endDay).start(parser.getConfigFile(), new CustomInitializer());
 	}
 }
