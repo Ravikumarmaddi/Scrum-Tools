@@ -1,0 +1,32 @@
+##########################################################
+# EXCHANGE CONNECTION CONFIG
+##########################################################
+url=
+username=
+password=
+useRealService=true;
+
+
+##########################################################
+# CAPACITY CONFIG
+##########################################################
+companyDomain=
+calendar_category_absences=
+calendar_category_publicholiday=
+calendar_category_sprintmeeting=
+calendar_category_sprintstart=
+calendar_category_sprintend=
+
+
+##########################################################
+# SPRINT CAPACITY CONFIG
+##########################################################
+[SPRINTCAPACITY-CONFIG]
+teams=Team
+
+[USER-peter_mueller]
+name=Mueller Peter
+role=DEV
+
+[ROLE-DEV]
+name=Developer
