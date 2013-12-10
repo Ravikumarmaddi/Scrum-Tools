@@ -20,10 +20,4 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	public Boolean getBooleanValue(ConfigurationKeys key) {
 		return ExchangeServerConfiguration.getInstance().getBooleanValue(key);
 	}
-
-	@Override
-	public void init(String configFileName) {
-		ExchangeServerConfiguration.init(configFileName);
-	}
-
 }

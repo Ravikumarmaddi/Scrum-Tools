@@ -4,6 +4,7 @@ import ch.paru.scrumTools.common.reflection.ReflectionUtil;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
 import ch.paru.scrumTools.exchangeServer.services.configuration.ConfigurationService;
 import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
+import ch.paru.scrumTools.exchangeServer.utils.configuration.ExchangeServerConfiguration;
 import ch.paru.scrumTools.exchangeServer.utils.exceptions.ServerException;
 
 public class ServerInstance implements ServerFacade {
@@ -46,6 +47,6 @@ public class ServerInstance implements ServerFacade {
 	}
 
 	public static void init(String configFileName) {
-		getInstance().getConfigurationService().init(configFileName);
+		ExchangeServerConfiguration.init(configFileName);
 	}
 }
