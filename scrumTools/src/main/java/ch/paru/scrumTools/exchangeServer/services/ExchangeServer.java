@@ -5,6 +5,7 @@ import java.lang.reflect.Constructor;
 import microsoft.exchange.webservices.data.ExchangeCredentials;
 import microsoft.exchange.webservices.data.ExchangeService;
 import microsoft.exchange.webservices.data.WebCredentials;
+import ch.paru.scrumTools.exchangeServer.manager.ServerFacade;
 import ch.paru.scrumTools.exchangeServer.manager.ServerManager;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
 import ch.paru.scrumTools.exchangeServer.services.calendar.impl.CalendarServiceImpl;
@@ -21,7 +22,7 @@ import ch.paru.scrumTools.exchangeServer.utils.interceptors.CacheInterceptorFact
 import ch.paru.scrumTools.exchangeServer.utils.interceptors.LogInterceptorFactory;
 
 @ServerManager
-public class ExchangeServer implements ch.paru.scrumTools.exchangeServer.manager.ServerFacade {
+public class ExchangeServer implements ServerFacade {
 
 	private ExchangeService remote;
 
