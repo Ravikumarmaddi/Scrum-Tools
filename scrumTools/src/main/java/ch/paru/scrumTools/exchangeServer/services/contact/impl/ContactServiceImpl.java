@@ -10,15 +10,18 @@ import microsoft.exchange.webservices.data.FindItemsResults;
 import microsoft.exchange.webservices.data.Item;
 import microsoft.exchange.webservices.data.ItemView;
 import microsoft.exchange.webservices.data.WellKnownFolderName;
-
-import com.google.common.collect.Lists;
-
+import ch.paru.scrumTools.common.logging.ToolLogger;
+import ch.paru.scrumTools.common.logging.ToolLoggerFactory;
 import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContactGroup;
 import ch.paru.scrumTools.exchangeServer.utils.exceptions.ServerException;
 
+import com.google.common.collect.Lists;
+
 public class ContactServiceImpl implements ContactService {
+
+	private static final ToolLogger LOGGER = ToolLoggerFactory.getLogger(ContactServiceImpl.class);
 
 	private final ExchangeService server;
 
@@ -47,10 +50,13 @@ public class ContactServiceImpl implements ContactService {
 
 	private ServerContactGroup createGroup(ContactGroup group) throws Exception {
 		ServerContactGroup contactGroup = new ServerContactGroup(group.getDisplayName());
+		LOGGER.trace("Greoup Name: " + contactGroup.getName());
 
 		ExpandGroupResults expandGroup = server.expandGroup(group.getId());
 		for (EmailAddress emailAddress : expandGroup) {
-			contactGroup.addMember(new ServerContact(emailAddress.getAddress()));
+			ServerContact contact = new ServerContact(emailAddress.getAddress());
+			contactGroup.addMember(contact);
+			LOGGER.trace("new contact to group: " + contact);
 		}
 
 		return contactGroup;

@@ -54,10 +54,14 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 
 	@Override
-	public ServerAppointment getSingleAppointmentOfCategory(ServerDay day, CalendarCategories category) {
+	public ServerAppointment getSingleAppointmentOfCategory(ServerDay day, CalendarCategories category,
+			boolean nullIfNotSingle) {
 		List<ServerAppointment> appointments = getAllAppointmentsOfCategory(day, category);
 
 		if (appointments.size() != 1) {
+			if (nullIfNotSingle) {
+				return null;
+			}
 			throw new ServerException("not exactly one appointment: " + day + " - " + category, null);
 		}
 

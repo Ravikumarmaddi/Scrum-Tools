@@ -9,7 +9,7 @@ public class ToolLoggerFactory {
 		System.setProperty("org.slf4j.simpleLogger.showDateTime", "true");
 		System.setProperty("org.slf4j.simpleLogger.dateTimeFormat", "HH:mm:ss,SSS");
 		System.setProperty("org.slf4j.simpleLogger.logFile", "System.out");
-		System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "debug");
+		System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "trace");
 	}
 
 	public static final ToolLogger getLogger(Class<?> clazz) {

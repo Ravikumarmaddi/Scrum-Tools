@@ -30,7 +30,8 @@ public class CalendarServiceMock implements CalendarService {
 	}
 
 	@Override
-	public ServerAppointment getSingleAppointmentOfCategory(ServerDay day, CalendarCategories category) {
+	public ServerAppointment getSingleAppointmentOfCategory(ServerDay day, CalendarCategories category,
+			boolean nullIfNotSingle) {
 		return new ServerAppointment("MOCK APPOINTMENT", new ServerContact("test@abcd.ef"), day, 100, new ServerTime(0,
 				0));
 	}

@@ -15,6 +15,16 @@ public abstract class AbstractFactory {
 		return clazz;
 	}
 
+	protected <T> T getInstance(Class<? extends T> instanceClass, Class<?>[] constructorTypes, Object[] params) {
+		try {
+			Constructor<? extends T> constructor = instanceClass.getConstructor(constructorTypes);
+			return constructor.newInstance(params);
+		}
+		catch (Exception e) {
+			throw new ToolException("instanciation of class failed", e);
+		}
+	}
+
 	protected <T, P> T getInstance(Class<? extends T> instanceClass, P param) {
 		try {
 			Constructor<? extends T> constructor = instanceClass.getConstructor(param.getClass());

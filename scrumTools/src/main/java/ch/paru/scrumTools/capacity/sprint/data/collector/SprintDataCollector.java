@@ -56,7 +56,7 @@ public class SprintDataCollector {
 
 	private void validatePlanningDay(SprintData data, ServerDay startDay) {
 		ServerAppointment start = calendarService.getSingleAppointmentOfCategory(startDay,
-				CalendarCategories.SPRINT_START);
+				CalendarCategories.SPRINT_START, true);
 		if (start == null) {
 			return;
 		}
@@ -65,7 +65,8 @@ public class SprintDataCollector {
 	}
 
 	private void validateReviewDay(SprintData data, ServerDay endDay) {
-		ServerAppointment end = calendarService.getSingleAppointmentOfCategory(endDay, CalendarCategories.SPRINT_END);
+		ServerAppointment end = calendarService.getSingleAppointmentOfCategory(endDay, CalendarCategories.SPRINT_END,
+				true);
 		if (end == null) {
 			return;
 		}

@@ -7,7 +7,9 @@ import ch.paru.scrumTools.capacity.shared.factories.TeamFactory;
 import ch.paru.scrumTools.capacity.shared.factories.TeamMemberFactory;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
+import ch.paru.scrumTools.capacity.sprint.data.calculator.ConstantHourManager;
 import ch.paru.scrumTools.capacity.sprint.data.calculator.MemberCalculation;
+import ch.paru.scrumTools.capacity.sprint.data.calculator.RoleDetailCapacityCalculator;
 import ch.paru.scrumTools.capacity.sprint.data.calculator.TeamCalculation;
 import ch.paru.scrumTools.capacity.sprint.data.collector.SprintDataCollector;
 import ch.paru.scrumTools.capacity.sprint.factories.MemberCalculationFactory;
@@ -41,7 +43,8 @@ public class SprintCapacityManager {
 		collector.collectData(data, startDay, endDay);
 
 		// Calculate Capacity
-		MemberCalculation memberCalculation = new MemberCalculationFactory().createCalculator(data);
+		MemberCalculation memberCalculation = new MemberCalculationFactory().createCalculator(data,
+				new ConstantHourManager(), new RoleDetailCapacityCalculator());
 		memberCalculation.calculateAllCapacities();
 		TeamCalculation teamCalculation = new TeamCalculationFactory().createCalculator(data);
 		teamCalculation.calculateAllCapacities();
