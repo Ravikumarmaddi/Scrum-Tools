@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import ch.paru.scrumTools.capacity.shared.renderer.TeamTableContent;
 
-public class SprintTeamTableFactoryTest {
+public class SprintTeamTableContentFactoryTest {
 
 	private static final EasyMockSupport MOCKS = new EasyMockSupport();
 
@@ -16,7 +16,7 @@ public class SprintTeamTableFactoryTest {
 		MOCKS.resetAll();
 
 		MOCKS.replayAll();
-		SprintTeamTableFactory factory = new SprintTeamTableFactory();
+		SprintTeamTableContentFactory factory = new SprintTeamTableContentFactory();
 		TeamTableContent result = factory.createTable();
 
 		MOCKS.verifyAll();

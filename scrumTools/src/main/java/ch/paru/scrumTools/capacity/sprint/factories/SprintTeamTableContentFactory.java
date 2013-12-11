@@ -6,7 +6,7 @@ import ch.paru.scrumTools.common.reflection.customs.AbstractFactory;
 import ch.paru.scrumTools.common.reflection.customs.CustomFactory;
 
 @CustomFactory
-public class SprintTeamTableFactory extends AbstractFactory {
+public class SprintTeamTableContentFactory extends AbstractFactory {
 
 	public TeamTableContent createTable() {
 		Class<? extends SprintTeamTableContent> instanceClass = getClassToUse(SprintTeamTableContent.class);

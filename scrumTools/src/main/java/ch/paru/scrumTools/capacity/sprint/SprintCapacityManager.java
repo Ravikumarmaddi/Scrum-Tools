@@ -16,6 +16,7 @@ import ch.paru.scrumTools.capacity.sprint.factories.MemberCalculationFactory;
 import ch.paru.scrumTools.capacity.sprint.factories.SprintCapacityApplicationInitializerFactory;
 import ch.paru.scrumTools.capacity.sprint.factories.TeamCalculationFactory;
 import ch.paru.scrumTools.capacity.sprint.init.SprintCapacityApplicationInitializer;
+import ch.paru.scrumTools.capacity.sprint.renderer.SprintCapacityRenderer;
 import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 
@@ -54,6 +55,7 @@ public class SprintCapacityManager {
 		teamCalculation.calculateAllCapacities();
 
 		// Create Output
-		System.out.println(data);
+		SprintCapacityRenderer renderer = new SprintCapacityRenderer();
+		renderer.renderData(data);
 	}
 }
