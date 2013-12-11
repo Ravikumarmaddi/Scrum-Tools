@@ -16,6 +16,7 @@ public class TeamMember implements Customizable {
 	private List<ServerDay> absences;
 	private double availability;
 	private double capacity;
+	private Team team;
 
 	public TeamMember(ServerContact contact) {
 		this.contact = contact;
@@ -64,4 +65,11 @@ public class TeamMember implements Customizable {
 		return config.getName();
 	}
 
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	public Team getTeam() {
+		return team;
+	}
 }
