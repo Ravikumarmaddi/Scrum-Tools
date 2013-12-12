@@ -1,21 +1,23 @@
 ##########################################################
-# EXCHANGE CONNECTION CONFIG
+# EXCHANGE CONFIG
 ##########################################################
+[EXCHANGESERVER-CONFIG]
 url=
 username=
 password=
 useRealService=true;
-
-
-##########################################################
-# CAPACITY CONFIG
-##########################################################
-companyDomain=
 calendar_category_absences=
 calendar_category_publicholiday=
 calendar_category_sprintmeeting=
 calendar_category_sprintstart=
 calendar_category_sprintend=
+
+
+##########################################################
+# CAPACITY CONFIG
+##########################################################
+[CAPACITY-CONFIG]
+companyDomain=
 
 
 ##########################################################

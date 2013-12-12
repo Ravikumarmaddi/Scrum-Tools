@@ -1,28 +1,21 @@
 package ch.paru.scrumTools.exchangeServer.utils.configuration;
 
-import org.apache.commons.configuration.HierarchicalINIConfiguration;
-
+import ch.paru.scrumTools.common.configuration.ToolConfiguration;
 import ch.paru.scrumTools.exchangeServer.services.configuration.ConfigurationKeys;
 import ch.paru.scrumTools.exchangeServer.utils.exceptions.ServerException;
 
-public class ExchangeServerConfiguration {
+public class ExchangeServerConfiguration extends ToolConfiguration {
+
+	private static final String SECTION_NAME = "EXCHANGESERVER-CONFIG";
 
 	private static ExchangeServerConfiguration instance;
-
-	private HierarchicalINIConfiguration config;
 
 	public static void init(String fileName) {
 		instance = new ExchangeServerConfiguration(fileName);
 	}
 
 	private ExchangeServerConfiguration(String fileName) {
-		try {
-			config = new HierarchicalINIConfiguration();
-			config.load(fileName);
-		}
-		catch (Exception e) {
-			throw new ServerException("config init failed", e);
-		}
+		initConfig(fileName);
 	}
 
 	public static ExchangeServerConfiguration getInstance() {
@@ -33,19 +26,16 @@ public class ExchangeServerConfiguration {
 	}
 
 	public String getStringValue(ConfigurationKeys key) {
-		return getConfig().getString(key.getKey());
+		return getStringInSection(SECTION_NAME, key.getKey());
 	}
 
 	public String getStringValue(ConfigurationKeys prefix, String key) {
-		return getConfig().getString(prefix.getKey() + key);
+		return getStringInSection(SECTION_NAME, prefix.getKey() + key);
 	}
 
 	public Boolean getBooleanValue(ConfigurationKeys key) {
-		return getConfig().getBoolean(key.getKey());
-	}
-
-	private HierarchicalINIConfiguration getConfig() {
-		return config;
+		String value = getStringInSection(SECTION_NAME, key.getKey());
+		return Boolean.valueOf(value);
 	}
 
 }

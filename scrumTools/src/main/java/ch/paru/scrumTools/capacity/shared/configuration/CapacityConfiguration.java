@@ -1,14 +1,15 @@
 package ch.paru.scrumTools.capacity.shared.configuration;
 
-import org.apache.commons.configuration.HierarchicalINIConfiguration;
 import org.apache.commons.configuration.SubnodeConfiguration;
 
 import ch.paru.scrumTools.capacity.shared.factories.ConfigRoleFactory;
 import ch.paru.scrumTools.capacity.shared.factories.ConfigUserFactory;
+import ch.paru.scrumTools.common.configuration.ToolConfiguration;
 import ch.paru.scrumTools.common.exception.ToolException;
 
-public class CapacityConfiguration {
+public class CapacityConfiguration extends ToolConfiguration {
 
+	private static final String SECTION_NAME = "CAPACITY-CONFIG";
 	private static final String COMPANY_DOMAIN = "companyDomain";
 
 	private static final String PREFIX_USER = "USER-";
@@ -16,21 +17,12 @@ public class CapacityConfiguration {
 
 	private static CapacityConfiguration instance;
 
-	private HierarchicalINIConfiguration config;
-
 	public static void init(String fileName) {
 		new CapacityConfiguration(fileName);
 	}
 
 	protected CapacityConfiguration(String fileName) {
-		try {
-			config = new HierarchicalINIConfiguration();
-			config.load(fileName);
-		}
-		catch (Exception e) {
-			throw new ToolException("config init failed", e);
-		}
-
+		initConfig(fileName);
 		instance = this;
 	}
 
@@ -39,14 +31,6 @@ public class CapacityConfiguration {
 			throw new ToolException("config instance has not been intialized", null);
 		}
 		return instance;
-	}
-
-	private String getRootString(String key) {
-		String value = config.getString(key);
-		if (value == null) {
-			throw new ToolException("'" + key + "' not found in the configuration", null);
-		}
-		return value;
 	}
 
 	private String getConfigUserSectionName(String mailAddress, String domain) {
@@ -61,8 +45,8 @@ public class CapacityConfiguration {
 	}
 
 	public ConfigUser getUser(String mailAddress) {
-		String sectionName = getConfigUserSectionName(mailAddress, getRootString(COMPANY_DOMAIN));
-		SubnodeConfiguration section = config.getSection(sectionName);
+		String sectionName = getConfigUserSectionName(mailAddress, getStringInSection(SECTION_NAME, COMPANY_DOMAIN));
+		SubnodeConfiguration section = getConfig().getSection(sectionName);
 
 		if (section.isEmpty()) {
 			throw new ToolException("for '" + mailAddress + "' is no config user available", null);
@@ -76,7 +60,7 @@ public class CapacityConfiguration {
 
 	public ConfigRole getRole(String roleName) {
 		String sectionName = getConfigRoleSectionName(roleName);
-		SubnodeConfiguration section = config.getSection(sectionName);
+		SubnodeConfiguration section = getConfig().getSection(sectionName);
 
 		if (section.isEmpty()) {
 			throw new ToolException("for '" + roleName + "' is no config role available", null);
@@ -94,9 +78,5 @@ public class CapacityConfiguration {
 
 	protected ConfigRoleFactory getRoleFactory() {
 		return new ConfigRoleFactory();
-	}
-
-	protected HierarchicalINIConfiguration getConfig() {
-		return config;
 	}
 }

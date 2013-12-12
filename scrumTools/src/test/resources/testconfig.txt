@@ -1,3 +1,4 @@
+[CAPACITY-CONFIG]
 companyDomain=@domain.com
 
 [USER-test]

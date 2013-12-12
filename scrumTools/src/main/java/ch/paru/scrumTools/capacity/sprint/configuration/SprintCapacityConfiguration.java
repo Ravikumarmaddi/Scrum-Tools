@@ -3,8 +3,6 @@ package ch.paru.scrumTools.capacity.sprint.configuration;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.configuration.SubnodeConfiguration;
-
 import ch.paru.scrumTools.capacity.shared.configuration.CapacityConfiguration;
 import ch.paru.scrumTools.common.exception.ToolException;
 
@@ -32,8 +30,7 @@ public class SprintCapacityConfiguration extends CapacityConfiguration {
 	}
 
 	public List<String> getTeams() {
-		SubnodeConfiguration section = getConfig().getSection(SECTION);
-		String teams = section.getString(TEAMS);
+		String teams = getStringInSection(SECTION, TEAMS);
 		return Arrays.asList(teams.split(","));
 	}
 
