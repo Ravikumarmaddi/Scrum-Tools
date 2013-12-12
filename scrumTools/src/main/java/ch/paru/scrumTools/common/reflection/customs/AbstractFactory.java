@@ -8,9 +8,14 @@ import ch.paru.scrumTools.common.reflection.ReflectionUtil;
 public abstract class AbstractFactory {
 
 	protected <T extends Customizable> Class<? extends T> getClassToUse(Class<T> customClass) {
+		return getClassToUseWithDefault(customClass, customClass);
+	}
+
+	protected <T extends Customizable> Class<? extends T> getClassToUseWithDefault(Class<T> customClass,
+			Class<? extends T> defaultClass) {
 		Class<? extends T> clazz = ReflectionUtil.getCustomClass(customClass);
 		if (clazz == null) {
-			clazz = customClass;
+			clazz = defaultClass;
 		}
 		return clazz;
 	}
