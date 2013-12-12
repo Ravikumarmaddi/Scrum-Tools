@@ -1,9 +1,9 @@
-package ch.paru.scrumTools.capacity.sprint.renderer;
+package ch.paru.scrumTools.capacity.sprint.renderer.teamTable;
 
 import java.util.List;
 
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
-import ch.paru.scrumTools.capacity.shared.renderer.TeamTableContent;
+import ch.paru.scrumTools.capacity.shared.renderer.teamTable.TeamTableContent;
 import ch.paru.scrumTools.common.reflection.customs.Customizable;
 
 import com.google.common.collect.Lists;

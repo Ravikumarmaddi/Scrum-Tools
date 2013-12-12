@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.capacity.shared.renderer;
+package ch.paru.scrumTools.capacity.shared.renderer.teamTable;
 
 import java.util.List;
 

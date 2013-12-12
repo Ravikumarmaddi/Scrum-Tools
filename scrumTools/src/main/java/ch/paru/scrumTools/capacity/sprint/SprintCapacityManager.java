@@ -5,6 +5,7 @@ import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollec
 import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.capacity.shared.factories.TeamFactory;
 import ch.paru.scrumTools.capacity.shared.factories.TeamMemberFactory;
+import ch.paru.scrumTools.capacity.shared.renderer.DataRenderer;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.calculator.ConstantHourManager;
@@ -14,9 +15,9 @@ import ch.paru.scrumTools.capacity.sprint.data.calculator.TeamCalculation;
 import ch.paru.scrumTools.capacity.sprint.data.collector.SprintDataCollector;
 import ch.paru.scrumTools.capacity.sprint.factories.MemberCalculationFactory;
 import ch.paru.scrumTools.capacity.sprint.factories.SprintCapacityApplicationInitializerFactory;
+import ch.paru.scrumTools.capacity.sprint.factories.SprintCapacityRendererFactory;
 import ch.paru.scrumTools.capacity.sprint.factories.TeamCalculationFactory;
 import ch.paru.scrumTools.capacity.sprint.init.SprintCapacityApplicationInitializer;
-import ch.paru.scrumTools.capacity.sprint.renderer.SprintCapacityRenderer;
 import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 
@@ -42,9 +43,7 @@ public class SprintCapacityManager {
 		AbsenceDataCollector absenceDataCollector = new AbsenceDataCollector(serverFacade.getCalendarService());
 		SprintDataCollector collector = new SprintDataCollector(serverFacade.getCalendarService(), configuration,
 				teamDataCollector, configDataCollector, absenceDataCollector);
-		TeamFactory teamFactory = new TeamFactory();
-		TeamMemberFactory teamMemberFactory = new TeamMemberFactory();
-		SprintData data = new SprintData(teamFactory, teamMemberFactory);
+		SprintData data = new SprintData(new TeamFactory(), new TeamMemberFactory());
 		collector.collectData(data, startDay, endDay);
 
 		// Calculate Capacity
@@ -55,7 +54,7 @@ public class SprintCapacityManager {
 		teamCalculation.calculateAllCapacities();
 
 		// Create Output
-		SprintCapacityRenderer renderer = new SprintCapacityRenderer();
+		DataRenderer<SprintData> renderer = new SprintCapacityRendererFactory().createRenderer();
 		renderer.renderData(data);
 	}
 }

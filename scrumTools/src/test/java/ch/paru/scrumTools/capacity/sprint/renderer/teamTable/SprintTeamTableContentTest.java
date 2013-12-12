@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.capacity.sprint.renderer;
+package ch.paru.scrumTools.capacity.sprint.renderer.teamTable;
 
 import static org.easymock.EasyMock.expect;
 import static org.junit.Assert.assertEquals;
@@ -14,6 +14,7 @@ import ch.paru.scrumTools.capacity.shared.configuration.ConfigRole;
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
 import ch.paru.scrumTools.capacity.shared.data.Team;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
+import ch.paru.scrumTools.capacity.sprint.renderer.teamTable.SprintTeamTableContent;
 
 public class SprintTeamTableContentTest {
 

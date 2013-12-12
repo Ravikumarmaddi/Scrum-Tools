@@ -1,19 +1,20 @@
-package ch.paru.scrumTools.capacity.sprint.renderer;
+package ch.paru.scrumTools.capacity.sprint.renderer.generator;
 
 import java.util.List;
 
-import ch.paru.scrumTools.capacity.shared.renderer.OutputGenerator;
+public class XlsSprintOutputGenerator extends SprintOutputGenerator {
 
-public class XlsSprintOutputGenerator extends OutputGenerator {
+	private static final String NEWLINE = "\r\n";
+	private static final String TAB = "\t";
 
 	@Override
 	public String getTeamTableHeader(List<String> columnNames) {
 		StringBuffer sb = new StringBuffer();
 		for (String columnName : columnNames) {
 			sb.append(columnName);
-			sb.append("\t");
+			sb.append(TAB);
 		}
-		sb.append("\r\n");
+		sb.append(NEWLINE);
 		return sb.toString();
 	}
 
@@ -22,9 +23,9 @@ public class XlsSprintOutputGenerator extends OutputGenerator {
 		StringBuffer sb = new StringBuffer();
 		for (String value : values) {
 			sb.append(value);
-			sb.append("\t");
+			sb.append(TAB);
 		}
-		sb.append("\r\n");
+		sb.append(NEWLINE);
 		return sb.toString();
 	}
 

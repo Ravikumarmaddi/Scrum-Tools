@@ -1,7 +1,7 @@
 package ch.paru.scrumTools.capacity.sprint.factories;
 
-import ch.paru.scrumTools.capacity.shared.renderer.TeamTableContent;
-import ch.paru.scrumTools.capacity.sprint.renderer.SprintTeamTableContent;
+import ch.paru.scrumTools.capacity.shared.renderer.teamTable.TeamTableContent;
+import ch.paru.scrumTools.capacity.sprint.renderer.teamTable.SprintTeamTableContent;
 import ch.paru.scrumTools.common.reflection.customs.AbstractFactory;
 import ch.paru.scrumTools.common.reflection.customs.CustomFactory;
 

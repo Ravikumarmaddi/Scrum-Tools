@@ -5,9 +5,9 @@ import static org.junit.Assert.assertNotNull;
 import org.easymock.EasyMockSupport;
 import org.junit.Test;
 
-import ch.paru.scrumTools.capacity.shared.renderer.teamTable.TeamTableContent;
+import ch.paru.scrumTools.capacity.sprint.renderer.SprintCapacityRenderer;
 
-public class SprintTeamTableContentFactoryTest {
+public class SprintCapacityRendererFactoryTest {
 
 	private static final EasyMockSupport MOCKS = new EasyMockSupport();
 
@@ -16,8 +16,8 @@ public class SprintTeamTableContentFactoryTest {
 		MOCKS.resetAll();
 
 		MOCKS.replayAll();
-		SprintTeamTableContentFactory factory = new SprintTeamTableContentFactory();
-		TeamTableContent result = factory.createTable();
+		SprintCapacityRendererFactory factory = new SprintCapacityRendererFactory();
+		SprintCapacityRenderer result = factory.createRenderer();
 
 		MOCKS.verifyAll();
 		assertNotNull(result);
