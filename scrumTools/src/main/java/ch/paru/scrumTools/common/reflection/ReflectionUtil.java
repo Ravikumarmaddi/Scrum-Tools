@@ -13,12 +13,14 @@ import com.google.common.collect.Lists;
 
 public class ReflectionUtil {
 
-	private static final String PACKAGE = "ch.paru.scrumTools";
+	private static Reflections reflections;
+	static {
+		// performance improvment as the classpath will only be scanned once
+		reflections = new Reflections();
+	}
 
 	@SuppressWarnings("unchecked")
 	public static <T> Class<? extends T> getSingleClass(Class<T> superClass, Class<? extends Annotation> annotation) {
-		Reflections reflections = new Reflections(PACKAGE);
-
 		Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(annotation);
 		if (annotated == null || annotated.size() <= 0) {
 			throw new ToolException("no annotated class found", null);
@@ -41,8 +43,6 @@ public class ReflectionUtil {
 
 	@SuppressWarnings("unchecked")
 	public static <T> Class<? extends T> getCustomClass(Class<T> superClass) {
-		Reflections reflections = new Reflections(PACKAGE);
-
 		Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(Custom.class);
 		if (annotated == null || annotated.size() <= 0) {
 			return null;
