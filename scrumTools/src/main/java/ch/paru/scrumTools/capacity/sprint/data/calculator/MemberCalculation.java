@@ -30,7 +30,7 @@ public class MemberCalculation implements Customizable {
 		}
 	}
 
-	void calculateCapacityForMember(TeamMember teamMember) {
+	protected void calculateCapacityForMember(TeamMember teamMember) {
 		List<ServerDay> workingDays = data.getAllWorkingDays();
 		double capacitySum = 0;
 		double availabilitySum = 0;
