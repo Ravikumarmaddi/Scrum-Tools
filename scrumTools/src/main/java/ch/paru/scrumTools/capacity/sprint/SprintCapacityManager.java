@@ -44,7 +44,9 @@ public class SprintCapacityManager {
 		SprintDataCollector collector = new SprintDataCollector(serverFacade.getCalendarService(), configuration,
 				teamDataCollector, configDataCollector, absenceDataCollector);
 		SprintData data = new SprintData(new TeamFactory(), new TeamMemberFactory());
-		collector.collectData(data, startDay, endDay);
+		data.setStartDay(startDay);
+		data.setEndDay(endDay);
+		collector.collectData(data);
 
 		// Calculate Capacity
 		MemberCalculation memberCalculation = new MemberCalculationFactory().createCalculator(data,

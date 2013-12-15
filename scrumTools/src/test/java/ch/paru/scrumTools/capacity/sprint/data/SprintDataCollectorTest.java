@@ -59,6 +59,8 @@ public class SprintDataCollectorTest {
 		DATA_MOCK.setDayCategory(day1, SprintDayType.DAILY_BUSINESS);
 		DATA_MOCK.setDayCategory(day2, SprintDayType.DAILY_BUSINESS);
 		DATA_MOCK.setDayCategory(day1, SprintDayType.SPRINT_START);
+		expect(DATA_MOCK.getStartDay()).andReturn(startDay);
+		expect(DATA_MOCK.getEndDay()).andReturn(endDay);
 		expect(CALENDAR_SERVICE_MOCK.getSingleAppointmentOfCategory(day1, CalendarCategories.SPRINT_START, true))
 				.andReturn(sprintStart);
 		expect(CALENDAR_SERVICE_MOCK.getSingleAppointmentOfCategory(day3, CalendarCategories.SPRINT_END, true))
@@ -67,7 +69,7 @@ public class SprintDataCollectorTest {
 		MOCKS.replayAll();
 		SprintDataCollector dataCollector = new SprintDataCollector(CALENDAR_SERVICE_MOCK, CONFIG_MOCK,
 				TEAM_COLLECTOR_MOCK, CONFIG_COLLECTOR_MOCK, ABSENCE_COLLECTOR_MOCK);
-		dataCollector.collectData(DATA_MOCK, startDay, endDay);
+		dataCollector.collectData(DATA_MOCK);
 
 		MOCKS.verifyAll();
 	}

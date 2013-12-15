@@ -32,7 +32,10 @@ public class SprintDataCollector {
 		this.absenceDataCollector = absenceDataCollector;
 	}
 
-	public void collectData(SprintData data, ServerDay startDay, ServerDay endDay) {
+	public void collectData(SprintData data) {
+		ServerDay startDay = data.getStartDay();
+		ServerDay endDay = data.getEndDay();
+
 		List<String> teams = config.getTeams();
 		teamDataCollector.loadTeams(data, teams);
 		configDataCollector.loadConfiguration(data);

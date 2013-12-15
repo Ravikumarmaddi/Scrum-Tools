@@ -4,8 +4,8 @@ import java.util.List;
 
 public class XlsSprintOutputGenerator extends SprintOutputGenerator {
 
-	private static final String NEWLINE = "\r\n";
-	private static final String TAB = "\t";
+	protected static final String NEWLINE = "\r\n";
+	protected static final String TAB = "\t";
 
 	@Override
 	public String getTeamTableHeader(List<String> columnNames) {
