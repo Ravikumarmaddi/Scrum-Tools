@@ -2,9 +2,12 @@ package ch.paru.scrumTools.capacity.sprint.renderer.teamTable;
 
 import java.util.List;
 
+import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
+import ch.paru.scrumTools.capacity.shared.data.Numbers;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.shared.renderer.teamTable.TeamTableContent;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
+import ch.paru.scrumTools.common.formatting.RoundingUtil;
 import ch.paru.scrumTools.common.reflection.customs.Customizable;
 
 import com.google.common.collect.Lists;
@@ -34,12 +37,15 @@ public class SprintTeamTableContent implements TeamTableContent, Customizable {
 
 	@Override
 	public List<String> getMemberRowValues(TeamMember member) {
+		ConfigUser configuration = member.getConfiguration();
+		Numbers numbers = member.getNumbers();
+
 		List<String> values = Lists.newArrayList();
 		values.add(member.getTeam().getName());
-		values.add(member.getConfiguration().getName());
-		values.add(member.getConfiguration().getRole().getName());
-		values.add(Double.toString(member.getAvailability()));
-		values.add(Double.toString(member.getCapacity()));
+		values.add(configuration.getName());
+		values.add(configuration.getRole().getName());
+		values.add(RoundingUtil.round(numbers.getAvailability()).toString());
+		values.add(RoundingUtil.round(numbers.getFinalCapacity()).toString());
 		return values;
 	}
 }

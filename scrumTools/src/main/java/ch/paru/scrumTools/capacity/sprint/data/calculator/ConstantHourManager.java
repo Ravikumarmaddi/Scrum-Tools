@@ -13,4 +13,8 @@ public class ConstantHourManager {
 	public double getHoursPerDay() {
 		return 8;
 	}
+
+	public double getWorkingHoursPerDay() {
+		return 6;
+	}
 }

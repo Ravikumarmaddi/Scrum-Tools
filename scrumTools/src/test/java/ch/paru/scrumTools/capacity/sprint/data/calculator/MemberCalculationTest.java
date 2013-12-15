@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigRole;
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
+import ch.paru.scrumTools.capacity.shared.data.Numbers;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.SprintDayType;
@@ -25,6 +26,7 @@ public class MemberCalculationTest {
 	private static final ConfigUser CONFIG_USER_MOCK = MOCKS.createMock("CONFIG_USER_MOCK", ConfigUser.class);
 	private static final RoleDetailCapacityCalculator ROLE_CALCULATOR_MOCK = MOCKS.createMock("ROLE_CALCULATOR_MOCK",
 			RoleDetailCapacityCalculator.class);
+	private static final Numbers NUMBERS_MOCK = MOCKS.createMock("NUMBERS_MOCK", Numbers.class);
 
 	@Test
 	public void testCalculateMemberCapacity() {
@@ -46,12 +48,14 @@ public class MemberCalculationTest {
 		expect(MEMBER_MOCK.isAvailable(day3)).andReturn(Boolean.FALSE);
 		expect(MEMBER_MOCK.isAvailable(day4)).andReturn(Boolean.TRUE);
 		expect(MEMBER_MOCK.getConfiguration()).andReturn(CONFIG_USER_MOCK).times(3);
+		expect(MEMBER_MOCK.getNumbers()).andReturn(NUMBERS_MOCK);
 		expect(CONFIG_USER_MOCK.getCapacity()).andReturn(memberFactor).times(3);
 		expect(CONFIG_USER_MOCK.getRole()).andReturn(role).times(3);
 		expect(ROLE_CALCULATOR_MOCK.getReducedCapacity(anyObject(ConfigRole.class), anyDouble(), anyDouble()))
 				.andReturn(100d).times(3);
-		MEMBER_MOCK.setAvailability(17.5);
-		MEMBER_MOCK.setCapacity(300);
+		NUMBERS_MOCK.setAvailability(17.5);
+		NUMBERS_MOCK.setRawCapacity(300);
+		NUMBERS_MOCK.setFinalCapacity(225);
 
 		MOCKS.replayAll();
 		MemberCalculation calculator = new MemberCalculation(DATA_MOCK, new ConstantHourManager(), ROLE_CALCULATOR_MOCK);

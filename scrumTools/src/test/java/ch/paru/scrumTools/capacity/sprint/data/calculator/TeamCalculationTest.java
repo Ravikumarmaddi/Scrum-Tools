@@ -6,9 +6,11 @@ import static org.junit.Assert.assertEquals;
 import org.easymock.EasyMockSupport;
 import org.junit.Test;
 
+import ch.paru.scrumTools.capacity.shared.data.Numbers;
 import ch.paru.scrumTools.capacity.shared.data.Team;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
+import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
 
 import com.google.common.collect.Lists;
@@ -21,23 +23,17 @@ public class TeamCalculationTest {
 	@Test
 	public void testCalculateTeam() {
 		Team teamA = new Team("Team A");
-		TeamMember memberA1 = new TeamMember(MockData.CONTACT_FRITZ);
-		memberA1.setCapacity(20);
-		teamA.addTeamMember(memberA1);
-		TeamMember memberA2 = new TeamMember(MockData.CONTACT_HANS);
-		memberA2.setCapacity(15);
-		teamA.addTeamMember(memberA2);
+		teamA.addTeamMember(createMember(MockData.CONTACT_FRITZ, 22, 20, 15));
+		teamA.addTeamMember(createMember(MockData.CONTACT_HANS, 17, 15, 10));
 
 		Team teamB = new Team("Team B");
-		TeamMember memberB1 = new TeamMember(MockData.CONTACT_PAUL);
-		memberB1.setCapacity(10);
-		teamB.addTeamMember(memberB1);
+		teamB.addTeamMember(createMember(MockData.CONTACT_PAUL, 12, 10, 7.5));
 		TeamMember memberB2 = new TeamMember(MockData.CONTACT_PETER);
-		memberB2.setCapacity(0);
-		teamB.addTeamMember(memberB2);
+		memberB2.getNumbers().setRawCapacity(0);
+		teamB.addTeamMember(createMember(MockData.CONTACT_PETER, 0, 0, 0));
 		TeamMember memberB3 = new TeamMember(MockData.CONTACT_URS);
-		memberB3.setCapacity(18);
-		teamB.addTeamMember(memberB3);
+		memberB3.getNumbers().setRawCapacity(18);
+		teamB.addTeamMember(createMember(MockData.CONTACT_URS, 20, 18, 12));
 
 		MOCKS.resetAll();
 		expect(DATA_MOCK.getAllTeams()).andReturn(Lists.newArrayList(teamA, teamB));
@@ -47,8 +43,25 @@ public class TeamCalculationTest {
 		calculator.calculateAllCapacities();
 
 		MOCKS.verifyAll();
-		assertEquals(35, teamA.getCapacity(), 0);
-		assertEquals(28, teamB.getCapacity(), 0);
+		Numbers teamANumbers = teamA.getNumbers();
+		assertEquals(39, teamANumbers.getAvailability(), 0);
+		assertEquals(35, teamANumbers.getRawCapacity(), 0);
+		assertEquals(25, teamANumbers.getFinalCapacity(), 0);
+
+		Numbers teamBNumbers = teamB.getNumbers();
+		assertEquals(32, teamBNumbers.getAvailability(), 0);
+		assertEquals(28, teamBNumbers.getRawCapacity(), 0);
+		assertEquals(19.5, teamBNumbers.getFinalCapacity(), 0);
+
+	}
+
+	private TeamMember createMember(ServerContact contact, double availability, double rawCapacity, double finalCapacity) {
+		TeamMember member = new TeamMember(contact);
+		Numbers numbers = member.getNumbers();
+		numbers.setAvailability(availability);
+		numbers.setRawCapacity(rawCapacity);
+		numbers.setFinalCapacity(finalCapacity);
+		return member;
 	}
 
 }

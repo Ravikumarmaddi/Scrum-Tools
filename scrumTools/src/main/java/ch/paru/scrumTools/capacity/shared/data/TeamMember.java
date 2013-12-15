@@ -14,13 +14,13 @@ public class TeamMember implements Customizable {
 	private ServerContact contact;
 	private ConfigUser config;
 	private List<ServerDay> absences;
-	private double availability;
-	private double capacity;
 	private Team team;
+	private Numbers numbers;
 
 	public TeamMember(ServerContact contact) {
 		this.contact = contact;
 		absences = Lists.newArrayList();
+		numbers = new Numbers();
 	}
 
 	public ServerContact getContact() {
@@ -44,20 +44,12 @@ public class TeamMember implements Customizable {
 		return config;
 	}
 
-	public void setCapacity(double capacity) {
-		this.capacity = capacity;
+	public Numbers getNumbers() {
+		return numbers;
 	}
 
-	public double getCapacity() {
-		return capacity;
-	}
-
-	public double getAvailability() {
-		return availability;
-	}
-
-	public void setAvailability(double availability) {
-		this.availability = availability;
+	public void setNumbers(Numbers numbers) {
+		this.numbers = numbers;
 	}
 
 	@Override

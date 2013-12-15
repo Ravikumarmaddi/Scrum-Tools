@@ -11,24 +11,24 @@ public class Team implements Customizable {
 	private String name;
 	private List<TeamMember> members;
 
-	private double capacity;
+	private Numbers numbers;
 
 	public Team(String name) {
 		this.name = name;
 		this.members = Lists.newArrayList();
-		this.capacity = 0;
+		this.numbers = new Numbers();
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void addCapacity(double amount) {
-		this.capacity += amount;
+	public Numbers getNumbers() {
+		return numbers;
 	}
 
-	public double getCapacity() {
-		return capacity;
+	public void setNumbers(Numbers numbers) {
+		this.numbers = numbers;
 	}
 
 	public void addTeamMember(TeamMember teamMember) {

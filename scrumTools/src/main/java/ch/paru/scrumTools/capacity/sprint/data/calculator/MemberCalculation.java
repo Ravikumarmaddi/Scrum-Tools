@@ -4,6 +4,7 @@ import java.util.List;
 
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigRole;
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
+import ch.paru.scrumTools.capacity.shared.data.Numbers;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.SprintDayType;
@@ -32,7 +33,8 @@ public class MemberCalculation implements Customizable {
 
 	protected void calculateCapacityForMember(TeamMember teamMember) {
 		List<ServerDay> workingDays = data.getAllWorkingDays();
-		double capacitySum = 0;
+		double rawCapacitySum = 0;
+		double finalCapacitySum = 0;
 		double availabilitySum = 0;
 
 		for (ServerDay day : workingDays) {
@@ -63,12 +65,17 @@ public class MemberCalculation implements Customizable {
 				ConfigRole role = userConfiguration.getRole();
 				double dayCapacity = roleDetailCapacityCalculator.getReducedCapacity(role, memberFactor,
 						dayAvailability);
-				capacitySum = capacitySum + dayCapacity;
+				double hourFactor = hourManager.getWorkingHoursPerDay() / hourManager.getHoursPerDay();
+				double dayWorkingCapacity = dayCapacity * hourFactor;
+
+				rawCapacitySum = rawCapacitySum + dayCapacity;
+				finalCapacitySum = finalCapacitySum + dayWorkingCapacity;
 			}
 		}
 
-		teamMember.setAvailability(availabilitySum);
-		teamMember.setCapacity(capacitySum);
+		Numbers numbers = teamMember.getNumbers();
+		numbers.setAvailability(availabilitySum);
+		numbers.setRawCapacity(rawCapacitySum);
+		numbers.setFinalCapacity(finalCapacitySum);
 	}
-
 }
