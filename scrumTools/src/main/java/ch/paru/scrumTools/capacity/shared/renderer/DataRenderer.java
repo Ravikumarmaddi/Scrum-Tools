@@ -11,7 +11,7 @@ import ch.paru.scrumTools.capacity.shared.renderer.teamTable.TeamTableContent;
 public abstract class DataRenderer<T extends DataBox> {
 
 	public void renderData(T data) {
-		TeamTableContent tableContent = getTeamTable();
+		TeamTableContent tableContent = getTeamTable(data);
 		OutputGenerator<T> generator = getOutputGenerator();
 
 		StringBuffer sb = new StringBuffer();
@@ -31,7 +31,7 @@ public abstract class DataRenderer<T extends DataBox> {
 		generator.print(sb.toString());
 	}
 
-	protected abstract TeamTableContent getTeamTable();
+	protected abstract TeamTableContent getTeamTable(T data);
 
 	protected abstract OutputGenerator<T> getOutputGenerator();
 }

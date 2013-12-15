@@ -4,11 +4,22 @@ import java.util.List;
 
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.shared.renderer.teamTable.TeamTableContent;
+import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.common.reflection.customs.Customizable;
 
 import com.google.common.collect.Lists;
 
 public class SprintTeamTableContent implements TeamTableContent, Customizable {
+
+	private SprintData data;
+
+	public SprintTeamTableContent(SprintData data) {
+		this.data = data;
+	}
+
+	protected SprintData getData() {
+		return data;
+	}
 
 	@Override
 	public List<String> getColumnNames() {

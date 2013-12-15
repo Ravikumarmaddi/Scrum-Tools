@@ -12,8 +12,8 @@ import ch.paru.scrumTools.common.reflection.customs.Customizable;
 public class SprintCapacityRenderer extends DataRenderer<SprintData> implements Customizable {
 
 	@Override
-	protected TeamTableContent getTeamTable() {
-		return new SprintTeamTableContentFactory().createTable();
+	protected TeamTableContent getTeamTable(SprintData data) {
+		return new SprintTeamTableContentFactory().createTable(data);
 	}
 
 	@Override

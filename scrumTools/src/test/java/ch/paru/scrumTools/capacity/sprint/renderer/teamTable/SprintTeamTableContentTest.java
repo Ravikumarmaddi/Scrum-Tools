@@ -14,7 +14,6 @@ import ch.paru.scrumTools.capacity.shared.configuration.ConfigRole;
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
 import ch.paru.scrumTools.capacity.shared.data.Team;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
-import ch.paru.scrumTools.capacity.sprint.renderer.teamTable.SprintTeamTableContent;
 
 public class SprintTeamTableContentTest {
 
@@ -37,7 +36,7 @@ public class SprintTeamTableContentTest {
 		expect(CONFIG_ROLE_MOCK.getName()).andReturn("DEV");
 
 		MOCKS.replayAll();
-		SprintTeamTableContent tableContent = new SprintTeamTableContent();
+		SprintTeamTableContent tableContent = new SprintTeamTableContent(null);
 		List<String> columnNames = tableContent.getColumnNames();
 		List<String> memberRow = tableContent.getMemberRowValues(MEMBER_MOCK);
 
