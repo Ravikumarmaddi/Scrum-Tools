@@ -1,6 +1,6 @@
 package ch.paru.scrumTools.exchangeServer.manager;
 
-import ch.paru.scrumTools.common.reflection.ReflectionUtil;
+import ch.paru.scrumTools.exchangeServer.services.ExchangeServer;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
 import ch.paru.scrumTools.exchangeServer.services.configuration.ConfigurationService;
 import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
@@ -22,9 +22,7 @@ public class ServerInstance implements ServerFacade {
 
 	ServerInstance() {
 		try {
-			Class<?> managerClass = ReflectionUtil.getSingleClass(ServerFacade.class, ServerManager.class);
-			ServerFacade managerInstance = (ServerFacade) managerClass.newInstance();
-			server = managerInstance;
+			server = new ExchangeServer();
 		}
 		catch (Exception e) {
 			throw new ServerException("instanciate of servermanager failed", e);
