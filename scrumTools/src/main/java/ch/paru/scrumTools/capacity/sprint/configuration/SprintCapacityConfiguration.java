@@ -10,6 +10,7 @@ public class SprintCapacityConfiguration extends CapacityConfiguration {
 
 	private static final String SECTION = "SPRINTCAPACITY-CONFIG";
 	private static final String TEAMS = "teams";
+	private static final String CONSTANT_HOUR_PREFIX = "constant_hours_";
 
 	private static SprintCapacityConfiguration instance;
 
@@ -32,6 +33,11 @@ public class SprintCapacityConfiguration extends CapacityConfiguration {
 	public List<String> getTeams() {
 		String teams = getStringInSection(SECTION, TEAMS);
 		return Arrays.asList(teams.split(","));
+	}
+
+	public Double getConstantHourValue(String key) {
+		String value = getStringInSection(SECTION, CONSTANT_HOUR_PREFIX + key);
+		return Double.valueOf(value);
 	}
 
 }

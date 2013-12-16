@@ -11,6 +11,7 @@ import ch.paru.scrumTools.capacity.shared.configuration.ConfigRole;
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
 import ch.paru.scrumTools.capacity.shared.data.Numbers;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
+import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.SprintDayType;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
@@ -27,6 +28,8 @@ public class MemberCalculationTest {
 	private static final RoleDetailCapacityCalculator ROLE_CALCULATOR_MOCK = MOCKS.createMock("ROLE_CALCULATOR_MOCK",
 			RoleDetailCapacityCalculator.class);
 	private static final Numbers NUMBERS_MOCK = MOCKS.createMock("NUMBERS_MOCK", Numbers.class);
+	private static final SprintCapacityConfiguration SPRINT_CONFIG_MOCK = MOCKS.createMock("SPRINT_CONFIG_MOCK",
+			SprintCapacityConfiguration.class);
 
 	@Test
 	public void testCalculateMemberCapacity() {
@@ -53,12 +56,18 @@ public class MemberCalculationTest {
 		expect(CONFIG_USER_MOCK.getRole()).andReturn(role).times(3);
 		expect(ROLE_CALCULATOR_MOCK.getReducedCapacity(anyObject(ConfigRole.class), anyDouble(), anyDouble()))
 				.andReturn(100d).times(3);
+		expect(SPRINT_CONFIG_MOCK.getConstantHourValue(ConstantHourManager.SPRINT_START)).andReturn(3.5);
+		expect(SPRINT_CONFIG_MOCK.getConstantHourValue(ConstantHourManager.SPRINT_FINISH)).andReturn(3d);
+		expect(SPRINT_CONFIG_MOCK.getConstantHourValue(ConstantHourManager.HOURS_PER_DAY)).andReturn(8d).times(6);
+		expect(SPRINT_CONFIG_MOCK.getConstantHourValue(ConstantHourManager.WORKINGHOURS_PER_DAY)).andReturn(6d)
+				.times(3);
 		NUMBERS_MOCK.setAvailability(17.5);
 		NUMBERS_MOCK.setRawCapacity(300);
 		NUMBERS_MOCK.setFinalCapacity(225);
 
 		MOCKS.replayAll();
-		MemberCalculation calculator = new MemberCalculation(DATA_MOCK, new ConstantHourManager(), ROLE_CALCULATOR_MOCK);
+		MemberCalculation calculator = new MemberCalculation(DATA_MOCK, new ConstantHourManager(SPRINT_CONFIG_MOCK),
+				ROLE_CALCULATOR_MOCK);
 		calculator.calculateCapacityForMember(MEMBER_MOCK);
 
 		MOCKS.verifyAll();

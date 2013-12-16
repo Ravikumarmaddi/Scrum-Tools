@@ -20,7 +20,7 @@ public class MemberCalculationFactoryTest {
 
 		MOCKS.replayAll();
 		MemberCalculationFactory factory = new MemberCalculationFactory();
-		MemberCalculation result = factory.createCalculator(new SprintData(null, null), new ConstantHourManager(),
+		MemberCalculation result = factory.createCalculator(new SprintData(null, null), new ConstantHourManager(null),
 				new RoleDetailCapacityCalculator());
 
 		MOCKS.verifyAll();

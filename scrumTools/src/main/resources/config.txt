@@ -25,6 +25,10 @@ companyDomain=
 ##########################################################
 [SPRINTCAPACITY-CONFIG]
 teams=Team
+constant_hours_sprintStart=;
+constant_hours_sprintFinish=;
+constant_hours_perDay=;
+constant_hours_perWorkingDay=;
 
 [USER-peter_mueller]
 name=Mueller Peter

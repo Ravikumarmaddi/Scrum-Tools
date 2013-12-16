@@ -50,7 +50,7 @@ public class SprintCapacityManager {
 
 		// Calculate Capacity
 		MemberCalculation memberCalculation = new MemberCalculationFactory().createCalculator(data,
-				new ConstantHourManager(), new RoleDetailCapacityCalculator());
+				new ConstantHourManager(configuration), new RoleDetailCapacityCalculator());
 		memberCalculation.calculateAllCapacities();
 		TeamCalculation teamCalculation = new TeamCalculationFactory().createCalculator(data);
 		teamCalculation.calculateAllCapacities();
