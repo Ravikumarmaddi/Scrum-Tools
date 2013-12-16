@@ -5,10 +5,9 @@
 url=
 username=
 password=
-useRealService=true;
+useRealService=true
 calendar_category_absences=
 calendar_category_publicholiday=
-calendar_category_sprintmeeting=
 calendar_category_sprintstart=
 calendar_category_sprintend=
 
@@ -17,7 +16,7 @@ calendar_category_sprintend=
 # CAPACITY CONFIG
 ##########################################################
 [CAPACITY-CONFIG]
-companyDomain=
+companyDomain=@swisscom.com
 
 
 ##########################################################
@@ -25,10 +24,10 @@ companyDomain=
 ##########################################################
 [SPRINTCAPACITY-CONFIG]
 teams=Team
-constant_hours_sprintStart=;
-constant_hours_sprintFinish=;
-constant_hours_perDay=;
-constant_hours_perWorkingDay=;
+constant_hours_sprintStart=
+constant_hours_sprintFinish=
+constant_hours_perDay=
+constant_hours_perWorkingDay=
 
 [USER-peter_mueller]
 name=Mueller Peter

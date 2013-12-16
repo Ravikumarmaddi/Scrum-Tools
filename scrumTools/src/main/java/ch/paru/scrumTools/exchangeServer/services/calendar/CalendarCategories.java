@@ -10,7 +10,6 @@ import com.google.common.base.Strings;
 public enum CalendarCategories {
 	ABSENCES("absences"), //
 	PUBLIC_HOLIDAY("publicholiday"), //
-	SPRINT_MEETINGS("sprintmeeting"), //
 	SPRINT_START("sprintstart"), //
 	SPRINT_END("sprintend");
 
