@@ -40,7 +40,6 @@ public class SprintDataCollectorTest {
 		String team = "Team";
 		ServerDay startDay = ServerDayUtil.createDayFromNumbers(1, 1, 2013);
 		ServerDay endDay = ServerDayUtil.createDayFromNumbers(3, 1, 2013);
-		//
 		ServerDay day1 = ServerDayUtil.addDays(startDay, 0);
 		ServerDay day2 = ServerDayUtil.addDays(startDay, 1);
 		ServerDay day3 = ServerDayUtil.addDays(startDay, 2);
