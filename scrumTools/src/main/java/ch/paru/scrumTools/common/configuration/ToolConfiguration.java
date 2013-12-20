@@ -13,7 +13,7 @@ public abstract class ToolConfiguration {
 		SubnodeConfiguration section = getConfig().getSection(sectionName);
 		String value = section.getString(key);
 		if (value == null) {
-			throw new ToolException("'" + key + "' not found in the configuration", null);
+			throw new ToolException("'" + key + "' not found in the section '" + sectionName + "'", null);
 		}
 		return value;
 	}
