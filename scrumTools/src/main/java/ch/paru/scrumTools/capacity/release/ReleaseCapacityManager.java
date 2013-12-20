@@ -1,0 +1,54 @@
+package ch.paru.scrumTools.capacity.release;
+
+import ch.paru.scrumTools.capacity.release.configuration.ReleaseCapacityConfiguration;
+import ch.paru.scrumTools.capacity.release.data.ReleaseData;
+import ch.paru.scrumTools.capacity.release.data.collector.ReleaseDataCollector;
+import ch.paru.scrumTools.capacity.release.factories.ReleaseCapacityApplicationInitializerFactory;
+import ch.paru.scrumTools.capacity.release.init.ReleaseCapacityApplicationInitializer;
+import ch.paru.scrumTools.capacity.shared.data.collector.AbsenceDataCollector;
+import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollector;
+import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
+import ch.paru.scrumTools.capacity.shared.factories.TeamFactory;
+import ch.paru.scrumTools.capacity.shared.factories.TeamMemberFactory;
+import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
+import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
+
+public class ReleaseCapacityManager {
+
+	private ServerDay startDay, endDay;
+
+	public ReleaseCapacityManager(ServerDay startDay, ServerDay endDay) {
+		this.startDay = startDay;
+		this.endDay = endDay;
+	}
+
+	public void start(String configFileName) {
+		ReleaseCapacityApplicationInitializerFactory initFactory = new ReleaseCapacityApplicationInitializerFactory();
+		ReleaseCapacityApplicationInitializer initializer = initFactory.createInitializer();
+		initializer.init(configFileName);
+
+		// Collect Data
+		ReleaseCapacityConfiguration configuration = ReleaseCapacityConfiguration.getInstance();
+		ServerInstance serverFacade = ServerInstance.getInstance();
+		TeamDataCollector teamDataCollector = new TeamDataCollector(serverFacade.getContactService());
+		ConfigurationDataCollector configDataCollector = new ConfigurationDataCollector(configuration);
+		AbsenceDataCollector absenceDataCollector = new AbsenceDataCollector(serverFacade.getCalendarService());
+		ReleaseDataCollector collector = new ReleaseDataCollector(serverFacade.getCalendarService(), configuration,
+				teamDataCollector, configDataCollector, absenceDataCollector);
+		ReleaseData data = new ReleaseData(new TeamFactory(), new TeamMemberFactory());
+		data.setStartDay(startDay);
+		data.setEndDay(endDay);
+		collector.collectData(data);
+
+		//		// Calculate Capacity
+		//		MemberCalculation memberCalculation = new MemberCalculationFactory().createCalculator(data,
+		//				new ConstantHourManager(configuration), new RoleDetailCapacityCalculator());
+		//		memberCalculation.calculateAllCapacities();
+		//		TeamCalculation teamCalculation = new TeamCalculationFactory().createCalculator(data);
+		//		teamCalculation.calculateAllCapacities();
+		//
+		//		// Create Output
+		//		DataRenderer<SprintData> renderer = new SprintCapacityRendererFactory().createRenderer();
+		//		renderer.renderData(data);
+	}
+}
