@@ -54,7 +54,7 @@ public class TeamMember implements Customizable {
 
 	@Override
 	public String toString() {
-		return config.getName();
+		return config != null ? config.getName() : contact.getMailAddress();
 	}
 
 	public void setTeam(Team team) {
