@@ -7,3 +7,7 @@ role=DEV
 
 [ROLE-DEV]
 name=Developer
+
+[SPRINTCAPACITY-CONFIG]
+teams=TestTeam
+constant_hours_sprintStart=3

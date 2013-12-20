@@ -4,10 +4,10 @@ import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfigurat
 
 public class ConstantHourManager {
 
-	static final String SPRINT_START = "sprintStart";
-	static final String SPRINT_FINISH = "sprintFinish";
-	static final String HOURS_PER_DAY = "perDay";
-	static final String WORKINGHOURS_PER_DAY = "perWorkingDay";
+	public static final String SPRINT_START = "sprintStart";
+	public static final String SPRINT_FINISH = "sprintFinish";
+	public static final String HOURS_PER_DAY = "perDay";
+	public static final String WORKINGHOURS_PER_DAY = "perWorkingDay";
 
 	private SprintCapacityConfiguration config;
 
