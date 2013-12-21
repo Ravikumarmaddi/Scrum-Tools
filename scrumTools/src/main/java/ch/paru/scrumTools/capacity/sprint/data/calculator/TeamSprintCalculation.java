@@ -8,11 +8,11 @@ import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.common.reflection.customs.Customizable;
 
-public class TeamCalculation implements Customizable {
+public class TeamSprintCalculation implements Customizable {
 
 	private SprintData data;
 
-	public TeamCalculation(SprintData data) {
+	public TeamSprintCalculation(SprintData data) {
 		this.data = data;
 	}
 

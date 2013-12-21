@@ -11,14 +11,14 @@ import ch.paru.scrumTools.capacity.sprint.data.SprintDayType;
 import ch.paru.scrumTools.common.reflection.customs.Customizable;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 
-public class MemberCalculation implements Customizable {
+public class MemberSprintCalculation implements Customizable {
 
 	private SprintData data;
 	private ConstantHourManager hourManager;
-	private RoleDetailCapacityCalculator roleDetailCapacityCalculator;
+	private RoleDetailSprintCapacityCalculator roleDetailCapacityCalculator;
 
-	public MemberCalculation(SprintData data, ConstantHourManager hourManager,
-			RoleDetailCapacityCalculator roleDetailCapacityCalculator) {
+	public MemberSprintCalculation(SprintData data, ConstantHourManager hourManager,
+			RoleDetailSprintCapacityCalculator roleDetailCapacityCalculator) {
 		this.data = data;
 		this.hourManager = hourManager;
 		this.roleDetailCapacityCalculator = roleDetailCapacityCalculator;

@@ -2,7 +2,7 @@ package ch.paru.scrumTools.capacity.sprint.data.calculator;
 
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigRole;
 
-public class RoleDetailCapacityCalculator {
+public class RoleDetailSprintCapacityCalculator {
 
 	public double getReducedCapacity(ConfigRole role, double memberFactor, double rawCapacity) {
 		switch (role.getCapacityType()) {

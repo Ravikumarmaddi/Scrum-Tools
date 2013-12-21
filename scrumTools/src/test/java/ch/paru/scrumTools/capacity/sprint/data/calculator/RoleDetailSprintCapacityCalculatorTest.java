@@ -7,7 +7,7 @@ import org.junit.Test;
 import ch.paru.scrumTools.capacity.shared.configuration.CapacityType;
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigRole;
 
-public class RoleDetailCapacityCalculatorTest {
+public class RoleDetailSprintCapacityCalculatorTest {
 
 	@Test
 	public void test_Person100_Role100_Factor() {
@@ -16,7 +16,7 @@ public class RoleDetailCapacityCalculatorTest {
 		role.setCapacityType(CapacityType.FACTOR);
 		double memberFactor = 1;
 
-		RoleDetailCapacityCalculator calculator = new RoleDetailCapacityCalculator();
+		RoleDetailSprintCapacityCalculator calculator = new RoleDetailSprintCapacityCalculator();
 		double value = calculator.getReducedCapacity(role, memberFactor, 100);
 
 		assertEquals(100, value, 0.01);
@@ -29,7 +29,7 @@ public class RoleDetailCapacityCalculatorTest {
 		role.setCapacityType(CapacityType.ABSOLUTE);
 		double memberFactor = 1;
 
-		RoleDetailCapacityCalculator calculator = new RoleDetailCapacityCalculator();
+		RoleDetailSprintCapacityCalculator calculator = new RoleDetailSprintCapacityCalculator();
 		double value = calculator.getReducedCapacity(role, memberFactor, 100);
 
 		assertEquals(100, value, 0.01);
@@ -42,7 +42,7 @@ public class RoleDetailCapacityCalculatorTest {
 		role.setCapacityType(CapacityType.FACTOR);
 		double memberFactor = 1;
 
-		RoleDetailCapacityCalculator calculator = new RoleDetailCapacityCalculator();
+		RoleDetailSprintCapacityCalculator calculator = new RoleDetailSprintCapacityCalculator();
 		double value = calculator.getReducedCapacity(role, memberFactor, 100);
 
 		assertEquals(50, value, 0.01);
@@ -55,7 +55,7 @@ public class RoleDetailCapacityCalculatorTest {
 		role.setCapacityType(CapacityType.FACTOR);
 		double memberFactor = .8;
 
-		RoleDetailCapacityCalculator calculator = new RoleDetailCapacityCalculator();
+		RoleDetailSprintCapacityCalculator calculator = new RoleDetailSprintCapacityCalculator();
 		double value = calculator.getReducedCapacity(role, memberFactor, 100);
 
 		assertEquals(40, value, 0.01);
@@ -68,7 +68,7 @@ public class RoleDetailCapacityCalculatorTest {
 		role.setCapacityType(CapacityType.ABSOLUTE);
 		double memberFactor = .8;
 
-		RoleDetailCapacityCalculator calculator = new RoleDetailCapacityCalculator();
+		RoleDetailSprintCapacityCalculator calculator = new RoleDetailSprintCapacityCalculator();
 		double value = calculator.getReducedCapacity(role, memberFactor, 100);
 
 		assertEquals(30, value, 0.01);

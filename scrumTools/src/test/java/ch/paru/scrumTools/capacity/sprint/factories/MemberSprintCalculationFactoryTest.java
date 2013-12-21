@@ -7,10 +7,10 @@ import org.junit.Test;
 
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.calculator.ConstantHourManager;
-import ch.paru.scrumTools.capacity.sprint.data.calculator.MemberCalculation;
-import ch.paru.scrumTools.capacity.sprint.data.calculator.RoleDetailCapacityCalculator;
+import ch.paru.scrumTools.capacity.sprint.data.calculator.MemberSprintCalculation;
+import ch.paru.scrumTools.capacity.sprint.data.calculator.RoleDetailSprintCapacityCalculator;
 
-public class MemberCalculationFactoryTest {
+public class MemberSprintCalculationFactoryTest {
 
 	private static final EasyMockSupport MOCKS = new EasyMockSupport();
 
@@ -19,9 +19,9 @@ public class MemberCalculationFactoryTest {
 		MOCKS.resetAll();
 
 		MOCKS.replayAll();
-		MemberCalculationFactory factory = new MemberCalculationFactory();
-		MemberCalculation result = factory.createCalculator(new SprintData(null, null), new ConstantHourManager(null),
-				new RoleDetailCapacityCalculator());
+		MemberSprintCalculationFactory factory = new MemberSprintCalculationFactory();
+		MemberSprintCalculation result = factory.createCalculator(new SprintData(null, null), new ConstantHourManager(null),
+				new RoleDetailSprintCapacityCalculator());
 
 		MOCKS.verifyAll();
 		assertNotNull(result);

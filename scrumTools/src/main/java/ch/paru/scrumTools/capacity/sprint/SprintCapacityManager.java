@@ -9,14 +9,14 @@ import ch.paru.scrumTools.capacity.shared.renderer.DataRenderer;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.calculator.ConstantHourManager;
-import ch.paru.scrumTools.capacity.sprint.data.calculator.MemberCalculation;
-import ch.paru.scrumTools.capacity.sprint.data.calculator.RoleDetailCapacityCalculator;
-import ch.paru.scrumTools.capacity.sprint.data.calculator.TeamCalculation;
+import ch.paru.scrumTools.capacity.sprint.data.calculator.MemberSprintCalculation;
+import ch.paru.scrumTools.capacity.sprint.data.calculator.RoleDetailSprintCapacityCalculator;
+import ch.paru.scrumTools.capacity.sprint.data.calculator.TeamSprintCalculation;
 import ch.paru.scrumTools.capacity.sprint.data.collector.SprintDataCollector;
-import ch.paru.scrumTools.capacity.sprint.factories.MemberCalculationFactory;
+import ch.paru.scrumTools.capacity.sprint.factories.MemberSprintCalculationFactory;
 import ch.paru.scrumTools.capacity.sprint.factories.SprintCapacityApplicationInitializerFactory;
 import ch.paru.scrumTools.capacity.sprint.factories.SprintCapacityRendererFactory;
-import ch.paru.scrumTools.capacity.sprint.factories.TeamCalculationFactory;
+import ch.paru.scrumTools.capacity.sprint.factories.TeamSprintCalculationFactory;
 import ch.paru.scrumTools.capacity.sprint.init.SprintCapacityApplicationInitializer;
 import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
@@ -49,10 +49,10 @@ public class SprintCapacityManager {
 		collector.collectData(data);
 
 		// Calculate Capacity
-		MemberCalculation memberCalculation = new MemberCalculationFactory().createCalculator(data,
-				new ConstantHourManager(configuration), new RoleDetailCapacityCalculator());
+		MemberSprintCalculation memberCalculation = new MemberSprintCalculationFactory().createCalculator(data,
+				new ConstantHourManager(configuration), new RoleDetailSprintCapacityCalculator());
 		memberCalculation.calculateAllCapacities();
-		TeamCalculation teamCalculation = new TeamCalculationFactory().createCalculator(data);
+		TeamSprintCalculation teamCalculation = new TeamSprintCalculationFactory().createCalculator(data);
 		teamCalculation.calculateAllCapacities();
 
 		// Create Output

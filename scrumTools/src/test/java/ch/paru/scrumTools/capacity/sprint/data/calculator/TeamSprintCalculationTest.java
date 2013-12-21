@@ -15,7 +15,7 @@ import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
 
 import com.google.common.collect.Lists;
 
-public class TeamCalculationTest {
+public class TeamSprintCalculationTest {
 
 	private static final EasyMockSupport MOCKS = new EasyMockSupport();
 	private static final SprintData DATA_MOCK = MOCKS.createMock("DATA_MOCK", SprintData.class);
@@ -39,7 +39,7 @@ public class TeamCalculationTest {
 		expect(DATA_MOCK.getAllTeams()).andReturn(Lists.newArrayList(teamA, teamB));
 
 		MOCKS.replayAll();
-		TeamCalculation calculator = new TeamCalculation(DATA_MOCK);
+		TeamSprintCalculation calculator = new TeamSprintCalculation(DATA_MOCK);
 		calculator.calculateAllCapacities();
 
 		MOCKS.verifyAll();

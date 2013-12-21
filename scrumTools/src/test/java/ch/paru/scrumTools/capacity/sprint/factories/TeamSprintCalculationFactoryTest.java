@@ -6,9 +6,9 @@ import org.easymock.EasyMockSupport;
 import org.junit.Test;
 
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
-import ch.paru.scrumTools.capacity.sprint.data.calculator.TeamCalculation;
+import ch.paru.scrumTools.capacity.sprint.data.calculator.TeamSprintCalculation;
 
-public class TeamCalculationFactoryTest {
+public class TeamSprintCalculationFactoryTest {
 
 	private static final EasyMockSupport MOCKS = new EasyMockSupport();
 
@@ -17,8 +17,8 @@ public class TeamCalculationFactoryTest {
 		MOCKS.resetAll();
 
 		MOCKS.replayAll();
-		TeamCalculationFactory factory = new TeamCalculationFactory();
-		TeamCalculation result = factory.createCalculator(new SprintData(null, null));
+		TeamSprintCalculationFactory factory = new TeamSprintCalculationFactory();
+		TeamSprintCalculation result = factory.createCalculator(new SprintData(null, null));
 
 		MOCKS.verifyAll();
 		assertNotNull(result);
