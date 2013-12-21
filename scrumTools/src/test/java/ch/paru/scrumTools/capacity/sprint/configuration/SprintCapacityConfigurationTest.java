@@ -9,8 +9,6 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import ch.paru.scrumTools.capacity.sprint.data.calculator.ConstantHourManager;
-
 public class SprintCapacityConfigurationTest {
 
 	@BeforeClass
@@ -30,9 +28,8 @@ public class SprintCapacityConfigurationTest {
 	@Test
 	public void testGetConstantValue() {
 		SprintCapacityConfiguration instance = SprintCapacityConfiguration.getInstance();
-		Double value = instance.getConstantHourValue(ConstantHourManager.SPRINT_START);
+		Double value = instance.getConstantHourValue("testValue");
 		assertNotNull(value);
-		assertTrue(value.doubleValue() > 0);
+		assertEquals(3, value.doubleValue(), 0);
 	}
-
 }

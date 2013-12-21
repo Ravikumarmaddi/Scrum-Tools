@@ -10,7 +10,7 @@ name=Developer
 
 [SPRINTCAPACITY-CONFIG]
 teams=TestTeam
-constant_hours_sprintStart=3
+constant_hours_testValue=3
 
 [RELEASECAPACITY-CONFIG]
 teams=TestTeam
