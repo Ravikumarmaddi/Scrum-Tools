@@ -2,8 +2,12 @@ package ch.paru.scrumTools.capacity.release;
 
 import ch.paru.scrumTools.capacity.release.configuration.ReleaseCapacityConfiguration;
 import ch.paru.scrumTools.capacity.release.data.ReleaseData;
+import ch.paru.scrumTools.capacity.release.data.calculator.MemberReleaseCalculation;
+import ch.paru.scrumTools.capacity.release.data.calculator.TeamReleaseCalculation;
 import ch.paru.scrumTools.capacity.release.data.collector.ReleaseDataCollector;
+import ch.paru.scrumTools.capacity.release.factories.MemberReleaseCalculationFactory;
 import ch.paru.scrumTools.capacity.release.factories.ReleaseCapacityApplicationInitializerFactory;
+import ch.paru.scrumTools.capacity.release.factories.TeamReleaseCalculationFactory;
 import ch.paru.scrumTools.capacity.release.init.ReleaseCapacityApplicationInitializer;
 import ch.paru.scrumTools.capacity.shared.data.collector.AbsenceDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollector;
@@ -40,12 +44,12 @@ public class ReleaseCapacityManager {
 		data.setEndDay(endDay);
 		collector.collectData(data);
 
-		//		// Calculate Capacity
-		//		MemberCalculation memberCalculation = new MemberCalculationFactory().createCalculator(data,
-		//				new ConstantHourManager(configuration), new RoleDetailCapacityCalculator());
-		//		memberCalculation.calculateAllCapacities();
-		//		TeamCalculation teamCalculation = new TeamCalculationFactory().createCalculator(data);
-		//		teamCalculation.calculateAllCapacities();
+		// Calculate Capacity
+		MemberReleaseCalculation memberCalculation = new MemberReleaseCalculationFactory().createCalculator(data,
+				serverFacade.getCalendarService());
+		memberCalculation.calculateAllCapacities();
+		TeamReleaseCalculation teamCalculation = new TeamReleaseCalculationFactory().createCalculator(data);
+		teamCalculation.calculateAllCapacities();
 		//
 		//		// Create Output
 		//		DataRenderer<SprintData> renderer = new SprintCapacityRendererFactory().createRenderer();

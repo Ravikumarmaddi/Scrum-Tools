@@ -1,12 +1,10 @@
 package ch.paru.scrumTools.capacity.release.data.collector;
 
-import java.util.Calendar;
 import java.util.List;
 
 import ch.paru.scrumTools.capacity.release.configuration.ReleaseCapacityConfiguration;
-import ch.paru.scrumTools.capacity.release.data.CalendarWeek;
 import ch.paru.scrumTools.capacity.release.data.ReleaseData;
-import ch.paru.scrumTools.capacity.shared.data.TeamMember;
+import ch.paru.scrumTools.capacity.release.utils.CalendarWeekUtil;
 import ch.paru.scrumTools.capacity.shared.data.collector.AbsenceDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
@@ -43,39 +41,14 @@ public class ReleaseDataCollector {
 
 		loadWorkingDays(data, startDay, endDay);
 		loadCalendarWeeks(data, startDay, endDay);
-		loadDaysPerWeek(data, startDay, endDay);
-	}
-
-	private void loadDaysPerWeek(ReleaseData data, ServerDay startDay, ServerDay endDay) {
-		List<TeamMember> teamMembers = data.getAllTeamMembers();
-		for (TeamMember teamMember : teamMembers) {
-			loadDaysPerWeekForMember(data, startDay, endDay, teamMember);
-		}
-	}
-
-	private void loadDaysPerWeekForMember(ReleaseData data, ServerDay startDay, ServerDay endDay, TeamMember member) {
-		ServerDay pointer = startDay;
-		while (ServerDayUtil.compare(pointer, endDay) <= 0) {
-			boolean isWorkingDay = calendarService.isWorkingDay(pointer);
-
-			if (isWorkingDay && member.isAvailable(pointer)) {
-				data.addTeamMemberWorkingDay(getCalendarWeek(pointer), member);
-			}
-
-			pointer = ServerDayUtil.addDays(pointer, 1);
-		}
 	}
 
 	private void loadCalendarWeeks(ReleaseData data, ServerDay startDay, ServerDay endDay) {
 		ServerDay pointer = startDay;
 		while (ServerDayUtil.compare(pointer, endDay) <= 0) {
-			data.addCalendarWeek(getCalendarWeek(pointer));
+			data.addCalendarWeek(CalendarWeekUtil.createCalendarWeek(pointer));
 			pointer = ServerDayUtil.addDays(pointer, 1);
 		}
-	}
-
-	private CalendarWeek getCalendarWeek(ServerDay day) {
-		return new CalendarWeek(day.getCalendarWeek(), day.getCalendar().get(Calendar.YEAR));
 	}
 
 	private void loadWorkingDays(ReleaseData data, ServerDay startDay, ServerDay endDay) {

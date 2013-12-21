@@ -9,13 +9,11 @@ import org.junit.Test;
 import ch.paru.scrumTools.capacity.release.configuration.ReleaseCapacityConfiguration;
 import ch.paru.scrumTools.capacity.release.data.CalendarWeek;
 import ch.paru.scrumTools.capacity.release.data.ReleaseData;
-import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.shared.data.collector.AbsenceDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
 import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
 
 import com.google.common.collect.Lists;
@@ -44,7 +42,6 @@ public class ReleaseDataCollectorTest {
 		ServerDay day2 = ServerDayUtil.addDays(startDay, 1);
 		ServerDay day3 = ServerDayUtil.addDays(startDay, 2);
 		CalendarWeek week = new CalendarWeek(1, 2013);
-		TeamMember member = new TeamMember(MockData.CONTACT_URS);
 
 		MOCKS.resetAll();
 		expect(CONFIG_MOCK.getTeams()).andReturn(Lists.newArrayList(team));
@@ -56,13 +53,10 @@ public class ReleaseDataCollectorTest {
 		expect(CALENDAR_SERVICE_MOCK.isWorkingDay(day3)).andReturn(Boolean.FALSE).anyTimes();
 		expect(DATA_MOCK.getStartDay()).andReturn(startDay);
 		expect(DATA_MOCK.getEndDay()).andReturn(endDay);
-		expect(DATA_MOCK.getAllTeamMembers()).andReturn(Lists.newArrayList(member));
 		DATA_MOCK.addWorkingDay(day1);
 		DATA_MOCK.addWorkingDay(day2);
 		DATA_MOCK.addCalendarWeek(week);
 		expectLastCall().times(3);
-		DATA_MOCK.addTeamMemberWorkingDay(week, member);
-		expectLastCall().times(2);
 
 		MOCKS.replayAll();
 		ReleaseDataCollector dataCollector = new ReleaseDataCollector(CALENDAR_SERVICE_MOCK, CONFIG_MOCK,

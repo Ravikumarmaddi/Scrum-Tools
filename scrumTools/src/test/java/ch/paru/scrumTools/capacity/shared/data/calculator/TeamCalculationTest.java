@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.capacity.sprint.data.calculator;
+package ch.paru.scrumTools.capacity.shared.data.calculator;
 
 import static org.easymock.EasyMock.expect;
 import static org.junit.Assert.assertEquals;
@@ -6,19 +6,19 @@ import static org.junit.Assert.assertEquals;
 import org.easymock.EasyMockSupport;
 import org.junit.Test;
 
+import ch.paru.scrumTools.capacity.shared.data.DataBox;
 import ch.paru.scrumTools.capacity.shared.data.Numbers;
 import ch.paru.scrumTools.capacity.shared.data.Team;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
-import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
 
 import com.google.common.collect.Lists;
 
-public class TeamSprintCalculationTest {
+public class TeamCalculationTest {
 
 	private static final EasyMockSupport MOCKS = new EasyMockSupport();
-	private static final SprintData DATA_MOCK = MOCKS.createMock("DATA_MOCK", SprintData.class);
+	private static final DataBox DATA_MOCK = MOCKS.createMock("DATA_MOCK", DataBox.class);
 
 	@Test
 	public void testCalculateTeam() {
@@ -39,7 +39,7 @@ public class TeamSprintCalculationTest {
 		expect(DATA_MOCK.getAllTeams()).andReturn(Lists.newArrayList(teamA, teamB));
 
 		MOCKS.replayAll();
-		TeamSprintCalculation calculator = new TeamSprintCalculation(DATA_MOCK);
+		TeamCalculation calculator = new TeamCalculation(DATA_MOCK);
 		calculator.calculateAllCapacities();
 
 		MOCKS.verifyAll();

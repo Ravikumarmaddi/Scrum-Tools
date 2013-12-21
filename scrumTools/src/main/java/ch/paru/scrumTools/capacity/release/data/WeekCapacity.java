@@ -5,7 +5,7 @@ import com.google.common.base.Objects;
 public class WeekCapacity {
 	private int daysAvailable;
 
-	WeekCapacity() {
+	public WeekCapacity() {
 		daysAvailable = 0;
 	}
 
