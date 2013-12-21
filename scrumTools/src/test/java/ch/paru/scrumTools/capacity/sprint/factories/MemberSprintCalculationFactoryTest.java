@@ -20,8 +20,8 @@ public class MemberSprintCalculationFactoryTest {
 
 		MOCKS.replayAll();
 		MemberSprintCalculationFactory factory = new MemberSprintCalculationFactory();
-		MemberSprintCalculation result = factory.createCalculator(new SprintData(null, null), new ConstantHourManager(null),
-				new RoleDetailSprintCapacityCalculator());
+		MemberSprintCalculation result = factory.createCalculator(new SprintData(null, null), new ConstantHourManager(
+				null), new RoleDetailSprintCapacityCalculator());
 
 		MOCKS.verifyAll();
 		assertNotNull(result);

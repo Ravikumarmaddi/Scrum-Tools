@@ -25,8 +25,8 @@ public class MemberSprintCalculationTest {
 	private static final SprintData DATA_MOCK = MOCKS.createMock("DATA_MOCK", SprintData.class);
 	private static final TeamMember MEMBER_MOCK = MOCKS.createMock("MEMBER_MOCK", TeamMember.class);
 	private static final ConfigUser CONFIG_USER_MOCK = MOCKS.createMock("CONFIG_USER_MOCK", ConfigUser.class);
-	private static final RoleDetailSprintCapacityCalculator ROLE_CALCULATOR_MOCK = MOCKS.createMock("ROLE_CALCULATOR_MOCK",
-			RoleDetailSprintCapacityCalculator.class);
+	private static final RoleDetailSprintCapacityCalculator ROLE_CALCULATOR_MOCK = MOCKS.createMock(
+			"ROLE_CALCULATOR_MOCK", RoleDetailSprintCapacityCalculator.class);
 	private static final Numbers NUMBERS_MOCK = MOCKS.createMock("NUMBERS_MOCK", Numbers.class);
 	private static final SprintCapacityConfiguration SPRINT_CONFIG_MOCK = MOCKS.createMock("SPRINT_CONFIG_MOCK",
 			SprintCapacityConfiguration.class);
@@ -66,8 +66,8 @@ public class MemberSprintCalculationTest {
 		NUMBERS_MOCK.setFinalCapacity(225);
 
 		MOCKS.replayAll();
-		MemberSprintCalculation calculator = new MemberSprintCalculation(DATA_MOCK, new ConstantHourManager(SPRINT_CONFIG_MOCK),
-				ROLE_CALCULATOR_MOCK);
+		MemberSprintCalculation calculator = new MemberSprintCalculation(DATA_MOCK, new ConstantHourManager(
+				SPRINT_CONFIG_MOCK), ROLE_CALCULATOR_MOCK);
 		calculator.calculateCapacityForMember(MEMBER_MOCK);
 
 		MOCKS.verifyAll();
