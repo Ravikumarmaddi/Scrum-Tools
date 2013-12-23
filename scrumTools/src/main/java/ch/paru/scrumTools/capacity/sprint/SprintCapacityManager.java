@@ -16,6 +16,7 @@ import ch.paru.scrumTools.capacity.sprint.data.collector.SprintDataCollector;
 import ch.paru.scrumTools.capacity.sprint.factories.MemberSprintCalculationFactory;
 import ch.paru.scrumTools.capacity.sprint.factories.SprintCapacityApplicationInitializerFactory;
 import ch.paru.scrumTools.capacity.sprint.factories.SprintCapacityRendererFactory;
+import ch.paru.scrumTools.capacity.sprint.factories.SprintDataFactory;
 import ch.paru.scrumTools.capacity.sprint.factories.TeamSprintCalculationFactory;
 import ch.paru.scrumTools.capacity.sprint.init.SprintCapacityApplicationInitializer;
 import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
@@ -43,7 +44,7 @@ public class SprintCapacityManager {
 		AbsenceDataCollector absenceDataCollector = new AbsenceDataCollector(serverFacade.getCalendarService());
 		SprintDataCollector collector = new SprintDataCollector(serverFacade.getCalendarService(), configuration,
 				teamDataCollector, configDataCollector, absenceDataCollector);
-		SprintData data = new SprintData(new TeamFactory(), new TeamMemberFactory());
+		SprintData data = new SprintDataFactory().createData(new TeamFactory(), new TeamMemberFactory());
 		data.setStartDay(startDay);
 		data.setEndDay(endDay);
 		collector.collectData(data);

@@ -6,12 +6,13 @@ import java.util.Map;
 import ch.paru.scrumTools.capacity.shared.data.DataBox;
 import ch.paru.scrumTools.capacity.shared.factories.TeamFactory;
 import ch.paru.scrumTools.capacity.shared.factories.TeamMemberFactory;
+import ch.paru.scrumTools.common.reflection.customs.Customizable;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-public class SprintData extends DataBox {
+public class SprintData extends DataBox implements Customizable {
 
 	private Map<ServerDay, SprintDayType> dayCategories;
 	private List<ServerDay> workingDays;

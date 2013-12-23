@@ -7,6 +7,7 @@ import ch.paru.scrumTools.capacity.release.data.calculator.TeamReleaseCalculatio
 import ch.paru.scrumTools.capacity.release.data.collector.ReleaseDataCollector;
 import ch.paru.scrumTools.capacity.release.factories.MemberReleaseCalculationFactory;
 import ch.paru.scrumTools.capacity.release.factories.ReleaseCapacityApplicationInitializerFactory;
+import ch.paru.scrumTools.capacity.release.factories.ReleaseDataFactory;
 import ch.paru.scrumTools.capacity.release.factories.TeamReleaseCalculationFactory;
 import ch.paru.scrumTools.capacity.release.init.ReleaseCapacityApplicationInitializer;
 import ch.paru.scrumTools.capacity.shared.data.collector.AbsenceDataCollector;
@@ -39,7 +40,7 @@ public class ReleaseCapacityManager {
 		AbsenceDataCollector absenceDataCollector = new AbsenceDataCollector(serverFacade.getCalendarService());
 		ReleaseDataCollector collector = new ReleaseDataCollector(serverFacade.getCalendarService(), configuration,
 				teamDataCollector, configDataCollector, absenceDataCollector);
-		ReleaseData data = new ReleaseData(new TeamFactory(), new TeamMemberFactory());
+		ReleaseData data = new ReleaseDataFactory().createData(new TeamFactory(), new TeamMemberFactory());
 		data.setStartDay(startDay);
 		data.setEndDay(endDay);
 		collector.collectData(data);
