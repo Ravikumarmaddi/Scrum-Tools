@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.custom.capacity.sprint;
+package ch.paru.scrumTools.custom.capacity.shared;
 
 import org.apache.commons.configuration.SubnodeConfiguration;
 

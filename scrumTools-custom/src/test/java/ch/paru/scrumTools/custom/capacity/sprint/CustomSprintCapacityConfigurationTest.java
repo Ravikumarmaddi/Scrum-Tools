@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
+import ch.paru.scrumTools.custom.capacity.shared.CustomConfigUser;
 
 public class CustomSprintCapacityConfigurationTest {
 

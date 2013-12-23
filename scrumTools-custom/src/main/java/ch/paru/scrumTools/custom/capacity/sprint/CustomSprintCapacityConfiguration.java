@@ -2,6 +2,7 @@ package ch.paru.scrumTools.custom.capacity.sprint;
 
 import ch.paru.scrumTools.capacity.shared.factories.ConfigUserFactory;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
+import ch.paru.scrumTools.custom.capacity.shared.CustomConfigUserFactory;
 
 public class CustomSprintCapacityConfiguration extends SprintCapacityConfiguration {
 

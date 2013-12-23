@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.custom.capacity.sprint;
+package ch.paru.scrumTools.custom.capacity.shared;
 
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
 import ch.paru.scrumTools.common.reflection.customs.Custom;
