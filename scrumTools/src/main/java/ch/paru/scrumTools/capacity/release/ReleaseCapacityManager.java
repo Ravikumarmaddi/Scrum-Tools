@@ -7,6 +7,7 @@ import ch.paru.scrumTools.capacity.release.data.calculator.TeamReleaseCalculatio
 import ch.paru.scrumTools.capacity.release.data.collector.ReleaseDataCollector;
 import ch.paru.scrumTools.capacity.release.factories.MemberReleaseCalculationFactory;
 import ch.paru.scrumTools.capacity.release.factories.ReleaseCapacityApplicationInitializerFactory;
+import ch.paru.scrumTools.capacity.release.factories.ReleaseCapacityRendererFactory;
 import ch.paru.scrumTools.capacity.release.factories.ReleaseDataFactory;
 import ch.paru.scrumTools.capacity.release.factories.TeamReleaseCalculationFactory;
 import ch.paru.scrumTools.capacity.release.init.ReleaseCapacityApplicationInitializer;
@@ -15,6 +16,7 @@ import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollec
 import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.capacity.shared.factories.TeamFactory;
 import ch.paru.scrumTools.capacity.shared.factories.TeamMemberFactory;
+import ch.paru.scrumTools.capacity.shared.renderer.DataRenderer;
 import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 
@@ -51,9 +53,9 @@ public class ReleaseCapacityManager {
 		memberCalculation.calculateAllCapacities();
 		TeamReleaseCalculation teamCalculation = new TeamReleaseCalculationFactory().createCalculator(data);
 		teamCalculation.calculateAllCapacities();
-		//
-		//		// Create Output
-		//		DataRenderer<SprintData> renderer = new SprintCapacityRendererFactory().createRenderer();
-		//		renderer.renderData(data);
+
+		// Create Output
+		DataRenderer<ReleaseData> renderer = new ReleaseCapacityRendererFactory().createRenderer();
+		renderer.renderData(data);
 	}
 }
