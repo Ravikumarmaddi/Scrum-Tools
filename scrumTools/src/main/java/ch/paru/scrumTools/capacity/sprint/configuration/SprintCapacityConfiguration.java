@@ -8,7 +8,7 @@ import ch.paru.scrumTools.common.exception.ToolException;
 
 public class SprintCapacityConfiguration extends CapacityConfiguration {
 
-	private static final String SECTION = "SPRINTCAPACITY-CONFIG";
+	protected static final String SECTION = "SPRINTCAPACITY-CONFIG";
 	private static final String TEAMS = "teams";
 	private static final String CONSTANT_HOUR_PREFIX = "constant_hours_";
 
@@ -36,8 +36,7 @@ public class SprintCapacityConfiguration extends CapacityConfiguration {
 	}
 
 	public Double getConstantHourValue(String key) {
-		String value = getStringInSection(SECTION, CONSTANT_HOUR_PREFIX + key);
-		return Double.valueOf(value);
+		return getDoubleInSection(SECTION, CONSTANT_HOUR_PREFIX + key);
 	}
 
 }

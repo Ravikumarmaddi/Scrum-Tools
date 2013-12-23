@@ -18,6 +18,16 @@ public abstract class ToolConfiguration {
 		return value;
 	}
 
+	protected Double getDoubleInSection(String sectionName, String key) {
+		String value = getStringInSection(sectionName, key);
+		return Double.valueOf(value);
+	}
+
+	protected Boolean getBooleanInSection(String sectionName, String key) {
+		String value = getStringInSection(sectionName, key);
+		return Boolean.valueOf(value);
+	}
+
 	protected final void initConfig(String fileName) {
 		try {
 			config = new HierarchicalINIConfiguration();

@@ -8,7 +8,7 @@ import ch.paru.scrumTools.common.exception.ToolException;
 
 public class ReleaseCapacityConfiguration extends CapacityConfiguration {
 
-	private static final String SECTION = "RELEASECAPACITY-CONFIG";
+	protected static final String SECTION = "RELEASECAPACITY-CONFIG";
 	private static final String TEAMS = "teams";
 
 	private static ReleaseCapacityConfiguration instance;
