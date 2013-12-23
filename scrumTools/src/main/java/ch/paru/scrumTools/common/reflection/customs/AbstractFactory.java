@@ -33,7 +33,8 @@ public abstract class AbstractFactory {
 
 	protected <T extends Customizable, P> T getInstance(Class<? extends T> instanceClass, P param) {
 		try {
-			Constructor<? extends T> constructor = instanceClass.getConstructor(param.getClass());
+			Class<?> clazz = getCustomizedBaseClass(param.getClass());
+			Constructor<? extends T> constructor = instanceClass.getConstructor(clazz);
 			return constructor.newInstance(param);
 		}
 		catch (Exception e) {
@@ -48,5 +49,19 @@ public abstract class AbstractFactory {
 		catch (Exception e) {
 			throw new ToolException("instanciation of class failed", e);
 		}
+	}
+
+	private Class<?> getCustomizedBaseClass(Class<?> baseClazz) {
+		if (!Customizable.class.isAssignableFrom(baseClazz)) {
+			return baseClazz;
+		}
+
+		Class<?>[] interfaces = baseClazz.getInterfaces();
+		for (Class<?> clazz : interfaces) {
+			if (Customizable.class.equals(clazz)) {
+				return baseClazz;
+			}
+		}
+		return getCustomizedBaseClass(baseClazz.getSuperclass());
 	}
 }
