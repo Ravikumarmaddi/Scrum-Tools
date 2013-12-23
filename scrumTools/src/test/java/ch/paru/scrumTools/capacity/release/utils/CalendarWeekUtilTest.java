@@ -22,4 +22,14 @@ public class CalendarWeekUtilTest {
 		assertEquals(day.getCalendar().get(Calendar.YEAR), cw.getYear());
 	}
 
+	@Test
+	public void testDisplayText() {
+		ServerDay day = ServerDayUtil.createDayFromNumbers(1, 2, 2013);
+		CalendarWeek cw = CalendarWeekUtil.createCalendarWeek(day);
+
+		String textDay = ServerDayUtil.getDisplayText(day);
+		String textCW = CalendarWeekUtil.getDisplayText(cw);
+		assertEquals("CW " + cw.getWeekNumber() + " (" + textDay + ")", textCW);
+	}
+
 }
