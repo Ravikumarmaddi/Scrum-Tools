@@ -19,6 +19,10 @@ calendar_category_sprintend=
 companyDomain=@swisscom.com
 
 
+[RELEASECAPACITY-CONFIG]
+teams=Team
+
+
 ##########################################################
 # SPRINT CAPACITY CONFIG
 ##########################################################
