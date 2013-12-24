@@ -19,6 +19,9 @@ calendar_category_sprintend=
 companyDomain=@swisscom.com
 
 
+##########################################################
+# RELEASE CAPACITY CONFIG
+##########################################################
 [RELEASECAPACITY-CONFIG]
 teams=Team
 
@@ -33,9 +36,14 @@ constant_hours_sprintFinish=
 constant_hours_perDay=
 constant_hours_perWorkingDay=
 
+
+##########################################################
+# USER & ROLE CONFIG
+##########################################################
 [USER-peter_mueller]
 name=Mueller Peter
 role=DEV
+capacity=0.8
 
 [ROLE-DEV]
 name=Developer
