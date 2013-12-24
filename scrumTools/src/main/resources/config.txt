@@ -16,7 +16,7 @@ calendar_category_sprintend=
 # CAPACITY CONFIG
 ##########################################################
 [CAPACITY-CONFIG]
-companyDomain=@swisscom.com
+companyDomain=@domain.com
 
 
 ##########################################################
