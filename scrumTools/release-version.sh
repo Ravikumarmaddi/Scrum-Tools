@@ -2,7 +2,7 @@
 
 VERSION_RELEASE=1.1.2-SNAPSHOT
 VERSION_DEVELOPMENT=1.1.2-SNAPSHOT
-REPO=/home/neo/ws-git/mvn-repo
+REPO=../../mvn-repo
 
 VERSION_CMD=org.codehaus.mojo:versions-maven-plugin:2.1:set
 
