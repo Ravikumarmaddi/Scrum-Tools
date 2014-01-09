@@ -4,7 +4,7 @@
 
 	<groupId>ch.paru</groupId>
 	<artifactId>scrumTools-custom</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Scrum Tools - Custom</name>
@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>ch.paru</groupId>
 			<artifactId>scrumTools</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.0-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
 		

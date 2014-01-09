@@ -4,7 +4,7 @@
 
 	<groupId>ch.paru</groupId>
 	<artifactId>scrumTools</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Scrum Tools</name>
@@ -18,7 +18,7 @@
 		<repository>
 			<id>project.local</id>
 			<name>project</name>
-			<url>file:${project.basedir}/repo</url>
+			<url>file://${project.basedir}/repo</url>
 		</repository>
 	</repositories>
 
@@ -84,6 +84,26 @@
 					<!-- reflection is not working without this option -->
 					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.1</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.5</version>
 			</plugin>
 		</plugins>
 	</build>
