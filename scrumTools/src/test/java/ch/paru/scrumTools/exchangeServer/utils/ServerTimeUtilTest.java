@@ -76,7 +76,8 @@ public class ServerTimeUtilTest {
 		Calendar now = new GregorianCalendar();
 		ServerTime result = ServerTimeUtil.createTimeFromDate(now.getTime());
 		assertNotNull(result);
-		assertEquals(now.get(Calendar.HOUR_OF_DAY) + TIMESHIFT_OFFSET, result.getHour());
+		int h = now.get(Calendar.HOUR_OF_DAY);
+		assertEquals((h + TIMESHIFT_OFFSET) % 24, result.getHour());
 		assertEquals(now.get(Calendar.MINUTE), result.getMin());
 	}
 
