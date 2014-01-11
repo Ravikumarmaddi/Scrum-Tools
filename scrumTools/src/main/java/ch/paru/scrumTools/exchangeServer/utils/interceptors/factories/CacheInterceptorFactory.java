@@ -19,7 +19,7 @@ public class CacheInterceptorFactory {
 	public <T, U extends T> T getInterceptor(Class<T> clazz, U impl) {
 		ClassLoader sysClassLoader = ClassLoader.getSystemClassLoader();
 		Class<?>[] proxyInterfaces = new Class[] { clazz };
-		InvocationHandler handler = new CacheHandler(impl);
+		InvocationHandler handler = new CacheHandler(clazz.getSimpleName(), impl);
 		Object obj = Proxy.newProxyInstance(sysClassLoader, proxyInterfaces, handler);
 		return (T) obj;
 	}
@@ -27,11 +27,13 @@ public class CacheInterceptorFactory {
 	private class CacheHandler extends AbstractInterceptor {
 
 		private final Object obj;
+		private final String name;
 
 		private Map<String, Object> cache = Maps.newHashMap();
 
-		private CacheHandler(Object obj) {
-			super(InterceptorCommandType.STORE_CACHE);
+		private CacheHandler(String name, Object obj) {
+			super(InterceptorCommandType.STORE_CACHE, InterceptorCommandType.LOAD_CACHE);
+			this.name = name.toLowerCase();
 			this.obj = obj;
 		}
 
@@ -47,14 +49,12 @@ public class CacheInterceptorFactory {
 		}
 
 		private String getCacheKey(Method method, Object[] args) {
-			if (args == null || args.length == 0) {
-				return null;
-			}
-
 			StringBuffer sb = new StringBuffer();
 			sb.append(method.getName());
-			for (Object arg : args) {
-				sb.append(arg.toString());
+			if (args != null) {
+				for (Object arg : args) {
+					sb.append(arg.toString());
+				}
 			}
 			return sb.toString();
 		}
@@ -64,17 +64,13 @@ public class CacheInterceptorFactory {
 			switch (command.getType()) {
 			case LOAD_CACHE:
 				LoadCacheCommand loadCommand = (LoadCacheCommand) command;
-				if (loadCommand.loadCache()) {
-
-				}
-				return;
+				loadCommand.loadData(name, cache);
+				break;
 
 			case STORE_CACHE:
 				StoreCacheCommand storeCommand = (StoreCacheCommand) command;
-				if (storeCommand.storeCache()) {
-
-				}
-				return;
+				storeCommand.storeData(name, cache);
+				break;
 			}
 		}
 

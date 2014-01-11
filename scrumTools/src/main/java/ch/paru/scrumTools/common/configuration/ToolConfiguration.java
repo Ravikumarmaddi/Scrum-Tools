@@ -22,7 +22,7 @@ public abstract class ToolConfiguration {
 		try {
 			return getStringInSection(sectionName, key);
 		}
-		catch (ToolException e) {
+		catch (Exception e) {
 			return defaultValue;
 		}
 	}
@@ -40,7 +40,7 @@ public abstract class ToolConfiguration {
 		try {
 			return getBooleanInSection(sectionName, key);
 		}
-		catch (ToolException e) {
+		catch (Exception e) {
 			return defaultValue;
 		}
 	}
@@ -58,7 +58,7 @@ public abstract class ToolConfiguration {
 		try {
 			return getDoubleInSection(sectionName, key);
 		}
-		catch (ToolException e) {
+		catch (Exception e) {
 			return defaultValue;
 		}
 	}

@@ -6,7 +6,7 @@ public enum ConfigurationKeys {
 	USERNAME("username"), //
 	PASSWORD("password"), //
 	CALENDAR_CATEGORY_PREFIX("calendar_category_"), //
-	INTERCEPTOR_PREFIX("interceptor_");
+	CACHE_INTERCEPTOR_PREFIX("cacheinterceptor_");
 
 	private String key;
 

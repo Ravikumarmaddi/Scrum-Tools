@@ -1,5 +1,7 @@
 package ch.paru.scrumTools.exchangeServer.utils.interceptors.command;
 
+import com.google.common.base.Objects;
+
 public abstract class InterceptorCommand {
 
 	private InterceptorCommandType type;
@@ -35,4 +37,8 @@ public abstract class InterceptorCommand {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(this).add("type", type).toString();
+	}
 }
