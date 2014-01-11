@@ -3,14 +3,14 @@ package ch.paru.scrumTools.exchangeServer.services.contact.mock;
 import java.util.List;
 
 import microsoft.exchange.webservices.data.ExchangeService;
-
-import com.google.common.collect.Lists;
-
 import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContactGroup;
 import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.AbstractInterceptedService;
 
-public class ContactServiceMock implements ContactService {
+import com.google.common.collect.Lists;
+
+public class ContactServiceMock extends AbstractInterceptedService implements ContactService {
 
 	public ContactServiceMock(ExchangeService server) {
 	}

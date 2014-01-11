@@ -1,4 +1,4 @@
-package ch.paru.scrumTools.exchangeServer.utils.interceptors;
+package ch.paru.scrumTools.exchangeServer.utils.interceptors.factories;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -6,6 +6,8 @@ import java.lang.reflect.Proxy;
 
 import ch.paru.scrumTools.common.logging.ToolLogger;
 import ch.paru.scrumTools.common.logging.ToolLoggerFactory;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.AbstractInterceptor;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.InterceptorCommand;
 
 public class LogInterceptorFactory {
 
@@ -21,15 +23,16 @@ public class LogInterceptorFactory {
 		return (T) obj;
 	}
 
-	private class LoggerHandler implements InvocationHandler {
+	private class LoggerHandler extends AbstractInterceptor {
 
 		private final Object obj;
 
 		private LoggerHandler(Object obj) {
+			super();
 			this.obj = obj;
 		}
 
-		public Object invoke(Object proxy, Method method, Object[] args) throws Exception {
+		public Object interceptorInvoke(Object proxy, Method method, Object[] args) throws Exception {
 			long start = System.currentTimeMillis();
 			Object result = method.invoke(obj, args);
 			long end = System.currentTimeMillis();
@@ -53,5 +56,8 @@ public class LogInterceptorFactory {
 			return sb.toString();
 		}
 
+		@Override
+		protected void processInterceptorCommand(InterceptorCommand command) {
+		}
 	}
 }

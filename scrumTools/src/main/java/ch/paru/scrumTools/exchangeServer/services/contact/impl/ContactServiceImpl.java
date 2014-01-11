@@ -16,10 +16,11 @@ import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContactGroup;
 import ch.paru.scrumTools.exchangeServer.utils.exceptions.ServerException;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.AbstractInterceptedService;
 
 import com.google.common.collect.Lists;
 
-public class ContactServiceImpl implements ContactService {
+public class ContactServiceImpl extends AbstractInterceptedService implements ContactService {
 
 	private static final ToolLogger LOGGER = ToolLoggerFactory.getLogger(ContactServiceImpl.class);
 

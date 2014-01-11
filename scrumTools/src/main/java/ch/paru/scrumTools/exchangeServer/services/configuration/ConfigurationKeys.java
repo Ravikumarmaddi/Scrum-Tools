@@ -5,7 +5,8 @@ public enum ConfigurationKeys {
 	URL("url"), //
 	USERNAME("username"), //
 	PASSWORD("password"), //
-	CALENDAR_CATEGORY_PREFIX("calendar_category_"), ;
+	CALENDAR_CATEGORY_PREFIX("calendar_category_"), //
+	INTERCEPTOR_PREFIX("interceptor_");
 
 	private String key;
 

@@ -12,6 +12,8 @@ import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContactGroup;
 import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.LoadCacheCommand;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.StoreCacheCommand;
 
 import com.google.common.collect.Lists;
 
@@ -34,6 +36,8 @@ public class TeamDataCollectorTest {
 
 		MOCKS.resetAll();
 		expect(CONTACT_SERVICE_MOCK.getAllContactGroups()).andReturn(contactGroups);
+		CONTACT_SERVICE_MOCK.runInterceptorCommand(new LoadCacheCommand());
+		CONTACT_SERVICE_MOCK.runInterceptorCommand(new StoreCacheCommand());
 		DATA_BOX_MOCK.addTeamMember(groupName, contactFritz);
 		DATA_BOX_MOCK.addTeamMember(groupName, contactHans);
 

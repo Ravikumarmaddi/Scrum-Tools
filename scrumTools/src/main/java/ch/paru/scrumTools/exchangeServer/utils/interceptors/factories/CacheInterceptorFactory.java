@@ -1,9 +1,15 @@
-package ch.paru.scrumTools.exchangeServer.utils.interceptors;
+package ch.paru.scrumTools.exchangeServer.utils.interceptors.factories;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Map;
+
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.AbstractInterceptor;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.InterceptorCommand;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.InterceptorCommandType;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.LoadCacheCommand;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.StoreCacheCommand;
 
 import com.google.common.collect.Maps;
 
@@ -18,17 +24,18 @@ public class CacheInterceptorFactory {
 		return (T) obj;
 	}
 
-	private class CacheHandler implements InvocationHandler {
+	private class CacheHandler extends AbstractInterceptor {
 
 		private final Object obj;
 
 		private Map<String, Object> cache = Maps.newHashMap();
 
 		private CacheHandler(Object obj) {
+			super(InterceptorCommandType.STORE_CACHE);
 			this.obj = obj;
 		}
 
-		public Object invoke(Object proxy, Method method, Object[] args) throws Exception {
+		public Object interceptorInvoke(Object proxy, Method method, Object[] args) throws Exception {
 			String cacheKey = getCacheKey(method, args);
 
 			if (cacheKey == null || !cache.containsKey(cacheKey)) {
@@ -50,6 +57,25 @@ public class CacheInterceptorFactory {
 				sb.append(arg.toString());
 			}
 			return sb.toString();
+		}
+
+		@Override
+		protected void processInterceptorCommand(InterceptorCommand command) {
+			switch (command.getType()) {
+			case LOAD_CACHE:
+				LoadCacheCommand loadCommand = (LoadCacheCommand) command;
+				if (loadCommand.loadCache()) {
+
+				}
+				return;
+
+			case STORE_CACHE:
+				StoreCacheCommand storeCommand = (StoreCacheCommand) command;
+				if (storeCommand.storeCache()) {
+
+				}
+				return;
+			}
 		}
 
 	}

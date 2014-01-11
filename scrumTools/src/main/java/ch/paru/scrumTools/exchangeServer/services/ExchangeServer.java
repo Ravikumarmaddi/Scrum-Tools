@@ -18,8 +18,9 @@ import ch.paru.scrumTools.exchangeServer.services.contact.impl.ContactServiceImp
 import ch.paru.scrumTools.exchangeServer.services.contact.mock.ContactServiceMock;
 import ch.paru.scrumTools.exchangeServer.utils.configuration.ExchangeServerConfiguration;
 import ch.paru.scrumTools.exchangeServer.utils.exceptions.ServerException;
-import ch.paru.scrumTools.exchangeServer.utils.interceptors.CacheInterceptorFactory;
-import ch.paru.scrumTools.exchangeServer.utils.interceptors.LogInterceptorFactory;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.InterceptedService;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.factories.CacheInterceptorFactory;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.factories.LogInterceptorFactory;
 
 @ServerManager
 public class ExchangeServer implements ServerFacade {
@@ -70,8 +71,11 @@ public class ExchangeServer implements ServerFacade {
 		try {
 			Constructor<? extends E> constructor = classToUse.getConstructor(ExchangeService.class);
 			E obj = constructor.newInstance(getServer());
-			obj = cacheInterceptorFactory.getInterceptor(clazz, obj);
-			obj = logInterceptorFactory.getInterceptor(clazz, obj);
+
+			if (InterceptedService.class.isAssignableFrom(clazz)) {
+				obj = cacheInterceptorFactory.getInterceptor(clazz, obj);
+				obj = logInterceptorFactory.getInterceptor(clazz, obj);
+			}
 			return obj;
 		}
 		catch (Exception e) {
