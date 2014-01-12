@@ -42,8 +42,9 @@ public class SprintCapacityManager {
 		TeamDataCollector teamDataCollector = new TeamDataCollector(serverFacade.getContactService());
 		ConfigurationDataCollector configDataCollector = new ConfigurationDataCollector(configuration);
 		AbsenceDataCollector absenceDataCollector = new AbsenceDataCollector(serverFacade.getCalendarService());
-		SprintDataCollector collector = new SprintDataCollector(serverFacade.getCalendarService(), configuration,
-				teamDataCollector, configDataCollector, absenceDataCollector);
+		SprintDataCollector collector = new SprintDataCollector(serverFacade.getCalendarService(),
+				serverFacade.getContactService(), configuration, teamDataCollector, configDataCollector,
+				absenceDataCollector);
 		SprintData data = new SprintDataFactory().createData(new TeamFactory(), new TeamMemberFactory());
 		data.setStartDay(startDay);
 		data.setEndDay(endDay);

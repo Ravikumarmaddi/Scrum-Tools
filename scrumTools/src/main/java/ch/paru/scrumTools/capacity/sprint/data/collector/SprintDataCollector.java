@@ -12,7 +12,10 @@ import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
 import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.LoadCacheCommand;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.StoreCacheCommand;
 
 public class SprintDataCollector {
 
@@ -21,11 +24,13 @@ public class SprintDataCollector {
 	private ConfigurationDataCollector configDataCollector;
 	private AbsenceDataCollector absenceDataCollector;
 	private CalendarService calendarService;
+	private ContactService contactService;
 
-	public SprintDataCollector(CalendarService calendarService, SprintCapacityConfiguration config,
-			TeamDataCollector teamDataCollector, ConfigurationDataCollector configDataCollector,
-			AbsenceDataCollector absenceDataCollector) {
+	public SprintDataCollector(CalendarService calendarService, ContactService contactService,
+			SprintCapacityConfiguration config, TeamDataCollector teamDataCollector,
+			ConfigurationDataCollector configDataCollector, AbsenceDataCollector absenceDataCollector) {
 		this.calendarService = calendarService;
+		this.contactService = contactService;
 		this.config = config;
 		this.teamDataCollector = teamDataCollector;
 		this.configDataCollector = configDataCollector;
@@ -36,6 +41,8 @@ public class SprintDataCollector {
 		ServerDay startDay = data.getStartDay();
 		ServerDay endDay = data.getEndDay();
 
+		loadCacheFromFile();
+
 		List<String> teams = config.getTeams();
 		teamDataCollector.loadTeams(data, teams);
 		configDataCollector.loadConfiguration(data);
@@ -44,6 +51,20 @@ public class SprintDataCollector {
 		loadDayCategories(data, startDay, endDay);
 		validatePlanningDay(data, startDay);
 		validateReviewDay(data, endDay);
+
+		saveCacheToFile();
+	}
+
+	private void loadCacheFromFile() {
+		LoadCacheCommand cmd = new LoadCacheCommand();
+		calendarService.runInterceptorCommand(cmd);
+		contactService.runInterceptorCommand(cmd);
+	}
+
+	private void saveCacheToFile() {
+		StoreCacheCommand cmd = new StoreCacheCommand();
+		calendarService.runInterceptorCommand(cmd);
+		contactService.runInterceptorCommand(cmd);
 	}
 
 	private void loadDayCategories(SprintData data, ServerDay startDay, ServerDay endDay) {

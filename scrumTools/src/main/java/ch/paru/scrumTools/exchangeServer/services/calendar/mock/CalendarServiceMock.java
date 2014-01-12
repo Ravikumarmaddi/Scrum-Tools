@@ -11,10 +11,11 @@ import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerTime;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.AbstractInterceptedService;
 
 import com.google.common.collect.Lists;
 
-public class CalendarServiceMock implements CalendarService {
+public class CalendarServiceMock extends AbstractInterceptedService implements CalendarService {
 
 	public CalendarServiceMock(ExchangeService server) {
 	}

@@ -40,8 +40,9 @@ public class ReleaseCapacityManager {
 		TeamDataCollector teamDataCollector = new TeamDataCollector(serverFacade.getContactService());
 		ConfigurationDataCollector configDataCollector = new ConfigurationDataCollector(configuration);
 		AbsenceDataCollector absenceDataCollector = new AbsenceDataCollector(serverFacade.getCalendarService());
-		ReleaseDataCollector collector = new ReleaseDataCollector(serverFacade.getCalendarService(), configuration,
-				teamDataCollector, configDataCollector, absenceDataCollector);
+		ReleaseDataCollector collector = new ReleaseDataCollector(serverFacade.getCalendarService(),
+				serverFacade.getContactService(), configuration, teamDataCollector, configDataCollector,
+				absenceDataCollector);
 		ReleaseData data = new ReleaseDataFactory().createData(new TeamFactory(), new TeamMemberFactory());
 		data.setStartDay(startDay);
 		data.setEndDay(endDay);

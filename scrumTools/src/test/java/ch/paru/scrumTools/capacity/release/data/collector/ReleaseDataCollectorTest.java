@@ -14,7 +14,10 @@ import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollec
 import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
 import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.LoadCacheCommand;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.StoreCacheCommand;
 
 import com.google.common.collect.Lists;
 
@@ -23,6 +26,8 @@ public class ReleaseDataCollectorTest {
 	private static final EasyMockSupport MOCKS = new EasyMockSupport();
 	private static final CalendarService CALENDAR_SERVICE_MOCK = MOCKS.createMock("CALENDAR_SERVICE_MOCK",
 			CalendarService.class);
+	private static final ContactService CONTACT_SERVICE_MOCK = MOCKS.createMock("CONTACT_SERVICE_MOCK",
+			ContactService.class);
 	private static final ReleaseCapacityConfiguration CONFIG_MOCK = MOCKS.createMock("CONFIG_MOCK",
 			ReleaseCapacityConfiguration.class);
 	private static final TeamDataCollector TEAM_COLLECTOR_MOCK = MOCKS.createMock("TEAM_COLLECTOR_MOCK",
@@ -51,6 +56,10 @@ public class ReleaseDataCollectorTest {
 		expect(CALENDAR_SERVICE_MOCK.isWorkingDay(day1)).andReturn(Boolean.TRUE).anyTimes();
 		expect(CALENDAR_SERVICE_MOCK.isWorkingDay(day2)).andReturn(Boolean.TRUE).anyTimes();
 		expect(CALENDAR_SERVICE_MOCK.isWorkingDay(day3)).andReturn(Boolean.FALSE).anyTimes();
+		CALENDAR_SERVICE_MOCK.runInterceptorCommand(new LoadCacheCommand());
+		CALENDAR_SERVICE_MOCK.runInterceptorCommand(new StoreCacheCommand());
+		CONTACT_SERVICE_MOCK.runInterceptorCommand(new LoadCacheCommand());
+		CONTACT_SERVICE_MOCK.runInterceptorCommand(new StoreCacheCommand());
 		expect(DATA_MOCK.getStartDay()).andReturn(startDay);
 		expect(DATA_MOCK.getEndDay()).andReturn(endDay);
 		DATA_MOCK.addWorkingDay(day1);
@@ -59,8 +68,8 @@ public class ReleaseDataCollectorTest {
 		expectLastCall().times(3);
 
 		MOCKS.replayAll();
-		ReleaseDataCollector dataCollector = new ReleaseDataCollector(CALENDAR_SERVICE_MOCK, CONFIG_MOCK,
-				TEAM_COLLECTOR_MOCK, CONFIG_COLLECTOR_MOCK, ABSENCE_COLLECTOR_MOCK);
+		ReleaseDataCollector dataCollector = new ReleaseDataCollector(CALENDAR_SERVICE_MOCK, CONTACT_SERVICE_MOCK,
+				CONFIG_MOCK, TEAM_COLLECTOR_MOCK, CONFIG_COLLECTOR_MOCK, ABSENCE_COLLECTOR_MOCK);
 		dataCollector.collectData(DATA_MOCK);
 
 		MOCKS.verifyAll();

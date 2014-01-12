@@ -27,9 +27,17 @@ public class CalendarWeekUtilTest {
 		ServerDay day = ServerDayUtil.createDayFromNumbers(1, 2, 2013);
 		CalendarWeek cw = CalendarWeekUtil.createCalendarWeek(day);
 
-		String textDay = ServerDayUtil.getDisplayText(day);
+		String textDay = ServerDayUtil.getDisplayText(getMonday(day));
 		String textCW = CalendarWeekUtil.getDisplayText(cw);
 		assertEquals("CW " + cw.getWeekNumber() + " (" + textDay + ")", textCW);
+	}
+
+	private ServerDay getMonday(ServerDay day) {
+		ServerDay pointer = day;
+		while (pointer.getCalendar().get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
+			pointer = ServerDayUtil.addDays(pointer, -1);
+		}
+		return pointer;
 	}
 
 }

@@ -18,14 +18,49 @@ public abstract class ToolConfiguration {
 		return value;
 	}
 
-	protected Double getDoubleInSection(String sectionName, String key) {
-		String value = getStringInSection(sectionName, key);
-		return Double.valueOf(value);
+	protected String getStringInSection(String sectionName, String key, String defaultValue) {
+		try {
+			return getStringInSection(sectionName, key);
+		}
+		catch (Exception e) {
+			return defaultValue;
+		}
 	}
 
 	protected Boolean getBooleanInSection(String sectionName, String key) {
-		String value = getStringInSection(sectionName, key);
-		return Boolean.valueOf(value);
+		SubnodeConfiguration section = getConfig().getSection(sectionName);
+		Boolean value = section.getBoolean(key);
+		if (value == null) {
+			throw new ToolException("'" + key + "' not found in the section '" + sectionName + "'", null);
+		}
+		return value;
+	}
+
+	protected Boolean getBooleanInSection(String sectionName, String key, boolean defaultValue) {
+		try {
+			return getBooleanInSection(sectionName, key);
+		}
+		catch (Exception e) {
+			return defaultValue;
+		}
+	}
+
+	protected Double getDoubleInSection(String sectionName, String key) {
+		SubnodeConfiguration section = getConfig().getSection(sectionName);
+		Double value = section.getDouble(key);
+		if (value == null) {
+			throw new ToolException("'" + key + "' not found in the section '" + sectionName + "'", null);
+		}
+		return value;
+	}
+
+	protected Double getDoubleInSection(String sectionName, String key, double defaultValue) {
+		try {
+			return getDoubleInSection(sectionName, key);
+		}
+		catch (Exception e) {
+			return defaultValue;
+		}
 	}
 
 	protected final void initConfig(String fileName) {

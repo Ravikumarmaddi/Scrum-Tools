@@ -37,4 +37,8 @@ public class ExchangeServerConfiguration extends ToolConfiguration {
 		return getBooleanInSection(SECTION_NAME, key.getKey());
 	}
 
+	public Boolean getBooleanValue(ConfigurationKeys prefix, String key, boolean defaultValue) {
+		return getBooleanInSection(SECTION_NAME, prefix.getKey() + key, defaultValue);
+	}
+
 }
