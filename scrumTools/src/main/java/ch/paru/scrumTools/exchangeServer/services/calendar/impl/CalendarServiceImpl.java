@@ -15,10 +15,11 @@ import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
 import ch.paru.scrumTools.exchangeServer.utils.ServerTimeUtil;
 import ch.paru.scrumTools.exchangeServer.utils.exceptions.ServerException;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.AbstractInterceptedService;
 
 import com.google.common.collect.Lists;
 
-public class CalendarServiceImpl implements CalendarService {
+public class CalendarServiceImpl extends AbstractInterceptedService implements CalendarService {
 
 	private AppointmentLoader appointLoader;
 

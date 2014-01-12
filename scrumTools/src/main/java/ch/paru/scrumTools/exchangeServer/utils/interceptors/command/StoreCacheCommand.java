@@ -26,7 +26,7 @@ public class StoreCacheCommand extends InterceptorCommand {
 			return;
 		}
 
-		CacheFileHandler handler = new CacheFileHandler();
-		handler.store(data, getCacheDir(), name);
+		CacheFileHandler handler = new CacheFileHandler(getCacheDir(), name);
+		handler.store(data);
 	}
 }

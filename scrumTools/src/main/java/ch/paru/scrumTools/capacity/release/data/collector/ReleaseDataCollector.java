@@ -10,7 +10,10 @@ import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollec
 import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
 import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.LoadCacheCommand;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.StoreCacheCommand;
 
 public class ReleaseDataCollector {
 
@@ -19,11 +22,13 @@ public class ReleaseDataCollector {
 	private TeamDataCollector teamDataCollector;
 	private ConfigurationDataCollector configDataCollector;
 	private AbsenceDataCollector absenceDataCollector;
+	private ContactService contactService;
 
-	public ReleaseDataCollector(CalendarService calendarService, ReleaseCapacityConfiguration config,
-			TeamDataCollector teamDataCollector, ConfigurationDataCollector configDataCollector,
-			AbsenceDataCollector absenceDataCollector) {
+	public ReleaseDataCollector(CalendarService calendarService, ContactService contactService,
+			ReleaseCapacityConfiguration config, TeamDataCollector teamDataCollector,
+			ConfigurationDataCollector configDataCollector, AbsenceDataCollector absenceDataCollector) {
 		this.calendarService = calendarService;
+		this.contactService = contactService;
 		this.config = config;
 		this.teamDataCollector = teamDataCollector;
 		this.configDataCollector = configDataCollector;
@@ -34,6 +39,8 @@ public class ReleaseDataCollector {
 		ServerDay startDay = data.getStartDay();
 		ServerDay endDay = data.getEndDay();
 
+		loadCacheFromFile();
+
 		List<String> teams = config.getTeams();
 		teamDataCollector.loadTeams(data, teams);
 		configDataCollector.loadConfiguration(data);
@@ -41,6 +48,20 @@ public class ReleaseDataCollector {
 
 		loadWorkingDays(data, startDay, endDay);
 		loadCalendarWeeks(data, startDay, endDay);
+
+		saveCacheToFile();
+	}
+
+	private void loadCacheFromFile() {
+		LoadCacheCommand cmd = new LoadCacheCommand();
+		calendarService.runInterceptorCommand(cmd);
+		contactService.runInterceptorCommand(cmd);
+	}
+
+	private void saveCacheToFile() {
+		StoreCacheCommand cmd = new StoreCacheCommand();
+		calendarService.runInterceptorCommand(cmd);
+		contactService.runInterceptorCommand(cmd);
 	}
 
 	private void loadCalendarWeeks(ReleaseData data, ServerDay startDay, ServerDay endDay) {
@@ -60,4 +81,5 @@ public class ReleaseDataCollector {
 			pointer = ServerDayUtil.addDays(pointer, 1);
 		}
 	}
+
 }

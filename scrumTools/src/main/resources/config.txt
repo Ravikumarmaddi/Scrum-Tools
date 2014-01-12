@@ -11,6 +11,11 @@ calendar_category_publicholiday=
 calendar_category_sprintstart=
 calendar_category_sprintend=
 
+### Optional
+#cacheinterceptor_folder=C:/path/to/your/cachestorefolder/
+#cacheinterceptor_load_enabled=false
+#cacheinterceptor_store_enabled=false
+
 
 ##########################################################
 # CAPACITY CONFIG

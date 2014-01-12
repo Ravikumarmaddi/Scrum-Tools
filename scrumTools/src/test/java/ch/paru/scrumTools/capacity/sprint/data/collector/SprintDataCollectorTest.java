@@ -11,14 +11,16 @@ import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.SprintDayType;
-import ch.paru.scrumTools.capacity.sprint.data.collector.SprintDataCollector;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
 import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;
 import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
 import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
 import ch.paru.scrumTools.exchangeServer.utils.ServerAppointmentUtil;
 import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.LoadCacheCommand;
+import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.StoreCacheCommand;
 
 import com.google.common.collect.Lists;
 
@@ -33,6 +35,8 @@ public class SprintDataCollectorTest {
 			AbsenceDataCollector.class);
 	private static final CalendarService CALENDAR_SERVICE_MOCK = MOCKS.createMock("CALENDAR_SERVICE_MOCK",
 			CalendarService.class);
+	private static final ContactService CONTACT_SERVICE_MOCK = MOCKS.createMock("CONTACT_SERVICE_MOCK",
+			ContactService.class);
 	private static final SprintCapacityConfiguration CONFIG_MOCK = MOCKS.createMock("CONFIG_MOCK",
 			SprintCapacityConfiguration.class);
 	private static final SprintData DATA_MOCK = MOCKS.createMock("DATA_MOCK", SprintData.class);
@@ -57,6 +61,10 @@ public class SprintDataCollectorTest {
 		expect(CALENDAR_SERVICE_MOCK.isWorkingDay(day1)).andReturn(Boolean.TRUE);
 		expect(CALENDAR_SERVICE_MOCK.isWorkingDay(day2)).andReturn(Boolean.TRUE);
 		expect(CALENDAR_SERVICE_MOCK.isWorkingDay(day3)).andReturn(Boolean.FALSE);
+		CALENDAR_SERVICE_MOCK.runInterceptorCommand(new LoadCacheCommand());
+		CALENDAR_SERVICE_MOCK.runInterceptorCommand(new StoreCacheCommand());
+		CONTACT_SERVICE_MOCK.runInterceptorCommand(new LoadCacheCommand());
+		CONTACT_SERVICE_MOCK.runInterceptorCommand(new StoreCacheCommand());
 		DATA_MOCK.setDayCategory(day1, SprintDayType.DAILY_BUSINESS);
 		DATA_MOCK.setDayCategory(day2, SprintDayType.DAILY_BUSINESS);
 		DATA_MOCK.setDayCategory(day1, SprintDayType.SPRINT_START);
@@ -68,8 +76,8 @@ public class SprintDataCollectorTest {
 				.andReturn(null);
 
 		MOCKS.replayAll();
-		SprintDataCollector dataCollector = new SprintDataCollector(CALENDAR_SERVICE_MOCK, CONFIG_MOCK,
-				TEAM_COLLECTOR_MOCK, CONFIG_COLLECTOR_MOCK, ABSENCE_COLLECTOR_MOCK);
+		SprintDataCollector dataCollector = new SprintDataCollector(CALENDAR_SERVICE_MOCK, CONTACT_SERVICE_MOCK,
+				CONFIG_MOCK, TEAM_COLLECTOR_MOCK, CONFIG_COLLECTOR_MOCK, ABSENCE_COLLECTOR_MOCK);
 		dataCollector.collectData(DATA_MOCK);
 
 		MOCKS.verifyAll();

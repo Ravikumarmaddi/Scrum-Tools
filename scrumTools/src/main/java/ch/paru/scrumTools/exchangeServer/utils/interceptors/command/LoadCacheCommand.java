@@ -26,8 +26,8 @@ public class LoadCacheCommand extends InterceptorCommand {
 			return;
 		}
 
-		CacheFileHandler handler = new CacheFileHandler();
-		Map<String, Object> content = handler.load(getCacheDir(), name);
+		CacheFileHandler handler = new CacheFileHandler(getCacheDir(), name);
+		Map<String, Object> content = handler.load();
 		data.putAll(content);
 	}
 }
