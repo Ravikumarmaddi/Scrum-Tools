@@ -42,10 +42,6 @@ public class CacheFileHandler {
 	}
 
 	public void store(Map<String, Object> data) {
-		if (!fileExists()) {
-			return;
-		}
-
 		try {
 			XStream xStream = getXStream();
 			File file = new File(getFilePath());
