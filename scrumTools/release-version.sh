@@ -1,7 +1,7 @@
 #!/bin/bash
 
-VERSION_RELEASE=1.1.2-SNAPSHOT
-VERSION_DEVELOPMENT=1.1.2-SNAPSHOT
+VERSION_RELEASE=1.1.1-SNAPSHOT
+VERSION_DEVELOPMENT=1.1.1-SNAPSHOT
 REPO=../../mvn-repo
 
 VERSION_CMD=org.codehaus.mojo:versions-maven-plugin:2.1:set
@@ -21,5 +21,6 @@ cd ..
 
 mvn $VERSION_CMD -DnewVersion=$VERSION_DEVELOPMENT
 
-rm **/pom.xml.versionsBackup
+rm deploy/pom.xml.versionsBackup
+rm pom.xml.versionsBackup
 
