@@ -14,14 +14,14 @@
 	</properties>
 
 	<repositories>
-		<!--local repo for EWS -->
 		<repository>
-			<id>project.local</id>
-			<name>project</name>
-			<url>file://${project.basedir}/repo</url>
+			<id>github-scrumtools</id>
+			<name>Github Scrum Tools</name>
+			<url>https://github.com/kerli81/mvn-repo/tree/master</url>
 		</repository>
 	</repositories>
 
+	<!--  keep deploy/pom.xml updated -->
 	<dependencies>
 		<dependency>
 			<groupId>microsoft.exchange</groupId>

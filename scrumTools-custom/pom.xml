@@ -12,13 +12,20 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
+	<repositories>
+		<repository>
+			<id>github-scrumtools</id>
+			<name>Github Scrum Tools</name>
+			<url>https://github.com/kerli81/mvn-repo/tree/master</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
 			<groupId>ch.paru</groupId>
 			<artifactId>scrumTools</artifactId>
-			<version>1.1.2-SNAPSHOT</version>
+			<version>1.1.1-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
 
