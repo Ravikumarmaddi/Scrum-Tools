@@ -51,7 +51,7 @@ public class ContactServiceImpl extends AbstractInterceptedService implements Co
 
 	private ServerContactGroup createGroup(ContactGroup group) throws Exception {
 		ServerContactGroup contactGroup = new ServerContactGroup(group.getDisplayName());
-		LOGGER.trace("Greoup Name: " + contactGroup.getName());
+		LOGGER.trace("Group Name: " + contactGroup.getName());
 
 		ExpandGroupResults expandGroup = server.expandGroup(group.getId());
 		for (EmailAddress emailAddress : expandGroup) {
