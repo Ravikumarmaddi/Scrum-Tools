@@ -12,8 +12,7 @@ public class CapacityConfiguration extends ToolConfiguration {
 	@SuppressWarnings("unused")
 	private static final String SECTION_NAME = "CAPACITY-CONFIG";
 
-	private static final String PREFIX_USER = "USER-";
-	private static final String PREFIX_ROLE = "ROLE-";
+	private SectionHeaders sectionHeaders;
 
 	private static CapacityConfiguration instance;
 
@@ -24,6 +23,7 @@ public class CapacityConfiguration extends ToolConfiguration {
 	protected CapacityConfiguration(String fileName) {
 		initConfig(fileName);
 		instance = this;
+		sectionHeaders = new SectionHeaders();
 	}
 
 	public static CapacityConfiguration getInstance() {
@@ -33,18 +33,8 @@ public class CapacityConfiguration extends ToolConfiguration {
 		return instance;
 	}
 
-	private String getConfigUserSectionName(String mailAddress) {
-		String result = mailAddress.substring(0, mailAddress.indexOf("@"));
-		result = result.replace(".", "_");
-		return PREFIX_USER + result;
-	}
-
-	private String getConfigRoleSectionName(String name) {
-		return PREFIX_ROLE + name;
-	}
-
 	public ConfigUser getUser(String mailAddress) {
-		String sectionName = getConfigUserSectionName(mailAddress);
+		String sectionName = sectionHeaders.getUserSectionName(mailAddress);
 		SubnodeConfiguration section = getConfig().getSection(sectionName);
 
 		if (section.isEmpty()) {
@@ -58,7 +48,7 @@ public class CapacityConfiguration extends ToolConfiguration {
 	}
 
 	public ConfigRole getRole(String roleName) {
-		String sectionName = getConfigRoleSectionName(roleName);
+		String sectionName = sectionHeaders.getRoleSectionName(roleName);
 		SubnodeConfiguration section = getConfig().getSection(sectionName);
 
 		if (section.isEmpty()) {
