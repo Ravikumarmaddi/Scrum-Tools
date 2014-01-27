@@ -22,7 +22,7 @@ public class DataBox {
 	private TeamMemberFactory teamMemberFactory;
 	private TeamFactory teamFactory;
 
-	protected DataBox(TeamFactory teamFactory, TeamMemberFactory teamMemberFactory) {
+	public DataBox(TeamFactory teamFactory, TeamMemberFactory teamMemberFactory) {
 		this.teamFactory = teamFactory;
 		this.teamMemberFactory = teamMemberFactory;
 		teams = Maps.newHashMap();
