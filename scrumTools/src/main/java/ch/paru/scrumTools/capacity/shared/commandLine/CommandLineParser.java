@@ -16,15 +16,17 @@ public class CommandLineParser {
 
 	private Map<CommandLineArguments, String> values = Maps.newHashMap();
 
-	public void parse(String[] args) {
-		if (args == null || args.length != CommandLineArguments.values().length) {
+	public void parse(String[] args, int amount) {
+		if (args == null || args.length != amount) {
 			printHelp();
-			throw new ToolException("not enough parameter", null);
+			throw new ToolException("not exact amount of parameters", null);
 		}
 
 		CommandLineArguments[] commandLineArgs = CommandLineArguments.getAllArguments();
 		for (CommandLineArguments arg : commandLineArgs) {
-			values.put(arg, args[arg.getIndex()]);
+			if (args.length - 1 >= arg.getIndex()) {
+				values.put(arg, args[arg.getIndex()]);
+			}
 		}
 	}
 
