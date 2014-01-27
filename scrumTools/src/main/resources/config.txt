@@ -21,7 +21,6 @@ calendar_category_sprintend=
 # CAPACITY CONFIG
 ##########################################################
 [CAPACITY-CONFIG]
-companyDomain=@domain.com
 
 
 ##########################################################

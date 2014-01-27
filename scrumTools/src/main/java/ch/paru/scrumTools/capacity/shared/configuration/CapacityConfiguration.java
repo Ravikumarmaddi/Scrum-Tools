@@ -9,8 +9,8 @@ import ch.paru.scrumTools.common.exception.ToolException;
 
 public class CapacityConfiguration extends ToolConfiguration {
 
+	@SuppressWarnings("unused")
 	private static final String SECTION_NAME = "CAPACITY-CONFIG";
-	private static final String COMPANY_DOMAIN = "companyDomain";
 
 	private static final String PREFIX_USER = "USER-";
 	private static final String PREFIX_ROLE = "ROLE-";
@@ -33,9 +33,8 @@ public class CapacityConfiguration extends ToolConfiguration {
 		return instance;
 	}
 
-	private String getConfigUserSectionName(String mailAddress, String domain) {
-		int usernameLength = mailAddress.length() - domain.length();
-		String result = mailAddress.substring(0, usernameLength);
+	private String getConfigUserSectionName(String mailAddress) {
+		String result = mailAddress.substring(0, mailAddress.indexOf("@"));
 		result = result.replace(".", "_");
 		return PREFIX_USER + result;
 	}
@@ -45,7 +44,7 @@ public class CapacityConfiguration extends ToolConfiguration {
 	}
 
 	public ConfigUser getUser(String mailAddress) {
-		String sectionName = getConfigUserSectionName(mailAddress, getStringInSection(SECTION_NAME, COMPANY_DOMAIN));
+		String sectionName = getConfigUserSectionName(mailAddress);
 		SubnodeConfiguration section = getConfig().getSection(sectionName);
 
 		if (section.isEmpty()) {
