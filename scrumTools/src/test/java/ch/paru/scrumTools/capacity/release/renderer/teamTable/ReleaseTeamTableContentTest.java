@@ -28,7 +28,6 @@ public class ReleaseTeamTableContentTest {
 	@Test
 	public void testAmountOfElements() {
 		MOCKS.resetAll();
-		expect(MEMBER_MOCK.getTeam()).andReturn(TEAM_MOCK);
 		expect(TEAM_MOCK.getName()).andReturn("NAME");
 		expect(MEMBER_MOCK.getConfiguration()).andReturn(CONFIG_USER_MOCK);
 		expect(MEMBER_MOCK.getNumbers()).andReturn(NUMBERS_MOCK);
@@ -41,7 +40,7 @@ public class ReleaseTeamTableContentTest {
 		MOCKS.replayAll();
 		ReleaseTeamTableContent tableContent = new ReleaseTeamTableContent(null);
 		List<String> columnNames = tableContent.getColumnNames();
-		List<String> memberRow = tableContent.getMemberRowValues(MEMBER_MOCK);
+		List<String> memberRow = tableContent.getMemberRowValues(TEAM_MOCK, MEMBER_MOCK);
 
 		MOCKS.verifyAll();
 		assertNotNull(columnNames);

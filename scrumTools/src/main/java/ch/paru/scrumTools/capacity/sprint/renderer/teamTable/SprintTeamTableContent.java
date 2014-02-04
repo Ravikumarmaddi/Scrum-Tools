@@ -4,6 +4,7 @@ import java.util.List;
 
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
 import ch.paru.scrumTools.capacity.shared.data.Numbers;
+import ch.paru.scrumTools.capacity.shared.data.Team;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.shared.renderer.teamTable.TeamTableContent;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
@@ -36,12 +37,12 @@ public class SprintTeamTableContent implements TeamTableContent, Customizable {
 	}
 
 	@Override
-	public List<String> getMemberRowValues(TeamMember member) {
+	public List<String> getMemberRowValues(Team team, TeamMember member) {
 		ConfigUser configuration = member.getConfiguration();
 		Numbers numbers = member.getNumbers();
 
 		List<String> values = Lists.newArrayList();
-		values.add(member.getTeam().getName());
+		values.add(team.getName());
 		values.add(configuration.getName());
 		values.add(configuration.getRole().getName());
 		values.add(RoundingUtil.round(numbers.getAvailability()).toString());

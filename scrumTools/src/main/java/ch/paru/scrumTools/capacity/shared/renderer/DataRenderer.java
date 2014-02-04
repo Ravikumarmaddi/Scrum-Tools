@@ -22,7 +22,7 @@ public abstract class DataRenderer<T extends DataBox> {
 		for (Team team : allTeams) {
 			List<TeamMember> allMembers = team.getAllMembers();
 			for (TeamMember teamMember : allMembers) {
-				sb.append(generator.getTeamTableMemberRow(tableContent.getMemberRowValues(teamMember)));
+				sb.append(generator.getTeamTableMemberRow(tableContent.getMemberRowValues(team, teamMember)));
 			}
 		}
 
