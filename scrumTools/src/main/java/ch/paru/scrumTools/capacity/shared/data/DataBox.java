@@ -52,9 +52,17 @@ public class DataBox {
 		}
 
 		Team team = teams.get(teamName);
-		TeamMember teamMember = teamMemberFactory.createTeamMember(contact);
-		team.addTeamMember(teamMember);
-		members.put(contact, teamMember);
+
+		if (members.containsKey(contact)) {
+			//the <contact> is already in another team
+			TeamMember teamMember = members.get(contact);
+			team.addTeamMember(teamMember);
+		}
+		else {
+			TeamMember teamMember = teamMemberFactory.createTeamMember(contact);
+			team.addTeamMember(teamMember);
+			members.put(contact, teamMember);
+		}
 	}
 
 	public void addAbsenceForMember(ServerContact member, ServerDay day) {
