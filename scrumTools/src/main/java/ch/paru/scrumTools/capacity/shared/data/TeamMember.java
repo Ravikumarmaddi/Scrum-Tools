@@ -14,7 +14,6 @@ public class TeamMember implements Customizable {
 	private ServerContact contact;
 	private ConfigUser config;
 	private List<ServerDay> absences;
-	private Team team;
 	private Numbers numbers;
 
 	public TeamMember(ServerContact contact) {
@@ -55,13 +54,5 @@ public class TeamMember implements Customizable {
 	@Override
 	public String toString() {
 		return config != null ? config.getName() : contact.getMailAddress();
-	}
-
-	public void setTeam(Team team) {
-		this.team = team;
-	}
-
-	public Team getTeam() {
-		return team;
 	}
 }

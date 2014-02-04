@@ -33,7 +33,6 @@ public class Team implements Customizable {
 
 	public void addTeamMember(TeamMember teamMember) {
 		members.add(teamMember);
-		teamMember.setTeam(this);
 	}
 
 	public List<TeamMember> getAllMembers() {

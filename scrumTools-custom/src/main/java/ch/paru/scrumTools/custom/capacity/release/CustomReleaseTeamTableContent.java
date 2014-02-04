@@ -8,6 +8,7 @@ import ch.paru.scrumTools.capacity.release.data.ReleaseData;
 import ch.paru.scrumTools.capacity.release.data.WeekCapacity;
 import ch.paru.scrumTools.capacity.release.renderer.teamTable.ReleaseTeamTableContent;
 import ch.paru.scrumTools.capacity.release.utils.CalendarWeekUtil;
+import ch.paru.scrumTools.capacity.shared.data.Team;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.common.reflection.customs.Custom;
 import ch.paru.scrumTools.custom.capacity.shared.CustomConfigUser;
@@ -34,8 +35,8 @@ public class CustomReleaseTeamTableContent extends ReleaseTeamTableContent {
 	}
 
 	@Override
-	public List<String> getMemberRowValues(TeamMember member) {
-		List<String> memberRowValues = super.getMemberRowValues(member);
+	public List<String> getMemberRowValues(Team team, TeamMember member) {
+		List<String> memberRowValues = super.getMemberRowValues(team, member);
 
 		CustomConfigUser user = (CustomConfigUser) member.getConfiguration();
 		memberRowValues.add(2, Boolean.toString(user.getIsIntern()));

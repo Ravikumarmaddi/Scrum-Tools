@@ -2,6 +2,7 @@ package ch.paru.scrumTools.custom.capacity.sprint;
 
 import java.util.List;
 
+import ch.paru.scrumTools.capacity.shared.data.Team;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.renderer.teamTable.SprintTeamTableContent;
@@ -32,8 +33,8 @@ public class CustomSprintTeamTableContent extends SprintTeamTableContent {
 	}
 
 	@Override
-	public List<String> getMemberRowValues(TeamMember member) {
-		List<String> memberRowValues = super.getMemberRowValues(member);
+	public List<String> getMemberRowValues(Team team, TeamMember member) {
+		List<String> memberRowValues = super.getMemberRowValues(team, member);
 
 		CustomConfigUser user = (CustomConfigUser) member.getConfiguration();
 		memberRowValues.add(2, Boolean.toString(user.getIsIntern()));
