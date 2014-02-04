@@ -1,7 +1,7 @@
 #!/bin/bash
 
-VERSION_RELEASE=1.1.1
-VERSION_DEVELOPMENT=1.1.2-SNAPSHOT
+VERSION_RELEASE=1.1.2
+VERSION_DEVELOPMENT=1.1.3-SNAPSHOT
 REPO=../../mvn-repo
 
 VERSION_CMD=org.codehaus.mojo:versions-maven-plugin:2.1:set
