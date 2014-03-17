@@ -17,7 +17,7 @@
 		<repository>
 			<id>github-scrumtools</id>
 			<name>Github Scrum Tools</name>
-			<url>https://github.com/kerli81/mvn-repo/tree/master</url>
+			<url>https://github.com/kerli81/mvn-repo/raw/master</url>
 		</repository>
 	</repositories>
 
