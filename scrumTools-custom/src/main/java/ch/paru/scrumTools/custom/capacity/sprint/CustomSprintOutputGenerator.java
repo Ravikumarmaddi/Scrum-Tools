@@ -9,7 +9,7 @@ import ch.paru.scrumTools.capacity.sprint.renderer.generator.SprintOutputGenerat
 import ch.paru.scrumTools.capacity.sprint.renderer.generator.XlsSprintOutputGenerator;
 import ch.paru.scrumTools.common.formatting.RoundingUtil;
 import ch.paru.scrumTools.common.reflection.customs.Custom;
-import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.backendServer.utils.ServerDayUtil;
 
 @Custom(type = SprintOutputGenerator.class)
 public class CustomSprintOutputGenerator extends XlsSprintOutputGenerator {

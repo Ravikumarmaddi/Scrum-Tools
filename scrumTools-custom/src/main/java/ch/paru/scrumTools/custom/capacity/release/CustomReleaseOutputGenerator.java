@@ -5,7 +5,7 @@ import ch.paru.scrumTools.capacity.release.renderer.generator.ReleaseOutputGener
 import ch.paru.scrumTools.capacity.release.renderer.generator.XlsReleaseOutputGenerator;
 import ch.paru.scrumTools.common.formatting.RoundingUtil;
 import ch.paru.scrumTools.common.reflection.customs.Custom;
-import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.backendServer.utils.ServerDayUtil;
 
 @Custom(type = ReleaseOutputGenerator.class)
 public class CustomReleaseOutputGenerator extends XlsReleaseOutputGenerator {

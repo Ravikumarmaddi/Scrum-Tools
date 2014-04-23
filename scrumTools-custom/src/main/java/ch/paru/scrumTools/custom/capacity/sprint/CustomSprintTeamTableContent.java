@@ -8,8 +8,8 @@ import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.renderer.teamTable.SprintTeamTableContent;
 import ch.paru.scrumTools.common.reflection.customs.Custom;
 import ch.paru.scrumTools.custom.capacity.shared.CustomConfigUser;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.utils.ServerDayUtil;
 
 @Custom(type = SprintTeamTableContent.class)
 public class CustomSprintTeamTableContent extends SprintTeamTableContent {
