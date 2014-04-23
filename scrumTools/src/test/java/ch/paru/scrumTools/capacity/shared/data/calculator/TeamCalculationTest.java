@@ -10,8 +10,8 @@ import ch.paru.scrumTools.capacity.shared.data.DataBox;
 import ch.paru.scrumTools.capacity.shared.data.Numbers;
 import ch.paru.scrumTools.capacity.shared.data.Team;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
-import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
+import ch.paru.scrumTools.backendServer.services.contact.ServerContact;
+import ch.paru.scrumTools.backendServer.services.mock.MockData;
 
 import com.google.common.collect.Lists;
 

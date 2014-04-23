@@ -17,8 +17,8 @@ import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.capacity.shared.factories.TeamFactory;
 import ch.paru.scrumTools.capacity.shared.factories.TeamMemberFactory;
 import ch.paru.scrumTools.capacity.shared.renderer.DataRenderer;
-import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.manager.ServerInstance;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
 
 public class ReleaseCapacityManager {
 

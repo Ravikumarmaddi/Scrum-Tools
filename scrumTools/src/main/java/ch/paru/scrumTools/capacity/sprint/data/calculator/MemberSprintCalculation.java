@@ -9,7 +9,7 @@ import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.SprintDayType;
 import ch.paru.scrumTools.common.reflection.customs.Customizable;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
 
 public class MemberSprintCalculation implements Customizable {
 

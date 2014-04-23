@@ -11,9 +11,9 @@ import java.util.Map;
 import org.junit.Test;
 
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
-import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.services.mock.MockData;
+import ch.paru.scrumTools.backendServer.utils.ServerDayUtil;
 
 public class ReleaseDataTest {
 

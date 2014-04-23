@@ -3,11 +3,11 @@ package ch.paru.scrumTools.capacity.shared.data.collector;
 import java.util.List;
 
 import ch.paru.scrumTools.capacity.shared.data.DataBox;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.backendServer.services.calendar.CalendarCategories;
+import ch.paru.scrumTools.backendServer.services.calendar.CalendarService;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerAppointment;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.utils.ServerDayUtil;
 
 public class AbsenceDataCollector {
 

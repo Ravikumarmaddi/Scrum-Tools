@@ -5,8 +5,8 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import ch.paru.scrumTools.capacity.release.data.CalendarWeek;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.utils.ServerDayUtil;
 
 public class CalendarWeekUtil {
 

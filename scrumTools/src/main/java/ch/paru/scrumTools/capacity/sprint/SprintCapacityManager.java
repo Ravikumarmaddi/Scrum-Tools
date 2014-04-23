@@ -19,8 +19,8 @@ import ch.paru.scrumTools.capacity.sprint.factories.SprintCapacityRendererFactor
 import ch.paru.scrumTools.capacity.sprint.factories.SprintDataFactory;
 import ch.paru.scrumTools.capacity.sprint.factories.TeamSprintCalculationFactory;
 import ch.paru.scrumTools.capacity.sprint.init.SprintCapacityApplicationInitializer;
-import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.manager.ServerInstance;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
 
 public class SprintCapacityManager {
 

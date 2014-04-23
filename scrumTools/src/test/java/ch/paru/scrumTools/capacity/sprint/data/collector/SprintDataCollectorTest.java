@@ -11,16 +11,16 @@ import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
 import ch.paru.scrumTools.capacity.sprint.data.SprintData;
 import ch.paru.scrumTools.capacity.sprint.data.SprintDayType;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
-import ch.paru.scrumTools.exchangeServer.utils.ServerAppointmentUtil;
-import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
-import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.LoadCacheCommand;
-import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.StoreCacheCommand;
+import ch.paru.scrumTools.backendServer.services.calendar.CalendarCategories;
+import ch.paru.scrumTools.backendServer.services.calendar.CalendarService;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerAppointment;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.services.contact.ContactService;
+import ch.paru.scrumTools.backendServer.services.contact.ServerContact;
+import ch.paru.scrumTools.backendServer.utils.ServerAppointmentUtil;
+import ch.paru.scrumTools.backendServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.backendServer.utils.interceptors.command.LoadCacheCommand;
+import ch.paru.scrumTools.backendServer.utils.interceptors.command.StoreCacheCommand;
 
 import com.google.common.collect.Lists;
 

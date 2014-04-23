@@ -10,9 +10,9 @@ import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
 import ch.paru.scrumTools.capacity.shared.factories.TeamFactory;
 import ch.paru.scrumTools.capacity.shared.factories.TeamMemberFactory;
 import ch.paru.scrumTools.capacity.sprint.configuration.SprintCapacityConfiguration;
-import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
-import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
+import ch.paru.scrumTools.backendServer.manager.ServerInstance;
+import ch.paru.scrumTools.backendServer.services.contact.ContactService;
+import ch.paru.scrumTools.backendServer.services.contact.ServerContact;
 
 public class MemberConfigSectionCreator {
 

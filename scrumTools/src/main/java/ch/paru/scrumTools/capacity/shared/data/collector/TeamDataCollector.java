@@ -3,9 +3,9 @@ package ch.paru.scrumTools.capacity.shared.data.collector;
 import java.util.List;
 
 import ch.paru.scrumTools.capacity.shared.data.DataBox;
-import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContactGroup;
+import ch.paru.scrumTools.backendServer.services.contact.ContactService;
+import ch.paru.scrumTools.backendServer.services.contact.ServerContact;
+import ch.paru.scrumTools.backendServer.services.contact.ServerContactGroup;
 
 public class TeamDataCollector {
 

@@ -8,7 +8,7 @@ import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.capacity.shared.factories.TeamFactory;
 import ch.paru.scrumTools.capacity.shared.factories.TeamMemberFactory;
 import ch.paru.scrumTools.common.reflection.customs.Customizable;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

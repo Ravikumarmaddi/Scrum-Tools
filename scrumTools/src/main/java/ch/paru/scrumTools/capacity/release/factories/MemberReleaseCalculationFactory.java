@@ -4,7 +4,7 @@ import ch.paru.scrumTools.capacity.release.data.ReleaseData;
 import ch.paru.scrumTools.capacity.release.data.calculator.MemberReleaseCalculation;
 import ch.paru.scrumTools.common.reflection.customs.AbstractFactory;
 import ch.paru.scrumTools.common.reflection.customs.CustomFactory;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
+import ch.paru.scrumTools.backendServer.services.calendar.CalendarService;
 
 @CustomFactory
 public class MemberReleaseCalculationFactory extends AbstractFactory {

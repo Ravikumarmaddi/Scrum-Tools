@@ -8,10 +8,10 @@ import org.easymock.EasyMockSupport;
 import org.junit.Test;
 
 import ch.paru.scrumTools.capacity.shared.data.DataBox;
-import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContactGroup;
-import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
+import ch.paru.scrumTools.backendServer.services.contact.ContactService;
+import ch.paru.scrumTools.backendServer.services.contact.ServerContact;
+import ch.paru.scrumTools.backendServer.services.contact.ServerContactGroup;
+import ch.paru.scrumTools.backendServer.services.mock.MockData;
 
 import com.google.common.collect.Lists;
 

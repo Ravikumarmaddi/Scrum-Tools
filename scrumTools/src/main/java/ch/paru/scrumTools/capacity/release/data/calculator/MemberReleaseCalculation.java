@@ -11,9 +11,9 @@ import ch.paru.scrumTools.capacity.release.utils.CalendarWeekUtil;
 import ch.paru.scrumTools.capacity.shared.data.Numbers;
 import ch.paru.scrumTools.capacity.shared.data.TeamMember;
 import ch.paru.scrumTools.common.reflection.customs.Customizable;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.backendServer.services.calendar.CalendarService;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.utils.ServerDayUtil;
 
 public class MemberReleaseCalculation implements Customizable {
 

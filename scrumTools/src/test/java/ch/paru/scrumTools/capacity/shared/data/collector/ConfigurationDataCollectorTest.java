@@ -8,8 +8,8 @@ import org.junit.Test;
 import ch.paru.scrumTools.capacity.shared.configuration.CapacityConfiguration;
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
 import ch.paru.scrumTools.capacity.shared.data.DataBox;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
-import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
+import ch.paru.scrumTools.backendServer.services.contact.ServerContact;
+import ch.paru.scrumTools.backendServer.services.mock.MockData;
 
 import com.google.common.collect.Lists;
 

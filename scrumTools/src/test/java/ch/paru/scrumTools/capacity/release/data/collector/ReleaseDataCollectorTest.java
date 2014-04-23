@@ -12,12 +12,12 @@ import ch.paru.scrumTools.capacity.release.data.ReleaseData;
 import ch.paru.scrumTools.capacity.shared.data.collector.AbsenceDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.ConfigurationDataCollector;
 import ch.paru.scrumTools.capacity.shared.data.collector.TeamDataCollector;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.services.contact.ContactService;
-import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
-import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.LoadCacheCommand;
-import ch.paru.scrumTools.exchangeServer.utils.interceptors.command.StoreCacheCommand;
+import ch.paru.scrumTools.backendServer.services.calendar.CalendarService;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.services.contact.ContactService;
+import ch.paru.scrumTools.backendServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.backendServer.utils.interceptors.command.LoadCacheCommand;
+import ch.paru.scrumTools.backendServer.utils.interceptors.command.StoreCacheCommand;
 
 import com.google.common.collect.Lists;
 

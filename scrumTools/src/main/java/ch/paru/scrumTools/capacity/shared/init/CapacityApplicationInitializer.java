@@ -1,6 +1,6 @@
 package ch.paru.scrumTools.capacity.shared.init;
 
-import ch.paru.scrumTools.exchangeServer.manager.ServerInstance;
+import ch.paru.scrumTools.backendServer.manager.ServerInstance;
 
 public abstract class CapacityApplicationInitializer {
 

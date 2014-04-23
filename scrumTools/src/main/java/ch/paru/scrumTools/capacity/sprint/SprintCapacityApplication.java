@@ -1,8 +1,8 @@
 package ch.paru.scrumTools.capacity.sprint;
 
 import ch.paru.scrumTools.capacity.shared.commandLine.CommandLineParser;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.utils.ServerDayUtil;
 
 public class SprintCapacityApplication {
 

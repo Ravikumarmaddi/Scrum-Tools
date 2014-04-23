@@ -5,7 +5,7 @@ import java.util.List;
 import ch.paru.scrumTools.capacity.shared.configuration.CapacityConfiguration;
 import ch.paru.scrumTools.capacity.shared.configuration.ConfigUser;
 import ch.paru.scrumTools.capacity.shared.data.DataBox;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
+import ch.paru.scrumTools.backendServer.services.contact.ServerContact;
 
 public class ConfigurationDataCollector {
 

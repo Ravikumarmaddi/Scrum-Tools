@@ -8,14 +8,14 @@ import org.easymock.EasyMockSupport;
 import org.junit.Test;
 
 import ch.paru.scrumTools.capacity.shared.data.DataBox;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarCategories;
-import ch.paru.scrumTools.exchangeServer.services.calendar.CalendarService;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerAppointment;
-import ch.paru.scrumTools.exchangeServer.services.calendar.ServerDay;
-import ch.paru.scrumTools.exchangeServer.services.contact.ServerContact;
-import ch.paru.scrumTools.exchangeServer.services.mock.MockData;
-import ch.paru.scrumTools.exchangeServer.utils.ServerAppointmentUtil;
-import ch.paru.scrumTools.exchangeServer.utils.ServerDayUtil;
+import ch.paru.scrumTools.backendServer.services.calendar.CalendarCategories;
+import ch.paru.scrumTools.backendServer.services.calendar.CalendarService;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerAppointment;
+import ch.paru.scrumTools.backendServer.services.calendar.ServerDay;
+import ch.paru.scrumTools.backendServer.services.contact.ServerContact;
+import ch.paru.scrumTools.backendServer.services.mock.MockData;
+import ch.paru.scrumTools.backendServer.utils.ServerAppointmentUtil;
+import ch.paru.scrumTools.backendServer.utils.ServerDayUtil;
 
 import com.google.common.collect.Lists;
 
